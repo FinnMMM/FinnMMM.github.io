@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>About me | Myease の Page</title>
+    <title>About Me | Myease の Page</title>
     <meta name="author" content="Myease" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -42,6 +42,10 @@
 
 
 
+
+<script src="https://s4.zstatic.net/ajax/libs/waline/2.15.8/waline.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/waline/2.15.8/waline.min.css" />
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/waline/2.15.8/waline-meta.min.css" />
 
 
 
@@ -142,7 +146,7 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>About me</h1>
+        <h1>About Me</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -156,12 +160,20 @@
     </div>
     
     <div class="content" v-pre>
-        
+        <h2>主页内容</h2>
+<p>MEZ大人很懒，什么都没有留下~但还是非常感谢你访问我的blog <span class="emoji" alias="eyes" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f440.png?v8">&#x1f440;</span> </p>
+<h2>未来计划</h2>
+<p>在暑期内会完善自我简介（本模块）以及评论区模块（maybe），并在未来持续更新从大二上学期开始的课程笔记、日常分享以及一些简单的教学（水平有限，这一块儿估计不太会有）
+
     </div>
     
     
     
     
+    
+    <div id="comment">
+        <div id="waline-container"></div>
+    </div>
     
     
     
@@ -198,6 +210,23 @@
     
     
 
+
+<script>
+    Waline.init({
+        el: "#waline-container",
+        serverURL: "vercin.vercel.app",
+        commentCount: true,
+        pageview: false,
+        emoji: "https://unpkg.com/@waline/emojis@1.2.0/weibo,https://unpkg.com/@waline/emojis@1.2.0/alus,https://unpkg.com/@waline/emojis@1.2.0/bilibili,https://unpkg.com/@waline/emojis@1.2.0/qq,https://unpkg.com/@waline/emojis@1.2.0/tieba,https://unpkg.com/@waline/emojis@1.2.0/tw-emoji".split(","),
+        meta: "nick,mail,link".split(","),
+        requiredMeta: "nick".split(","),
+        lang: "",
+        wordLimit: 0,
+        pageSize: "10",
+        login: "enable",
+        
+    });
+</script>
 
 
 
