@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Archives | Myease の Page</title>
+    <title>APP分析实验手册 | Myease の Page</title>
     <meta name="author" content="Myease" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -40,7 +40,13 @@
 
 
 
-<script src="/js/lib/search.js"></script>
+
+
+
+<script src="https://s4.zstatic.net/ajax/libs/waline/2.15.8/waline.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/waline/2.15.8/waline.min.css" />
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/waline/2.15.8/waline-meta.min.css" />
+
 
 
 
@@ -138,130 +144,50 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>APP分析实验手册</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/11/20
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
             
-<div id="archives">
-    
-    <input id="search-bar" class="input" placeholder="搜索" v-model="rawSearch" />
-    
-    <div id="timeline-wrap" ref="timeline">
-        
-        <div class="timeline" data-title="测试文档">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2024/7/15</div>
-                <a href="/2024/07/15/hello-world/">
-                    <h3>测试文档</h3>
+            
+            <span class="tag">
+                
+                <a href="/tags/APP%E5%88%86%E6%9E%90/" style="color: #ffa2c4">
+                    APP分析
                 </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E8%87%AA%E7%94%A8%E6%B5%8B%E8%AF%95/" style="color: #00a596">
-                                自用测试
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="反序列化漏洞injava">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2024/7/19</div>
-                <a href="/2024/07/19/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E-in-Java/">
-                    <h3>反序列化漏洞 in Java</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/%E6%BC%8F%E6%B4%9E/" style="color: #00a596">
-                                漏洞
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="app分析实验手册">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2024/11/20</div>
-                <a href="/2024/11/20/app-analysis-sum/">
-                    <h3>APP分析实验手册</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/APP%E5%88%86%E6%9E%90/" style="color: #00a596">
-                                APP分析
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="rootpixel6a手机">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2024/11/20</div>
-                <a href="/2024/11/20/root-pixel/">
-                    <h3>root Pixel 6a手机</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </span>
-                        
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/APP%E5%88%86%E6%9E%90/" style="color: #00a596">
-                                APP分析
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
+            </span>
+            
+        </span>
         
     </div>
+    
+    <div class="content" v-pre>
+        <p><a target="_blank" rel="noopener" href="https://immyease.com/2024/11/20/root_pixel">1.root Pixel 6a手机</a></p>
+    </div>
+    
+    
+    
+    
+    
+    <div id="comment">
+        <div id="waline-container"></div>
+    </div>
+    
+    
+    
 </div>
 
             <footer id="footer">
@@ -292,6 +218,29 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+
+
+<script>
+    Waline.init({
+        el: "#waline-container",
+        serverURL: "vercin.vercel.app",
+        commentCount: true,
+        pageview: false,
+        emoji: "https://unpkg.com/@waline/emojis@1.2.0/weibo,https://unpkg.com/@waline/emojis@1.2.0/alus,https://unpkg.com/@waline/emojis@1.2.0/bilibili,https://unpkg.com/@waline/emojis@1.2.0/qq,https://unpkg.com/@waline/emojis@1.2.0/tieba,https://unpkg.com/@waline/emojis@1.2.0/tw-emoji".split(","),
+        meta: "nick,mail,link".split(","),
+        requiredMeta: "nick".split(","),
+        lang: "",
+        wordLimit: 0,
+        pageSize: "10",
+        login: "enable",
+        
+    });
+</script>
+
+
+
     
     <canvas
             id="fireworks"

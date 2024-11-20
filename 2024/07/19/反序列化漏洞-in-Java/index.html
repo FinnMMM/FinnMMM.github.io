@@ -165,7 +165,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%BC%8F%E6%B4%9E/" style="color: #ff7d73">
+                <a href="/tags/%E6%BC%8F%E6%B4%9E/" style="color: #00bcd4">
                     漏洞
                 </a>
             </span>
@@ -182,12 +182,12 @@
 <ul>
 <li><a href="#%E5%BA%8F%E5%88%97%E5%8C%96">序列化</a></li>
 <li><a href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96">反序列化</a></li>
-<li><a href="#%E5%BA%8F%E5%88%97%E5%8C%96-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%9C%A8java%E4%BB%A3%E7%A0%81%E4%B8%AD%E7%9A%84%E4%BD%93%E7%8E%B0">序列化、反序列化在Java代码中的体现</a></li>
-<li><a href="#java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6">Java反射机制</a></li>
+<li><a href="#%E5%BA%8F%E5%88%97%E5%8C%96-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%9C%A8-java-%E4%BB%A3%E7%A0%81%E4%B8%AD%E7%9A%84%E4%BD%93%E7%8E%B0">序列化、反序列化在 Java 代码中的体现</a></li>
+<li><a href="#java-%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6">Java 反射机制</a></li>
 <li><a href="#%E6%BC%8F%E6%B4%9E%E6%88%90%E5%9B%A0">漏洞成因</a></li>
 </ul>
 </li>
-<li><a href="#%E4%BB%A5ctf-show-%E5%8D%95%E8%BA%AB%E6%9D%AF-web-blog%E4%B8%BA%E4%BE%8B%E5%88%86%E6%9E%90">以CTF show [单身杯 WEB] blog为例分析</a></li>
+<li><a href="#%E4%BB%A5-ctf-show-%E5%8D%95%E8%BA%AB%E6%9D%AF-web-blog-%E4%B8%BA%E4%BE%8B%E5%88%86%E6%9E%90">以 CTF show [单身杯 WEB] blog 为例分析</a></li>
 <li><a href="#%E9%98%B2%E5%BE%A1%E6%8E%AA%E6%96%BD">防御措施:</a></li>
 <li><a href="#%E5%8F%82%E8%80%83">参考:</a></li>
 </ul>
@@ -197,7 +197,7 @@
 <p>将结构对象数据转换成字节序列的形式。</p>
 <h3><span id="反序列化">反序列化</span></h3>
 <p>把字节序列恢复成对象。</p>
-<h3><span id="序列化-反序列化在java代码中的体现">序列化、反序列化在Java代码中的体现</span></h3>
+<h3><span id="序列化-反序列化在-java-代码中的体现">序列化、反序列化在 Java 代码中的体现</span></h3>
 <pre><code class="language-Java">package serialize;   //初始化定义一个类
 
 import java.io.Serializable;
@@ -241,7 +241,7 @@ public class Main &#123;
     &#125;
 &#125;
 </code></pre>
-<h3><span id="java反射机制">Java反射机制</span></h3>
+<h3><span id="java-反射机制">Java 反射机制</span></h3>
 <p>对于任意一个类，都能够得到这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。
 以下是常见的获取class信息的方法：</p>
 <pre><code class="language-Java">package reflection;
@@ -260,7 +260,7 @@ public class User &#123;        //定义一个User类作为示范
     &#125;
 &#125;
 </code></pre>
-<pre><code class="language-Java">package reflection;          
+<pre><code class="language-Java">package reflection;
 
 import java.lang.reflect.*;
 
@@ -273,11 +273,11 @@ public class CallMethod &#123;
 
         Method method = UserClass.getDeclaredMethod(&quot;setName&quot;, String.class);  //调用method
         method.invoke(user, &quot;l3yx&quot;);
-        
+
         Field field= UserClass.getDeclaredField(&quot;name&quot;);  //访问属性
         field.setAccessible(true);  // name是私有属性，需要先设置可访问
         field.set(user, &quot;l3yx&quot;);
-        
+
         System.out.println(user.getName());
     &#125;
 &#125;
@@ -295,10 +295,10 @@ public class Exec &#123;
     &#125;
 &#125;
 </code></pre>
-<h2><span id="以ctf-show-单身杯-web-blog为例分析">以CTF show [单身杯 WEB] blog为例分析</span></h2>
+<h2><span id="以-ctf-show-单身杯-web-blog-为例分析">以 CTF show [单身杯 WEB] blog 为例分析</span></h2>
 <p>本题思路主要是造反序列化命令执行payload实现反弹shell，从而实现任意文件可读。在此题目前半部分如何成为admin，class文件读取部分略过。(简单复现漏洞，具体题目解法请见他人write up)</p>
 <pre><code class="language-Java">//在UserEntity.java中，发现可以通过反序列化输入控制username,password,email,address四个数据。
-private void readObject(ObjectInputStream input)     
+private void readObject(ObjectInputStream input)
             throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException
     &#123;
         input.defaultReadObject();
@@ -310,7 +310,7 @@ private void readObject(ObjectInputStream input)
     &#125;
 </code></pre>
 <pre><code class="language-Java">//由AdminController.java文件得知对方是通过url读取数据。
-public String adminConsole(String token, String url, HttpSession session, Model model) 
+public String adminConsole(String token, String url, HttpSession session, Model model)
         throws IOException, ClassNotFoundException
     &#123;
         if(token != null &amp;&amp; token.equals(session.getAttribute(&quot;token&quot;))) // 判断token参数是否一致
@@ -346,15 +346,10 @@ public class Main &#123;
 <p>然后将得到的字节序列数据转码并发起post请求，实现任意文件可读，找到flag文件。</p>
 <h2><span id="防御措施">防御措施:</span></h2>
 <blockquote>
-<p>1.避免反序列化不可信数据：不要从不受信任的源或用户接受序列化数据。<br>
-2.使用安全的库：例如，使用Apache Commons Lang的SerializationUtils类，它提供了更安全的序列化API。<br>
-3.更新和修补：保持Java环境和所有依赖的库更新到最新版本。<br>
-4.实施类型检查和输入验证：在反序列化前检查数据的合法性。</p>
+<p>1.避免反序列化不可信数据：不要从不受信任的源或用户接受序列化数据。 2.使用安全的库：例如，使用 Apache Commons Lang 的 SerializationUtils 类，它提供了更安全的序列化 API。 3.更新和修补：保持 Java 环境和所有依赖的库更新到最新版本。 4.实施类型检查和输入验证：在反序列化前检查数据的合法性。</p>
 </blockquote>
 <h2><span id="参考">参考:</span></h2>
-<p>1.<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/6787?time__1311=n4%2BxnD0Dg7GQ0%3DDk83DsA3gcYGOzKDcCeKcpoD">Java反序列化漏洞原理解析</a><br><br>
-2.<a target="_blank" rel="noopener" href="https://blog.csdn.net/2301_76427295/article/details/135362917">Java反序列化漏洞利用及修复 示例代码</a><br><br>
-3.<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44700621/article/details/125131098">Java反序列化代码执行案例分析</a><br></p>
+<p>1.<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/6787?time__1311=n4%2BxnD0Dg7GQ0%3DDk83DsA3gcYGOzKDcCeKcpoD">Java 反序列化漏洞原理解析</a><br> 2.<a target="_blank" rel="noopener" href="https://blog.csdn.net/2301_76427295/article/details/135362917">Java 反序列化漏洞利用及修复 示例代码</a><br> 3.<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44700621/article/details/125131098">Java 反序列化代码执行案例分析</a><br></p>
 
     </div>
     
