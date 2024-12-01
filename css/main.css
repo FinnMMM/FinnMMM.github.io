@@ -156,6 +156,47 @@
     font-weight: bold;
     margin: 20px auto;
 }
+
+/**/
+
+#article-toc{
+    background: transparent;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    padding: 20px;
+}
+
+
+#toccard {
+    width: 300px;
+}
+#toccard #toccard-style {
+    background: #fff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #d9d9d980;
+    display: flex;
+    left:10px;
+    flex-direction: column;
+    max-height: 80vh;
+    justify-content: center;
+    overflow: auto;
+    position: fixed;
+    top: 100px;
+    width: 250px;
+}
+#toccard #card-div {
+    overflow: auto;
+    padding: 25px 0;
+}
+#toccard #card-div .description {
+    margin: 20px auto;
+    width: 85%;
+}
+
+
 #home-head {
     display: flex;
     height: 100vh;
@@ -898,6 +939,9 @@ ol li {
     #home-card {
         display: none;
     }
+    #toccard {
+        display: none;
+    }
     #home-posts {
         width: 100%;
     }
@@ -963,6 +1007,9 @@ ol li {
     }
     #menu #desktop-menu,
     #home-card {
+        display: none;
+    }
+    #toccard {
         display: none;
     }
     #menu #mobile-menu {

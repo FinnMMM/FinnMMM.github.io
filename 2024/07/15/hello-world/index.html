@@ -144,38 +144,13 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>测试文档</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/7/15
-        </span>
-        
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/%E8%87%AA%E7%94%A8%E6%B5%8B%E8%AF%95/" style="color: #ffa2c4">
-                    自用测试
-                </a>
-            </span>
-            
-        </span>
-        
-    </div>
+            <div class="article-toc">
     
-    <div class="content" v-pre>
-        <h3><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h3>
+    <div id="toccard">
+        <div id="toccard-style">
+    <div id="card-div">
+        <div class="description">
+            <h3><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h3>
 <!-- toc -->
 <ul>
 <li><a href="#quick-start">Quick Start</a>
@@ -189,6 +164,60 @@
 </li>
 </ul>
 <!-- tocstop -->
+<p><span class="emoji" alias="hand" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/270b.png?v8">
+        </div>
+    </div>
+</div>
+
+
+    </div>
+    
+    <div class="article">
+        <div>
+            <h1>测试文档</h1>
+        </div>
+        <div class="info">
+            <span class="date">
+                <span class="icon">
+                    <i class="fa-solid fa-calendar fa-fw"></i>
+                </span>
+                2024/7/15
+            </span>
+            
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                
+                
+                <span class="tag">
+                    
+                    <a href="/tags/%E8%87%AA%E7%94%A8%E6%B5%8B%E8%AF%95/" style="color: #00bcd4">
+                        自用测试
+                    </a>
+                </span>
+                
+            </span>
+            
+        </div>
+        
+        <div class="content" v-pre>
+            <h3><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h3>
+<!-- toc -->
+<ul>
+<li><a href="#quick-start">Quick Start</a>
+<ul>
+<li><a href="#create-a-new-post">Create a new post</a></li>
+<li><a href="#run-server">Run server</a></li>
+<li><a href="#generate-static-files">Generate static files</a></li>
+<li><a href="#deploy-to-remote-sites">Deploy to remote sites</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE">代码高亮</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p><span class="emoji" alias="hand" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/270b.png?v8">✋</span></p>
 <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2><span id="quick-start">Quick Start</span></h2>
 <h3><span id="create-a-new-post">Create a new post</span></h3>
@@ -214,18 +243,21 @@ print(a,b)
 </code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
+        </div>
+
+        
+        
+        
+        
+        
+        <div id="comment">
+            <div id="waline-container"></div>
+        </div>
+        
+        
+        
     </div>
-    
-    
-    
-    
-    
-    <div id="comment">
-        <div id="waline-container"></div>
-    </div>
-    
-    
-    
+
 </div>
 
             <footer id="footer">
