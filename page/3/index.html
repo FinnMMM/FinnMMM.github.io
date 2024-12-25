@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>APP分析实验手册 | Myease の Page</title>
+    <title>Myease の Page</title>
     <meta name="author" content="Myease" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -47,13 +47,7 @@
 
 
 
-
-<script src="https://s4.zstatic.net/ajax/libs/waline/2.15.8/waline.min.js"></script>
-<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/waline/2.15.8/waline.min.css" />
-<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/waline/2.15.8/waline-meta.min.css" />
-
-
-
+<script src="/js/lib/home.js"></script>
 
 <link rel="stylesheet" href="/css/main.css" />
 
@@ -149,81 +143,135 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article-toc">
-    
-    <div id="toccard">
-        <div id="toccard-style">
-    <div id="card-div">
-        <div class="description">
-            <h3><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h3>
-<!-- toc -->
-<!-- tocstop -->
-<p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/scene.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>Myease の Page</h1>
+                <h3></h3>
+                <h5></h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2024/07/19/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E-in-Java/">
+        <h2 class="post-title">反序列化漏洞 in Java</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/7/19
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>反序列化漏洞在Java上的体现</p>
+
+            
         </div>
     </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E8%AF%BE%E5%A4%96%E5%AD%A6%E4%B9%A0/" style="color: #ff7d73">课外学习</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%BC%8F%E6%B4%9E/" style="color: #00bcd4">漏洞</a>
+        </span>
+        
+    </div>
+    <a href="/2024/07/19/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E-in-Java/" class="go-post">阅读全文</a>
 </div>
 
 
+        <div class="page-current">
+    
+    <a class="page-num" href="/page/2/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">3</span>
+    
+    
+    
+    
+</div>
+
     </div>
     
-    <div class="article">
-        <div>
-            <h1>APP分析实验手册</h1>
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
         </div>
-        <div class="info">
-            <span class="date">
-                <span class="icon">
-                    <i class="fa-solid fa-calendar fa-fw"></i>
-                </span>
-                2024/11/20
-            </span>
-            
-            
-            <span class="tags">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                
-                
-                <span class="tag">
-                    
-                    <a href="/tags/APP%E5%88%86%E6%9E%90/" style="color: #ffa2c4">
-                        APP分析
-                    </a>
-                </span>
-                
-                <span class="tag">
-                    
-                    <a href="/tags/%E8%AF%BE%E5%A4%96%E5%AD%A6%E4%B9%A0/" style="color: #00a596">
-                        课外学习
-                    </a>
-                </span>
-                
-            </span>
-            
-        </div>
-        
-        <div class="content" v-pre>
-            <h3><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h3>
-<!-- toc -->
-<!-- tocstop -->
-<p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">👇</span></p>
-<p><a href="https://finnmmm.github.io/2024/11/20/root-pixel" target="_self">1.在 Pixel 6a 手机上安装 Magisk</a></p>
-        </div>
+        <div class="name">Myease</div>
+        <div class="description">
+            <p>Description<br>
+A poor CS beginner in ZJU.</p>
 
-        
-        
-        
-        
-        
-        <div id="comment">
-            <div id="waline-container"></div>
         </div>
         
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/FinnMMM">
+                    <i
+                        class="fa-brands fa-github fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://space.bilibili.com/362101723">
+                    <i
+                        class="fa-brands fa-bilibili fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+        </div>
         
         
     </div>
-
+</div>
+    </div>
+    
 </div>
 
             <footer id="footer">
@@ -254,29 +302,6 @@
         
     </div>
     <script src="/js/main.js"></script>
-    
-    
-
-
-<script>
-    Waline.init({
-        el: "#waline-container",
-        serverURL: "vercin.vercel.app",
-        commentCount: true,
-        pageview: false,
-        emoji: "https://unpkg.com/@waline/emojis@1.2.0/weibo,https://unpkg.com/@waline/emojis@1.2.0/alus,https://unpkg.com/@waline/emojis@1.2.0/bilibili,https://unpkg.com/@waline/emojis@1.2.0/qq,https://unpkg.com/@waline/emojis@1.2.0/tieba,https://unpkg.com/@waline/emojis@1.2.0/tw-emoji".split(","),
-        meta: "nick,mail,link".split(","),
-        requiredMeta: "nick".split(","),
-        lang: "",
-        wordLimit: 0,
-        pageSize: "10",
-        login: "enable",
-        
-    });
-</script>
-
-
-
     
     <canvas
             id="fireworks"

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Backtracking &amp; Pruning | Myease の Page</title>
+    <title>Divide and Conquer &amp; Time Compute | Myease の Page</title>
     <meta name="author" content="Myease" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -158,22 +158,31 @@
             <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
 <ul>
-<li><a href="#backtracking">Backtracking</a>
+<li><a href="#divide-and-conquer">Divide and Conquer</a>
 <ul>
-<li><a href="#n-queens-problem">N-Queens Problem</a>
+<li><a href="#counting-inversions">Counting Inversions</a>
 <ul>
-<li><a href="#fact">Fact</a></li>
-<li><a href="#backtracking-approach">Backtracking Approach</a></li>
+<li><a href="#solutions">Solutions</a></li>
 </ul>
 </li>
-<li><a href="#turnpike-problem">Turnpike Problem</a>
+<li><a href="#closest-pair-of-points">Closest Pair of Points</a>
 <ul>
-<li><a href="#backtracking-approach-1">Backtracking Approach</a></li>
+<li><a href="#solutions-1">Solutions</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#pruning">Pruning</a></li>
+<li><a href="#time-compute">Time Compute</a>
+<ul>
+<li><a href="#solutions-2">Solutions</a>
+<ul>
+<li><a href="#recursion-tree-method">Recursion Tree Method</a></li>
+<li><a href="#master-theorem">Master Theorem</a></li>
+<li><a href="#substitution-method">Substitution Method</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 <p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">
@@ -186,7 +195,7 @@
     
     <div class="article">
         <div>
-            <h1>Backtracking &amp; Pruning</h1>
+            <h1>Divide and Conquer &amp; Time Compute</h1>
         </div>
         <div class="info">
             <span class="date">
@@ -205,22 +214,22 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #ff7d73">
+                    <a href="/tags/ADS/" style="color: #00a596">
                         ADS
                     </a>
                 </span>
                 
                 <span class="tag">
                     
-                    <a href="/tags/Pruning/" style="color: #03a9f4">
-                        Pruning
+                    <a href="/tags/Divide-and-Conquer/" style="color: #03a9f4">
+                        Divide and Conquer
                     </a>
                 </span>
                 
                 <span class="tag">
                     
-                    <a href="/tags/Backtracking/" style="color: #ffa2c4">
-                        Backtracking
+                    <a href="/tags/Time-Compute/" style="color: #ffa2c4">
+                        Time Compute
                     </a>
                 </span>
                 
@@ -232,140 +241,148 @@
             <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
 <ul>
-<li><a href="#backtracking">Backtracking</a>
+<li><a href="#divide-and-conquer">Divide and Conquer</a>
 <ul>
-<li><a href="#n-queens-problem">N-Queens Problem</a>
+<li><a href="#counting-inversions">Counting Inversions</a>
 <ul>
-<li><a href="#fact">Fact</a></li>
-<li><a href="#backtracking-approach">Backtracking Approach</a></li>
+<li><a href="#solutions">Solutions</a></li>
 </ul>
 </li>
-<li><a href="#turnpike-problem">Turnpike Problem</a>
+<li><a href="#closest-pair-of-points">Closest Pair of Points</a>
 <ul>
-<li><a href="#backtracking-approach-1">Backtracking Approach</a></li>
+<li><a href="#solutions-1">Solutions</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#pruning">Pruning</a></li>
+<li><a href="#time-compute">Time Compute</a>
+<ul>
+<li><a href="#solutions-2">Solutions</a>
+<ul>
+<li><a href="#recursion-tree-method">Recursion Tree Method</a></li>
+<li><a href="#master-theorem">Master Theorem</a></li>
+<li><a href="#substitution-method">Substitution Method</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 <p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">👇</span></p>
-<h2><span id="backtracking">Backtracking</span></h2>
-<p>Backtracking is a general algorithmic technique for solving problems incrementally, where you build candidates for the solution step by step, and abandon (“backtrack”) a candidate as soon as you determine it cannot lead to a valid solution.</p>
-<p>An example:<br>
-DFS()</p>
-<h3><span id="n-queens-problem">N-Queens Problem</span></h3>
+<h2><span id="divide-and-conquer">Divide and Conquer</span></h2>
+<p>Divide a problem into smaller subproblems, solve each subproblem independently, and then combine the solutions to the subproblems to solve the original problem.</p>
+<h3><span id="counting-inversions">Counting Inversions</span></h3>
+<p>Given an array of n distinct integers, count the number of inversions in the array. An inversion is a pair of indices $(i, j)$ such that $i &lt; j$ and $a[i] &gt; a[j]$.</p>
+<h4><span id="solutions">Solutions</span></h4>
+<p>Bruteforce solution: $O(n^2)$ time complexity.</p>
+<p>D&amp;C: O(nlogn) time complexity.</p>
 <ul>
-<li>Put N queens on an N x N chessboard.</li>
-<li>No two Queens can attack each other(in the same row,col or diagonal).</li>
+<li>Divide the array into two halves.</li>
+<li>Count the number of inversions in each half recursively.</li>
+<li>Count the number of inversions in the different halves.</li>
 </ul>
-<h4><span id="fact">Fact</span></h4>
-<ul>
-<li>For a $N&gt;3$,a feasible solution exists.</li>
-<li>For some special $N$($N$ is prime or $6k+1$), a solution can be efficiently found.</li>
-</ul>
-<h4><span id="backtracking-approach">Backtracking Approach</span></h4>
-<ul>
-<li>1.Construct a game tree like the following:</li>
-</ul>
-<p><img src="/2024/12/25/ads-6/1.png" alt></p>
-<ul>
-<li>2.Start from the root node and explore all possible moves,for example:</li>
-</ul>
-<p><img src="/2024/12/25/ads-6/2.png" alt></p>
-<pre><code class="language-pesudo">for i in range(N):
-    p[i]=-1
-i=0
-while 0 &lt;= i &lt; N:
-    findgood=false
-    for j in range(p[i]+1,N):
-        if j not aattack P[0],P[1]...P[j-1]
-            p[i]=j
-            findgood=true
-            break
-    if findgood:
-        i=i+1
+<pre><code class="language-pesudo">Sort-and-CountInv(A):
+    if n &lt;= 1:
+        return (A,0)
     else:
-        i--
-if i==-1:
-    not found
-if i==N:
-    found
+        L=left half of A
+        R=right half of A
+        (B,LInv)=Sort-and-CountInv(L)
+        (C,RInv)=Sort-and-CountInv(R)
+        (D,SInv)=Merge-and-Sort(B,C)
+        return (D,LInv+RInv+SInv)
 </code></pre>
-<p>This algorithm takes $O(N!N)$ time to solve the problem.</p>
-<h3><span id="turnpike-problem">Turnpike Problem</span></h3>
-<ul>
-<li>Given a set $A$ of points on a line, $D(A) =$ {|$a-b$|$|$ for all $a,b\in A$}</li>
-<li>Now given a set D ,we need to find a set $A$ such that $D(A) = D$.</li>
-</ul>
-<h4><span id="backtracking-approach">Backtracking Approach</span></h4>
-<ul>
-<li>1.Compute out the number of points</li>
-<li>2.Set $x_0$ as 0, and $x_{max}$ as $max(D)$</li>
-<li>3.Find the last largest $x_i$ in $D$, and there is only two cases:
-<ul>
-<li>case 1: $x_{max}-x_i$</li>
-<li>case 2: $x_i$</li>
-</ul>
-</li>
-<li>4.Then construct a game tree like the following:</li>
-</ul>
-<p><img src="/2024/12/25/ads-6/3.png" alt></p>
-<pre><code class="language-pesudo">TP(D,A):
-if D is empty:
-    return True
-d=max(D)
-for a' in &#123;d,a_max-d&#125;:
-    delta=&#123;|a'-a|,a in A&#125;
-    if delta in D:
-        delete(D,delta)
-        A=A+&#123;a'&#125;
-        if TP(D,A):
-            return True
+<pre><code class="language-pesudo">Merge-and-Sort(B,C):
+    i=0, j=0, SInv=0
+    for k in range(n):
+        if B[i] &lt;= C[j]:
+            D[k]=B[i]
+            i=i+1
         else:
-            A=A-&#123;a'&#125;
-            insert(D,delta)
-return False
+            D[k]=C[j]
+            j=j+1
+            SInv=SInv+n/2-i+1
+    return (D,SInv)
 </code></pre>
-<p>This algorithm takes $O(nlogn)$ time to compute each node.And the total time complexity is $O(n)$in the best case,but it can be $O(2^n)$ in the worst case.</p>
-<h2><span id="pruning">Pruning</span></h2>
-<p>Pruning is a technique used to reduce the number of branches in a search tree. It is used to reduce the search space and improve the efficiency of the search algorithm.</p>
-<p>We first consider a problem like this:</p>
-<p><img src="/2024/12/25/ads-6/4.png" alt></p>
+<p>We have<br>
+$$<br>
+\begin{cases}<br>
+T(n)=2T(n/2)+O(n)\<br>
+T(1)=O(1)<br>
+\end{cases}<br>
+$$<br>
+Therefore, the time complexity is $O(nlogn)$.</p>
+<h3><span id="closest-pair-of-points">Closest Pair of Points</span></h3>
+<p>Given n points in the plane, find the two points that are closest to each other.</p>
+<h4><span id="solutions">Solutions</span></h4>
+<p>$\Delta_1=closest Left Pair$<br>
+$\Delta_2=closest Right Pair$<br>
+$\Delta=min(\Delta_1,\Delta_2)$</p>
+<p><img src="/2024/12/25/ads-8/1.jpg" alt><br>
+1.Watching this picture, when we want to find the closest pair in the split part, we first find a point $p$ ,whose distance to the cut line is less than $\Delta$.<br>
+2.Then we can cut the plane into eight parts of $\Delta/2\times\Delta/2$ square, and each part can have at most 1 point.<br>
+3.Then we only need to find the closest pair in the divided parts and go through all the points whose distance to the cut line is less than $\Delta$.</p>
+<pre><code class="language-pesudo">Px=sort P by X
+Py=sort P by Y
+closestPair(Px,Py):
+    if n&lt;=3:
+        return bruteforce(Px)
+    else:
+        Lx= pts on the left half,sorted by X
+        Ly= pts on the left half,sorted by Y
+        Rx= pts on the right half,sorted by X
+        Ry= pts on the right half,sorted by Y
+        (L1,L2)=closestPair(Lx,Ly)
+        (R1,R2)=closestPair(Rx,Ry)
+        d=min(dist(L1,L2),dist(R1,R2))
+        (s1,s2)= closestSplitPair(Px,Py,d)
+        return the_closest_pair((L1,L2),(R1,R2),(s1,s2))
+</code></pre>
+<pre><code class="language-pesudo">closestSplitPair(Px,Py,d):
+    x'=largest x of Pts in left half
+    S=&#123;q1,q2,...,qk&#125;(x'-d &lt;= q &lt;= x'+d)(sorted by y)
+    minDist = +inf
+    for i=1 to k:
+        for j= 1 to 8:
+            if (dist(qi,qi+j)&lt;minDist):
+                minDist=dist(qi,qi+j)
+                closestPair=(qi,qi+j)
+    return closestPair
+</code></pre>
+<p>The time complexity is $O(nlogn)$.</p>
+<h2><span id="time-compute">Time Compute</span></h2>
+<p>$$<br>
+\begin{cases}<br>
+T(1)=1\<br>
+T(n)=aT(\frac{n}{b})+n^c<br>
+\end{cases}<br>
+$$</p>
+<h3><span id="solutions">Solutions</span></h3>
+<h4><span id="recursion-tree-method">Recursion Tree Method</span></h4>
+<p><img src="/2024/12/25/ads-8/2.png" alt></p>
+<p>$$<br>
+T(n)=\sum_{i=0}^{log_4(n)-1}(\frac{3}{16})^icN^2+\Theta(N^{log_4(3)}=O(N^2)<br>
+$$</p>
 <ul>
-<li>In the picture above, we have a decision tree and each leaf is a result of decisions.</li>
-<li>For a circle node, we always choose the case that minimize the result.</li>
-<li>For a square node, we always choose the case that maximize the result.</li>
-<li>We define $\alpha$ and $\beta$ as the current best and worst result of current situation.And they are initialized as $-\infty$ and $\infty$ respectively.<br>
-<img src="/2024/12/25/ads-6/5.png" alt></li>
-<li>Then we go through each leaf node and update like this:</li>
-<li>1.Circle meets 3, $3&lt;\beta=\infty$,so we update $\beta=3$.<br>
-<img src="/2024/12/25/ads-6/6.png" alt></li>
-<li>2.Circle meets 17, $17&gt;\beta=3$,so we do not update $\beta$.</li>
-<li>3.square meets 3, $3&gt;\alpha=-\infty$,so we update $\alpha=3$.<br>
-<img src="/2024/12/25/ads-6/7.png" alt></li>
-<li>4.Circle meets 2, its $\alpha$ and $\beta$ is the same of its parent.And $2&lt;\beta=\infty$,so we update $\beta=2$.<br>
-<img src="/2024/12/25/ads-6/8.png" alt></li>
-<li>5 .As for a circle node, if its $\beta&lt;\alpha$,this means that its parent square node will not choose it due to the fact that:
+<li>If the running time of per level decreases, select the first level.</li>
+<li>If the running time of per level increases, select the last level.</li>
+<li>If the running time of per level is the same, total time=per level time $\times$ number of levels.</li>
+</ul>
+<h4><span id="master-theorem">Master Theorem</span></h4>
+<p>$$<br>
+\begin{cases}<br>
+T(1)=1\<br>
+T(n)=aT(\frac{n}{b})+n^c<br>
+\end{cases}<br>
+$$</p>
 <ul>
-<li>1.Circle will choose a result no larger than $\beta=2$.</li>
-<li>2.square will choose a result no less than $\alpha=3$.</li>
+<li>If $f(N)=O(N^{log_b{a-\varepsilon}})$, or $\frac{a}{b^c}&gt;1$, $T(N)=\Theta(N^{log_b{a}})$.</li>
+<li>If $f(N)=\Theta(N^{log_b{a}})$, or $\frac{a}{b^c}=1$, $T(N)=\Theta(log_b{N}N^c)$.</li>
+<li>If $f(N)=\Omega(N^{log_b{a+\varepsilon}})$, or $\frac{a}{b^c}&lt;1$, $T(N)=\Theta(N^c)$.</li>
 </ul>
-</li>
-<li>6 .So we can prune the remained ,unaccessed node of this circle node,which is called <strong>$\alpha$-pruning</strong>.</li>
-</ul>
-<p><img src="/2024/12/25/ads-6/9.png" alt></p>
-<ul>
-<li>7.And then we go through like how we did before until we meet this situation:</li>
-</ul>
-<p><img src="/2024/12/25/ads-6/10.png" alt></p>
-<ul>
-<li>8.For a square node, if its $\alpha&gt;\beta$,this means that its parent circle node will not choose it due to the same reason.</li>
-<li>9 .So we can prune the remained ,unaccessed node of this square node,which is called <strong>$\beta$-pruning</strong>.</li>
-</ul>
-<div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/25/ads-7" target="_self">下一篇 : Greedy</a></span><a href="https://finnmmm.github.io/2024/12/25/ads-5" target="_self">上一篇 : Inverted File Index.</a></div>
-
+<h4><span id="substitution-method">Substitution Method</span></h4>
+<p>Guess and proof.</p>
+<div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/25/ads-9" target="_self">下一篇 : Dynamic Programming</a></span><a href="https://finnmmm.github.io/2024/12/25/ads-7" target="_self">上一篇 : Greedy</a></div>
         </div>
 
         
