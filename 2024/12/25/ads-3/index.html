@@ -168,8 +168,19 @@
 </li>
 <li><a href="#heaps">Heaps</a>
 <ul>
-<li><a href="#leftist-heap">Leftist Heap</a></li>
-<li><a href="#skew-heap">Skew Heap</a></li>
+<li><a href="#leftist-heap">Leftist Heap</a>
+<ul>
+<li><a href="#merge-operation">Merge Operation</a></li>
+<li><a href="#insertion-operation">Insertion Operation</a></li>
+<li><a href="#delete-min-operation">Delete-min Operation</a></li>
+<li><a href="#delete-key-operation">Delete-key Operation</a></li>
+</ul>
+</li>
+<li><a href="#skew-heap">Skew Heap</a>
+<ul>
+<li><a href="#merge-operation-1">Merge Operation</a></li>
+</ul>
+</li>
 <li><a href="#comparison">Comparison</a></li>
 </ul>
 </li>
@@ -204,28 +215,28 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #ff7d73">
+                    <a href="/tags/ADS/" style="color: #00a596">
                         ADS
                     </a>
                 </span>
                 
                 <span class="tag">
                     
-                    <a href="/tags/B-Tree/" style="color: #00a596">
+                    <a href="/tags/B-Tree/" style="color: #03a9f4">
                         B+ Tree
                     </a>
                 </span>
                 
                 <span class="tag">
                     
-                    <a href="/tags/Leftist-Heap/" style="color: #00bcd4">
+                    <a href="/tags/Leftist-Heap/" style="color: #00a596">
                         Leftist Heap
                     </a>
                 </span>
                 
                 <span class="tag">
                     
-                    <a href="/tags/Skew-Heap/" style="color: #03a9f4">
+                    <a href="/tags/Skew-Heap/" style="color: #00bcd4">
                         Skew Heap
                     </a>
                 </span>
@@ -248,8 +259,19 @@
 </li>
 <li><a href="#heaps">Heaps</a>
 <ul>
-<li><a href="#leftist-heap">Leftist Heap</a></li>
-<li><a href="#skew-heap">Skew Heap</a></li>
+<li><a href="#leftist-heap">Leftist Heap</a>
+<ul>
+<li><a href="#merge-operation">Merge Operation</a></li>
+<li><a href="#insertion-operation">Insertion Operation</a></li>
+<li><a href="#delete-min-operation">Delete-min Operation</a></li>
+<li><a href="#delete-key-operation">Delete-key Operation</a></li>
+</ul>
+</li>
+<li><a href="#skew-heap">Skew Heap</a>
+<ul>
+<li><a href="#merge-operation-1">Merge Operation</a></li>
+</ul>
+</li>
 <li><a href="#comparison">Comparison</a></li>
 </ul>
 </li>
@@ -320,12 +342,9 @@ For a leftist heap with n nodes, its right path from root to null has at most $l
         return H2
     case 2: H2 is empty
         return H1
-    case 3: (assume u1&lt;u2)
+    case 3: (assume u1 &lt; u2)
         B'=merge(B1,H2)
-        if npl(A1-&gt;root) &gt;= npl(B'-&gt;root):
-            H = the left form in the picture below
-        else :
-            H = the right form in the picture below
+        H = the right form in the picture below(always swap)
         update npl(u1)
         return H
     (number of recursions is |H1|+|H2|)
@@ -366,9 +385,12 @@ For a leftist heap with n nodes, its right path from root to null has at most $l
         return H2
     case 2: H2 is empty
         return H1
-    case 3: (assume u1&lt;u2)
+    case 3: (assume u1 &lt; u2)
         B'=merge(B1,H2)
-        H = the right form in the picture below(always swap)
+        if npl(A1-&gt;root) &gt;= npl(B'-&gt;root):
+            H = the right form in the picture below
+        else :
+            H = the right form in the picture below
         update npl(u1)
         return H
     (number of recursions is |H1|+|H2|)
@@ -403,7 +425,7 @@ For a leftist heap with n nodes, its right path from root to null has at most $l
 </tr>
 </tbody>
 </table>
-<div style="font-size:16px"><span style="float:right"><a target="_blank" rel="noopener" href="https://immyease.com/2024/12/25/ads-4">下一篇 : Binomial Tree and Binomial Heap</a></span><a target="_blank" rel="noopener" href="https://immyease.com/2024/12/24/ads-1">上一篇 : Amortized Analysis, Dynamic Array and Splay Tree</a></div>
+<div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/25/ads-4" target="_self">下一篇 : Binomial Tree and Binomial Heap</a></span><a href="https://finnmmm.github.io/2024/12/24/ads-1" target="_self">上一篇 : Amortized Analysis, Dynamic Array and Splay Tree</a></div>
         </div>
 
         
