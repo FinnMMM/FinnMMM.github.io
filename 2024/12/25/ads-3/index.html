@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>APP分析实验手册 | Myease の Page</title>
+    <title>B+ Tree &amp; Leftist Heap &amp; Skew Heap | Myease の Page</title>
     <meta name="author" content="Myease" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -155,8 +155,25 @@
         <div id="toccard-style">
     <div id="card-div">
         <div class="description">
-            <h3><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h3>
+            <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
+<ul>
+<li><a href="#b-tree">B+ Tree</a>
+<ul>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#theorem">Theorem</a></li>
+<li><a href="#insertion">Insertion</a></li>
+<li><a href="#deletion">Deletion</a></li>
+</ul>
+</li>
+<li><a href="#heaps">Heaps</a>
+<ul>
+<li><a href="#leftist-heap">Leftist Heap</a></li>
+<li><a href="#skew-heap">Skew Heap</a></li>
+<li><a href="#comparison">Comparison</a></li>
+</ul>
+</li>
+</ul>
 <!-- tocstop -->
 <p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">
         </div>
@@ -168,14 +185,14 @@
     
     <div class="article">
         <div>
-            <h1>APP分析实验手册</h1>
+            <h1>B+ Tree &amp; Leftist Heap &amp; Skew Heap</h1>
         </div>
         <div class="info">
             <span class="date">
                 <span class="icon">
                     <i class="fa-solid fa-calendar fa-fw"></i>
                 </span>
-                2024/11/20
+                2024/12/25
             </span>
             
             
@@ -187,15 +204,29 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/APP%E5%88%86%E6%9E%90/" style="color: #00bcd4">
-                        APP分析
+                    <a href="/tags/ADS/" style="color: #ff7d73">
+                        ADS
                     </a>
                 </span>
                 
                 <span class="tag">
                     
-                    <a href="/tags/%E8%AF%BE%E5%A4%96%E5%AD%A6%E4%B9%A0/" style="color: #00a596">
-                        课外学习
+                    <a href="/tags/B-Tree/" style="color: #00a596">
+                        B+ Tree
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Leftist-Heap/" style="color: #00bcd4">
+                        Leftist Heap
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Skew-Heap/" style="color: #03a9f4">
+                        Skew Heap
                     </a>
                 </span>
                 
@@ -204,11 +235,175 @@
         </div>
         
         <div class="content" v-pre>
-            <h3><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h3>
+            <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
+<ul>
+<li><a href="#b-tree">B+ Tree</a>
+<ul>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#theorem">Theorem</a></li>
+<li><a href="#insertion">Insertion</a></li>
+<li><a href="#deletion">Deletion</a></li>
+</ul>
+</li>
+<li><a href="#heaps">Heaps</a>
+<ul>
+<li><a href="#leftist-heap">Leftist Heap</a></li>
+<li><a href="#skew-heap">Skew Heap</a></li>
+<li><a href="#comparison">Comparison</a></li>
+</ul>
+</li>
+</ul>
 <!-- tocstop -->
 <p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">👇</span></p>
-<p><a target="_blank" rel="noopener" href="https://immyease.com/2024/11/20/root-pixel">1.在 Pixel 6a 手机上安装 Magisk</a></p>
+<h2><span id="b-tree">B+ Tree</span></h2>
+<p>The following picture is a a example of a B+ Tree of order 3.</p>
+<p><img src="/2024/12/25/ads-3/1.jpg" alt></p>
+<h3><span id="definition">Definition</span></h3>
+<ul>
+<li>B+ Tree of Order B
+<ul>
+<li>1.all leaves are at the same level</li>
+<li>2.data elements are stored in the leaves.</li>
+<li>3.$\lceil \frac{B}{2}\rceil \leq$ fan-out of any internal node $\leq B$</li>
+<li>4.$\lceil \frac{B}{2}\rceil \leq$ number of elements in a leaf $\leq B$</li>
+<li><a target="_blank" rel="noopener" href="http://5.in">5.in</a> a internal node,the $i$-th number $e_i = $ the minimum element stored in leaves of its $(i+1)$-th children.</li>
+<li>6.$N$,number of elements in the tree, should be larger than $B$.</li>
+</ul>
+</li>
+</ul>
+<h3><span id="theorem">Theorem</span></h3>
+<ul>
+<li>number of leaves $\leq \frac{N}{\lceil \frac{B}{2}\rceil}$.</li>
+<li>number of nodes $\leq \frac{2N}{\lceil \frac{B}{2}\rceil}$.</li>
+<li>cost of space = $\leq \frac{2N}{\lceil \frac{B}{2}\rceil}\times B\leq 4B$.</li>
+<li>height $\leq log_{\lceil \frac{B}{2}\rceil}(\frac{N}{\lceil \frac{B}{2}\rceil})\leq log_{\lceil \frac{B}{2}\rceil}(N)\leq \frac{logN}{log(B-1)}=O(log_BN)$.</li>
+<li>findkey(): $O(log_BN)$</li>
+<li>insert(): $O(log_BN)$</li>
+<li>delete(): $O(log_BN)$</li>
+</ul>
+<h3><span id="insertion">Insertion</span></h3>
+<ul>
+<li>1.Search for the leaf node where the new element should be inserted.</li>
+<li>2.Insert the new element into the leaf node.</li>
+<li>3.If the number of elements in the leaf node exceeds $B$, split the leaf node into two new leaf nodes.</li>
+<li>4.If the number of elements in the parent node exceeds $B$, split the parent node into two new parent nodes.</li>
+<li>5.Repeat <strong>step 4</strong> until the property of B+ Tree is satisfied.</li>
+</ul>
+<h3><span id="deletion">Deletion</span></h3>
+<ul>
+<li>1.Search for the leaf node containing the element to be deleted.</li>
+<li>2.Delete the element from the leaf node.</li>
+<li>3.If the number of elements in the leaf node is less than $\lceil \frac{B}{2}\rceil$:
+<ul>
+<li>if the sibling has at least $\lceil \frac{B}{2}\rceil+1$ elements, take one from the sibling.</li>
+<li>if the sibling has less than $\lceil \frac{B}{2}\rceil+1$ elements, merge the sibling.</li>
+</ul>
+</li>
+<li>4.Update the parent nodes to maintain the B+ Tree property.</li>
+</ul>
+<h2><span id="heaps">Heaps</span></h2>
+<h3><span id="leftist-heap">Leftist Heap</span></h3>
+<ul>
+<li>it contains heap property.</li>
+<li>binary tree satisfying leftist property.</li>
+<li>let $npl(u)$ equals to the length of the shortest path from $u$ to a leaf.</li>
+<li>leftist property: right path from root to leaf is the shortest path from root to any leaf<br>
+$\leftrightarrow$ $npl(u$-&gt;$right)\leq npl(v$-&gt;$left)$.</li>
+</ul>
+<p>Lemma:<br>
+For a leftist heap with n nodes, its right path from root to null has at most $log_2(n)$ nodes.</p>
+<h4><span id="merge-operation">Merge Operation</span></h4>
+<p><img src="/2024/12/25/ads-3/2.jpg" alt></p>
+<pre><code class="language-pesudo">merge(H1, H2):
+    case 1: H1 is empty
+        return H2
+    case 2: H2 is empty
+        return H1
+    case 3: (assume u1&lt;u2)
+        B'=merge(B1,H2)
+        if npl(A1-&gt;root) &gt;= npl(B'-&gt;root):
+            H = the left form in the picture below
+        else :
+            H = the right form in the picture below
+        update npl(u1)
+        return H
+    (number of recursions is |H1|+|H2|)
+</code></pre>
+<ul>
+<li>This operation takes $O(logn)$ time in amortized and worst case.</li>
+</ul>
+<p><img src="/2024/12/25/ads-3/3.jpg" alt></p>
+<h4><span id="insertion-operation">Insertion Operation</span></h4>
+<ul>
+<li>merge()</li>
+</ul>
+<h4><span id="delete-min-operation">Delete-min Operation</span></h4>
+<ul>
+<li>delete root</li>
+<li>merge the subtrees of the root</li>
+</ul>
+<h4><span id="delete-key-operation">Delete-key Operation</span></h4>
+<ul>
+<li>find the node containing the key</li>
+<li>delete the node</li>
+<li>merge the subtrees of the node</li>
+<li>attach the merged subtree to the parent node</li>
+<li>this may lead to not leftist property, so we need to fix it.</li>
+</ul>
+<h5><span id="fixing-the-property">Fixing the Property</span></h5>
+<p><img src="/2024/12/25/ads-3/4.jpg" alt></p>
+<ul>
+<li>Find the first node that violates the leftist property from the parent node of the deleted node to the root.</li>
+<li>Swap its children and step above.</li>
+<li>Repeat until the property is satisfied.</li>
+<li>Update the npl of the nodes.</li>
+</ul>
+<h3><span id="skew-heap">Skew Heap</span></h3>
+<h4><span id="merge-operation">Merge Operation</span></h4>
+<pre><code class="language-pesudo">merge(H1, H2):
+    case 1: H1 is empty
+        return H2
+    case 2: H2 is empty
+        return H1
+    case 3: (assume u1&lt;u2)
+        B'=merge(B1,H2)
+        H = the right form in the picture below(always swap)
+        update npl(u1)
+        return H
+    (number of recursions is |H1|+|H2|)
+</code></pre>
+<p><img src="/2024/12/25/ads-3/3.jpg" alt></p>
+<ul>
+<li>Heavy node is the node in the skew heap whose number of children in the right subtree is greater than the number of children in the left subtree.</li>
+<li>After merging,all the heavy node will turn into a light node,but not all light nodes will turn into heavy nodes.</li>
+</ul>
+<h3><span id="comparison">Comparison</span></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">min-heap</th>
+<th style="text-align:center">leftist-heap</th>
+<th style="text-align:center">skew-heap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">build()</td>
+<td style="text-align:center">$O(n)$</td>
+<td style="text-align:center">$O(n)$</td>
+<td style="text-align:center">$O(n)$</td>
+</tr>
+<tr>
+<td style="text-align:center">merge()</td>
+<td style="text-align:center">$O(n)$</td>
+<td style="text-align:center">$O(logn)$</td>
+<td style="text-align:center">worst $O(n)$,amortized $O(logn)$</td>
+</tr>
+</tbody>
+</table>
+<div style="font-size:16px"><span style="float:right"><a target="_blank" rel="noopener" href="https://immyease.com/2024/12/25/ads-4">下一篇 : Binomial Tree and Binomial Heap</a></span><a target="_blank" rel="noopener" href="https://immyease.com/2024/12/24/ads-1">上一篇 : Amortized Analysis, Dynamic Array and Splay Tree</a></div>
         </div>
 
         

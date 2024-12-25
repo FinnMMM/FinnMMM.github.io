@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>在 Pixel 6a 手机上安装 Magisk | Myease の Page</title>
+    <title>Amortized Analysis &amp; Dynamic Array &amp; Splay Tree | Myease の Page</title>
     <meta name="author" content="Myease" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -158,14 +158,15 @@
             <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
 <ul>
-<li><a href="#11%E8%B0%B7%E6%AD%8C%E8%A7%A3%E9%94%81-bootloader">1.1谷歌解锁 Bootloader</a></li>
-<li><a href="#12%E4%B8%8B%E8%BD%BDrom%E7%B3%BB%E7%BB%9F%E5%8C%85">1.2下载ROM系统包</a></li>
-<li><a href="#13%E4%BC%A0%E8%BE%93bootimg%E5%88%B0%E6%89%8B%E6%9C%BA">1.3传输boot.img到手机</a></li>
-<li><a href="#14%E6%89%8B%E6%9C%BA%E4%B8%8B%E8%BD%BDmagisk">1.4手机下载magisk</a></li>
-<li><a href="#15%E4%BD%BF%E7%94%A8magisk%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F">1.5使用magisk安装系统</a></li>
-<li><a href="#16%E4%BC%A0%E8%BE%93magiskimg%E5%88%B0%E7%94%B5%E8%84%91">1.6传输magisk.img到电脑</a></li>
-<li><a href="#17%E5%B0%86%E5%8C%85%E5%88%B7%E5%85%A5%E6%89%8B%E6%9C%BA">1.7将包刷入手机</a></li>
-<li><a href="#18%E6%A3%80%E6%9F%A5%E7%89%88%E6%9C%AC">1.8检查版本</a></li>
+<li><a href="#amortized-analysis">Amortized Analysis</a>
+<ul>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#aggregate-analysis">Aggregate analysis</a></li>
+<li><a href="#accounting-method">Accounting Method</a></li>
+<li><a href="#potential-function">Potential Function</a></li>
+<li><a href="#splay-tree">Splay Tree</a></li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 <p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">
@@ -178,14 +179,14 @@
     
     <div class="article">
         <div>
-            <h1>在 Pixel 6a 手机上安装 Magisk</h1>
+            <h1>Amortized Analysis &amp; Dynamic Array &amp; Splay Tree</h1>
         </div>
         <div class="info">
             <span class="date">
                 <span class="icon">
                     <i class="fa-solid fa-calendar fa-fw"></i>
                 </span>
-                2024/11/20
+                2024/12/25
             </span>
             
             
@@ -197,15 +198,29 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/APP%E5%88%86%E6%9E%90/" style="color: #00a596">
-                        APP分析
+                    <a href="/tags/ADS/" style="color: #ff7d73">
+                        ADS
                     </a>
                 </span>
                 
                 <span class="tag">
                     
-                    <a href="/tags/%E8%AF%BE%E5%A4%96%E5%AD%A6%E4%B9%A0/" style="color: #ff7d73">
-                        课外学习
+                    <a href="/tags/Amortized-Analysis/" style="color: #00a596">
+                        Amortized Analysis
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Dynamic-Array/" style="color: #ff7d73">
+                        Dynamic Array
+                    </a>
+                </span>
+                
+                <span class="tag">
+                    
+                    <a href="/tags/Splay-Tree/" style="color: #03a9f4">
+                        Splay Tree
                     </a>
                 </span>
                 
@@ -217,76 +232,186 @@
             <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
 <ul>
-<li><a href="#11%E8%B0%B7%E6%AD%8C%E8%A7%A3%E9%94%81-bootloader">1.1谷歌解锁 Bootloader</a></li>
-<li><a href="#12%E4%B8%8B%E8%BD%BDrom%E7%B3%BB%E7%BB%9F%E5%8C%85">1.2下载ROM系统包</a></li>
-<li><a href="#13%E4%BC%A0%E8%BE%93bootimg%E5%88%B0%E6%89%8B%E6%9C%BA">1.3传输boot.img到手机</a></li>
-<li><a href="#14%E6%89%8B%E6%9C%BA%E4%B8%8B%E8%BD%BDmagisk">1.4手机下载magisk</a></li>
-<li><a href="#15%E4%BD%BF%E7%94%A8magisk%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F">1.5使用magisk安装系统</a></li>
-<li><a href="#16%E4%BC%A0%E8%BE%93magiskimg%E5%88%B0%E7%94%B5%E8%84%91">1.6传输magisk.img到电脑</a></li>
-<li><a href="#17%E5%B0%86%E5%8C%85%E5%88%B7%E5%85%A5%E6%89%8B%E6%9C%BA">1.7将包刷入手机</a></li>
-<li><a href="#18%E6%A3%80%E6%9F%A5%E7%89%88%E6%9C%AC">1.8检查版本</a></li>
+<li><a href="#amortized-analysis">Amortized Analysis</a>
+<ul>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#aggregate-analysis">Aggregate analysis</a></li>
+<li><a href="#accounting-method">Accounting Method</a></li>
+<li><a href="#potential-function">Potential Function</a></li>
+<li><a href="#splay-tree">Splay Tree</a></li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 <p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">👇</span></p>
-<h3><span id="11谷歌解锁-bootloader">1.1谷歌解锁 Bootloader</span></h3>
-<p>1.电脑安装USB驱动：<a target="_blank" rel="noopener" href="https://dl.google.com/android/repository/usb_driver_r13-windows.zip?hl=zh-cn">usb_driver_windows</a></p>
-<p>2.手机启动开发者模式(Pixel 6a是在设置-关于手机中疯狂点击版本号，然后便会启动开发者模式)
-</p><p>3.开发者选项 开启 USB调试 与 OEM解锁</p>
-<p>4.电脑下载:  <a target="_blank" rel="noopener" href="https://mrzzoxo.lanzoue.com/b02plghuh">adb-fastboot</a></p>
-<p>5.手机连接电脑，打开cmd，进入到adb-reboot的目录下，输入指令</p>
-<pre><code class="language-bash">adb reboot bootloader
+<h2><span id="amortized-analysis">Amortized Analysis</span></h2>
+<h3><span id="definition">Definition</span></h3>
+<ul>
+<li>Any $M$ consecutive operations take at most $O(M log N)$ time.</li>
+<li>Amortized time bound.</li>
+<li>$T_{worst}\geq T_{amortized}\geq T_{average}\geq T_{best}$</li>
+</ul>
+<h3><span id="aggregate-analysis">Aggregate analysis</span></h3>
+<h4><span id="definition">Definition</span></h4>
+<ul>
+<li>Show that for all $n$, a sequence of $n$ operations takes worst-case time $T(n)$ in total.  In the worst case, the average cost, or amortized cost, per operation is therefore $T(n)/n$.</li>
+</ul>
+<h4><span id="example-dynamic-array">Example: Dynamic Array</span></h4>
+<h5><span id="definition">Definition</span></h5>
+<ul>
+<li>A dynamic array is a array with initial capacity $1$.</li>
+<li>When the array is full,it doubles its capacity.</li>
+</ul>
+<h5><span id="insertion">Insertion</span></h5>
+<ul>
+<li>
+<p>It takes $O(n)$ in worst case but amortized time is $O(1)$ per operation.</p>
+</li>
+<li>
+<p>We define $W(m)$ as the cost of a sequence of $m$ insertions into an initially empty dynamic array.</p>
+</li>
+<li>
+<p>$T(m)=mc + (1 +2)c+ (2+4)c+…+(2^k+2^{k+1})c$,where $k= log_2(n)$.</p>
+</li>
+<li>
+<p>In the given formula, $c$ is a constant, $mc$ refers to the cost of write $m$ elements into the array, and in the $(2^k+2^{k+1})c$ term,$2^kc$ refers to the cost of copying the array while $2^{k+1}c$ refers to the cost of creating a new array with doubled capacity.</p>
+</li>
+<li>
+<p>$T(m)=mc + (1 +2)c+ (2+4)c+…+(2^k+2^{k+1})c\leq mc+6mc=7mc$</p>
+</li>
+<li>
+<p>$T_{amortized}=\frac{T(m)}{m}=7c=O(1)$</p>
+</li>
+</ul>
+<h3><span id="accounting-method">Accounting Method</span></h3>
+<h4><span id="definition">Definition</span></h4>
+<ul>
+<li>When an operation’s amortized cost exceeds its actual cost, we assign the difference to specific objects in the data structure as credit. Credit can help pay for later operations whose amortized cost is less than their actual cost.</li>
+<li>$T_{amortized} = T_{actual} + T_{credit}$</li>
+</ul>
+<h4><span id="example-two-stack-queue">Example: Two-Stack Queue</span></h4>
+<ul>
+<li>A Two-Stack Queue is a queue with two stacks,one for input and one for output.<br>
+<img src="/2024/12/25/ads-2/1.jpg" alt></li>
+</ul>
+<h5><span id="enqueue-operation">Enqueue Operation</span></h5>
+<pre><code class="language-pesudo">In.push(x)
 </code></pre>
-<p>将手机重启到 Bootloader模式。</p>
- <p>6.输入解锁指令:</p>
-<pre><code class="language-bash">fastboot flashing unlock
+<h5><span id="dequeue-operation">Dequeue Operation</span></h5>
+<pre><code class="language-pesudo">if out.not_empty():
+    out.pop()
+else if In.not_empty():
+    while In.not_empty():
+        x = In.pop()
+        out.push(x)
+    out.pop()
 </code></pre>
- <p>7.按手机的 音量下键 滚动选择 Unlock the bootloader，再按电源键 确定 解锁。</p>
- <p>8.手机显示 Device state：unlocked 解锁完成。</p>
- <p>9.输入指令:</p>
-<pre><code class="language-bash">fastboot reboot
+<ul>
+<li>Enqueue operation takes $O(1)$ time in the worst case.</li>
+<li>Dequeue operation takes $O(n)$ time in the worst case.</li>
+<li>Amortized time for enqueue and dequeue operation is $O(1)$ per operation.</li>
+</ul>
+<h5><span id="amortized-analysis">Amortized Analysis</span></h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">acutal</th>
+<th style="text-align:center">credit</th>
+<th style="text-align:center">amortized</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Enqueue</td>
+<td style="text-align:center">$c$</td>
+<td style="text-align:center">$2c$</td>
+<td style="text-align:center">$3c$</td>
+</tr>
+<tr>
+<td style="text-align:center">Dequeue</td>
+<td style="text-align:center">$2c\times$|$In$|$+c$</td>
+<td style="text-align:center">$-2c\times$|$In$|</td>
+<td style="text-align:center">$c$</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>It can be easily seen that the amortized time for enqueue and dequeue operation is $O(1)$ per operation.</li>
+<li>And the credit accumulated will always larger than 0.</li>
+</ul>
+<h3><span id="potential-function">Potential Function</span></h3>
+<h4><span id="definition">Definition</span></h4>
+<ul>
+<li>$\phi(i)$ equals to the total number fo credits remaing after $i$ operations.</li>
+<li>$\phi(i)$ is a potential function.</li>
+<li>$\Delta\phi(i) = \phi(i)-\phi(i-1)$.</li>
+<li>$T_{amortized}(i) = T_{actual}(i) + \Delta\phi(i)$</li>
+<li>$\phi(i) \geq \phi(0)$</li>
+</ul>
+<h4><span id="example-two-stack-queue">Example: Two-Stack Queue</span></h4>
+<ul>
+<li>$\phi(0) = 0$</li>
+<li>$\phi(i)$ equals to the number of elements in the input stack after $i$ operations.</li>
+</ul>
+<h3><span id="splay-tree">Splay Tree</span></h3>
+<h4><span id="definition">Definition</span></h4>
+<ul>
+<li>$splay(u)$ is rotate $u$ to the root of the tree.</li>
+<li>$findkey()$
+<ul>
+<li>1.find as BST</li>
+<li>2.splay the node to root</li>
+</ul>
+</li>
+<li>$insert()$
+<ul>
+<li>1.insert as BST</li>
+<li>2.splay the node to root</li>
+</ul>
+</li>
+<li>$delete()$
+<ul>
+<li>1.splay the node to root</li>
+<li>2.delete it.</li>
+<li>3.if u has only one child,finish.</li>
+<li>4.if u has two children,splay the largest node in the left subtree(or the smallest node in the right subtree) and attach another subtree to it.</li>
+</ul>
+</li>
+</ul>
+<h4><span id="splay-operation">Splay Operation</span></h4>
+<h5><span id="case-1-u-is-a-child-of-the-root">case 1: u is a child of the root</span></h5>
+<p><img src="/2024/12/25/ads-2/2.jpg" alt></p>
+<ul>
+<li>Perform a <strong>Rotation</strong> on $u$.</li>
+</ul>
+<h5><span id="case-2-u-has-grandparent">case 2: u has grandparent</span></h5>
+<h6><span id="case-2-1zig-zag">case 2-1:zig-zag</span></h6>
+<p><img src="/2024/12/25/ads-2/3.jpg" alt></p>
+<ul>
+<li>Perform a <strong>Rotation</strong> on $u$ to make it as the parent of its orignial parent $Y$.</li>
+<li>Perform a <strong>Rotation</strong> on $u$ to make it as the parent of its parent original $Y$ and original grandparent $w$.</li>
+</ul>
+<h6><span id="case-2-2zig-zig">case 2-2:zig-zig</span></h6>
+<p><img src="/2024/12/25/ads-2/4.jpg" alt></p>
+<ul>
+<li>Perform a <strong>Rotation</strong> on $v$ to make it as the parent of its orignial parent $w$.</li>
+<li>Perform a <strong>Rotation</strong> on $u$ to make it as the parent of its parent original $v$.</li>
+</ul>
+<h4><span id="time-complexity-analysis">Time Complexity Analysis</span></h4>
+<ul>
+<li>Given a BST $T_{u}$</li>
+<li>For each $u \isin T$, $T_{u}$ is the subtree rooted at $u$.</li>
+<li>$\delta(u)=log(|T_{u}|)$</li>
+<li>$\phi(T)=c\sum_{u \in T} \delta(u)$</li>
+<li>$T’$ is the splay tree after $splay(u)$ on T.</li>
+<li>$\Delta\phi(T’)=\phi(T’)-\phi(T)\leq 3c(\delta’(u)-\delta(u))-2c\times|Rotations-1|$</li>
+</ul>
+<pre><code class="language-Theorem">The amortized time to splay a tree with root T at node X is at most 
+3( R( T ) – R ( X ) ) + 1 = O(log N).
 </code></pre>
-<p>重启手机</p>
-<h3><span id="12下载rom系统包">1.2下载ROM系统包</span></h3>
-<p>1.2.1<a target="_blank" rel="noopener" href="https://developers.google.cn/android/ota?hl=zh-cn">下载地址</a>(记得下载与手机版本号对应的、年份最新的系统包)</p>
-<p>1.2.2检查有没有boot.img，如果有，跳到1.3步骤；如果没有，就解压出系统包的payload.bin文件</p>
-<p>1.2.3下载 <a target="_blank" rel="noopener" href="https://mrzzoxo.lanzoue.com/b02plgdpi">payload-dumper-go</a></p>
-<p>1.2.4复制 payload.bin 文件到 payload-dumper-go 文件夹里面</p>
-<p>1.2.5在payload-dumper-go文件夹下打开cmd，根据提示输入b,然后就能在同目录找到img文件夹了。</p>
-<h3><span id="13传输bootimg到手机">1.3传输boot.img到手机</span></h3>
-<p>1.3.1手机插电脑，文件传输模式，复制 boot.img 到手机 Download 目录</p>
-<p>1.3.2如果电脑没反应，也可以用带type-c口的U盘传输文件。</p>
-<h3><span id="14手机下载magisk">1.4手机下载magisk</span></h3>
-<p>1.4.1<a target="_blank" rel="noopener" href="https://mrzzoxo.lanzoue.com/iYEy22c78yaj">下载地址</a></p>
-<h3><span id="15使用magisk安装系统">1.5使用magisk安装系统</span></h3>
-<p>1.5.1手机打开 magisk app，Magisk图标的右上角的[安装]按钮。</p>
-<p>1.5.2选择boot.img，点击[开始]按钮。</p>
-<p>1.5.3看到All done!字样，表示系统安装成功。</p>
-<h3><span id="16传输magiskimg到电脑">1.6传输magisk.img到电脑</span></h3>
-<p>1.6.1仿造1.3步骤，把手机上在Download生成的magisk.img传输到电脑上adb-fastboot 目录。</p>
-<h3><span id="17将包刷入手机">1.7将包刷入手机</span></h3>
-<p>1.7.1重复1.1谷歌解锁 Bootloader步骤，手机进入 Bootloader 模式，再插入电脑。</p>
-<p>1.7.2打开“打开CMD命令行.bat”，输入下面的命令：</p>
-<pre><code class="language-bash">fastboot flash boot 你自己的magisk文件名.img
-</code></pre>
-<p>1.73输出下面这三行代码，就是成功刷入了。</p>
-<pre><code class="language-bash">Sending 'boot' (131072 KB) OKAY [ 3.105s]
-Sending 'boot' (131072 KB) OKAY [ 3.105s]
-Writing 'boot'             OKAY [ 0.404s]
-Finished. Total time: 3.556s
-</code></pre>
-<p>1.7.4再使用指令:</p>
-<pre><code class="language-bash"> fastboot reboot 
-</code></pre>
-<p>重启手机。</p>
-<p>1.7.5如果出现手机反复重启情况，先同时长按上音量键和关机键进入黑屏，然后迅速在下一次重启前长按下音量键，进入boot loader模式，再输入指令:</p>
-<pre><code class="language-bash">fastboot flush boot boot.img
-</code></pre>
-<p>将之前下载的初始boot.img刷入手机，应该就可以重新开机了。</p>
-### 1.8检查版本
-<p>1.8.1开机后，打开magisk app，如果看到当前下面有数字就表示安装成功。</p>
-<p>成功界面：</p>
-<p><img src="/2024/11/20/root-pixel/app.jpg" alt="成功界面"></p>
-<div style="font-size:16px"><span style="float:right"><a style=" color: grey">下一篇 : 暂未更新</a></span><a target="_blank" rel="noopener" href="https://immyease.com/2024/11/20/app-analysis-sum">上一篇 : APP分析实验手册</a></div>
+<div style="font-size:16px"><span style="float:right"><a target="_blank" rel="noopener" href="https://immyease.com/2024/12/25/ads-3">下一篇 : B+ Tree, Leftist Heap and Skew Heap</a></span><a target="_blank" rel="noopener" href="https://immyease.com/2024/12/24/ads-1"><p>上一篇 : AVL Tree and Red-Black Tree</p></a></div>
+
         </div>
 
         
