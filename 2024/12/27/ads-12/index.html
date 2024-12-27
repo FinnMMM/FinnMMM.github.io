@@ -160,18 +160,8 @@
 <ul>
 <li><a href="#local-search">Local Search</a>
 <ul>
-<li><a href="#vertex-cover-problem">Vertex Cover Problem</a>
-<ul>
-<li><a href="#gradient_descent-algorithm">Gradient_descent Algorithm</a></li>
-<li><a href="#metropolis-algorithm">Metropolis Algorithm</a></li>
-<li><a href="#simulate-annealing-algorithm">Simulate Annealing Algorithm</a></li>
-</ul>
-</li>
-<li><a href="#hopfield-neural-network-problem">Hopfield Neural Network Problem</a>
-<ul>
-<li><a href="#state-flipping-algorithm">State Flipping Algorithm</a></li>
-</ul>
-</li>
+<li><a href="#vertex-cover-problem">Vertex Cover Problem</a></li>
+<li><a href="#hopfield-neural-network-problem">Hopfield Neural Network Problem</a></li>
 <li><a href="#max-cut-problem">Max Cut Problem</a></li>
 </ul>
 </li>
@@ -206,7 +196,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #ffa2c4">
+                    <a href="/tags/ADS/" style="color: #03a9f4">
                         ADS
                     </a>
                 </span>
@@ -221,18 +211,8 @@
 <ul>
 <li><a href="#local-search">Local Search</a>
 <ul>
-<li><a href="#vertex-cover-problem">Vertex Cover Problem</a>
-<ul>
-<li><a href="#gradient_descent-algorithm">Gradient_descent Algorithm</a></li>
-<li><a href="#metropolis-algorithm">Metropolis Algorithm</a></li>
-<li><a href="#simulate-annealing-algorithm">Simulate Annealing Algorithm</a></li>
-</ul>
-</li>
-<li><a href="#hopfield-neural-network-problem">Hopfield Neural Network Problem</a>
-<ul>
-<li><a href="#state-flipping-algorithm">State Flipping Algorithm</a></li>
-</ul>
-</li>
+<li><a href="#vertex-cover-problem">Vertex Cover Problem</a></li>
+<li><a href="#hopfield-neural-network-problem">Hopfield Neural Network Problem</a></li>
 <li><a href="#max-cut-problem">Max Cut Problem</a></li>
 </ul>
 </li>
@@ -272,7 +252,7 @@
 <h3><span id="vertex-cover-problem">Vertex Cover Problem</span></h3>
 <h5><span id="definition">Definition</span></h5>
 <p>Give a Graph $G=(V,E)$, a vertex cover is a subset $C$ of $V$ such that for every edge $(u,v)\in E$, either $u\in C$ or $v\in C$.</p>
-<h4><span id="gradient_descent-algorithm">Gradient_descent Algorithm</span></h4>
+<h4><span id="gradient_descent-algorithm"> Gradient_descent Algorithm</span></h4>
 <p>We deine:</p>
 <ul>
 <li>$FS=${$s\subseteq V $|$s$ is a vertex cover }.</li>
@@ -292,7 +272,7 @@
 <p><img src="/2024/12/27/ads-12/1.png" alt></p>
 <p>The Gradient_descent algorithm may not work well in this case.<br>
 So we need to improve.</p>
-<h4><span id="metropolis-algorithm">Metropolis Algorithm</span></h4>
+<h4><span id="metropolis-algorithm"> Metropolis Algorithm</span></h4>
 <pre><code class="language-pesudo">SolutionType Metropolis()
 &#123;   Define constants k and T;
     Start from a feasible solution S  FS ;
@@ -326,7 +306,7 @@ So we need to improve.</p>
 <li>$e$ is a good edge if $w_es_us_v&lt;0$</li>
 </ul>
 <p>Our goal is to find a configuration $S$ maximize $\sum_{e\ is\ good}{|w_e|}$</p>
-<h4><span id="state-flipping-algorithm">State Flipping Algorithm</span></h4>
+<h4><span id="state-flipping-algorithm"> State Flipping Algorithm</span></h4>
 <h5><span id="definition">Definition</span></h5>
 <ul>
 <li>In a configuration $S$, a vertex $u$ is satisfied if the weight of incident good edges is large than the weight of incident bad edges,that is $\sum{w_eu_vs_v} \leq 0$.</li>
