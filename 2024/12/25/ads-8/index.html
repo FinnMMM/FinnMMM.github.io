@@ -214,21 +214,21 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #03a9f4">
+                    <a href="/tags/ADS/" style="color: #ffa2c4">
                         ADS
                     </a>
                 </span>
                 
                 <span class="tag">
                     
-                    <a href="/tags/Divide-and-Conquer/" style="color: #ff7d73">
+                    <a href="/tags/Divide-and-Conquer/" style="color: #03a9f4">
                         Divide and Conquer
                     </a>
                 </span>
                 
                 <span class="tag">
                     
-                    <a href="/tags/Time-Compute/" style="color: #00bcd4">
+                    <a href="/tags/Time-Compute/" style="color: #00a596">
                         Time Compute
                     </a>
                 </span>
@@ -304,14 +304,9 @@
             SInv=SInv+n/2-i+1
     return (D,SInv)
 </code></pre>
-<p>We have<br>
-$$<br>
-\begin{cases}<br>
-T(n)=2T(n/2)+O(n)\<br>
-T(1)=O(1)<br>
-\end{cases}<br>
-$$<br>
-Therefore, the time complexity is $O(nlogn)$.</p>
+<p>We have</p>
+<p>$$\begin{cases}T(n)=2T(n/2)+O(n)\\T(1)=O(1)\end{cases}$$</p>
+<p>Therefore, the time complexity is $O(nlogn)$.</p>
 <h3><span id="closest-pair-of-points">Closest Pair of Points</span></h3>
 <p>Given n points in the plane, find the two points that are closest to each other.</p>
 <h4><span id="solutions">Solutions</span></h4>
@@ -344,37 +339,25 @@ closestPair(Px,Py):
     minDist = +inf
     for i=1 to k:
         for j= 1 to 8:
-            if (dist(qi,qi+j)&lt;minDist):
+            if (dist(qi,qi+j) &lt; minDist):
                 minDist=dist(qi,qi+j)
                 closestPair=(qi,qi+j)
     return closestPair
 </code></pre>
 <p>The time complexity is $O(nlogn)$.</p>
 <h2><span id="time-compute">Time Compute</span></h2>
-<p>$$<br>
-\begin{cases}<br>
-T(1)=1\<br>
-T(n)=aT(\frac{n}{b})+n^c<br>
-\end{cases}<br>
-$$</p>
+<p>$$\begin{cases}T(1)=1\\T(n)=aT(\frac{n}{b})+n^c\end{cases}$$</p>
 <h3><span id="solutions">Solutions</span></h3>
 <h4><span id="recursion-tree-method">Recursion Tree Method</span></h4>
 <p><img src="/2024/12/25/ads-8/2.png" alt></p>
-<p>$$<br>
-T(n)=\sum_{i=0}^{log_4(n)-1}(\frac{3}{16})^icN^2+\Theta(N^{log_4(3)}=O(N^2)<br>
-$$</p>
+<p>$$T(n)=\sum_{i=0}^{log_4(n)-1}(\frac{3}{16})^icN^2+\Theta(N^{log_4(3)}=O(N^2)$$</p>
 <ul>
 <li>If the running time of per level decreases, select the first level.</li>
 <li>If the running time of per level increases, select the last level.</li>
 <li>If the running time of per level is the same, total time=per level time $\times$ number of levels.</li>
 </ul>
 <h4><span id="master-theorem">Master Theorem</span></h4>
-<p>$$<br>
-\begin{cases}<br>
-T(1)=1\<br>
-T(n)=aT(\frac{n}{b})+n^c<br>
-\end{cases}<br>
-$$</p>
+<p>$$\begin{cases}T(1)=1\\T(n)=aT(\frac{n}{b})+n^c\end{cases}$$</p>
 <ul>
 <li>If $f(N)=O(N^{log_b{a-\varepsilon}})$, or $\frac{a}{b^c}&gt;1$, $T(N)=\Theta(N^{log_b{a}})$.</li>
 <li>If $f(N)=\Theta(N^{log_b{a}})$, or $\frac{a}{b^c}=1$, $T(N)=\Theta(log_b{N}N^c)$.</li>

@@ -155,43 +155,20 @@
         <div id="toccard-style">
     <div id="card-div">
         <div class="description">
-            <h2><span id="greedy">Greedy</span></h2>
-<h3><span id="ways-of-proofment">Ways of proofment</span></h3>
+            <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
+<!-- toc -->
 <ul>
-<li>Select any solution as the start point.</li>
-<li>Prove that every step does not worsen the solution.</li>
-<li></li>
+<li><a href="#greedy">Greedy</a>
+<ul>
+<li><a href="#ways-of-proofment">Ways of proofment</a></li>
+<li><a href="#least-processing-time-first-lpt">Least Processing Time First (LPT)</a></li>
+<li><a href="#lpt-pro">LPT Pro</a></li>
+<li><a href="#prefix-code">Prefix Code</a></li>
 </ul>
-<h3><span id="least-processing-time-first-lpt">Least Processing Time First (LPT)</span></h3>
-<h5><span id="defination">Defination:</span></h5>
-<p>Given n actitivities, each with a processing time, find a schedule that minimizes the total processing time.</p>
-<h5><span id="solution">Solution:</span></h5>
-<p>Select the least processing time activity each step.</p>
-<h3><span id="lpt-pro">LPT Pro</span></h3>
-<h5><span id="defination">Defination:</span></h5>
-<p>Given n actitivities, each with a start time $s$ and a finish time $f$, find a schedule that maximize the number of activities that can be joined.</p>
-<h5><span id="solution">Solution:</span></h5>
-<p>Select the activity with the earliest finish time each step.</p>
-<h5><span id="proof">Proof:</span></h5>
-<p>$\exist solution S,|S|&gt;|A|$<br>
-$A$: optimal solution by Greedy algorithm.<br>
-$A=i_1,i_2,…,i_k$<br>
-$S=j_1,j_2,…,j_k,j_{k+1},…,j_l$<br>
-find the first different activity $i_m$ and $j_m$, we have $f_{im}\leq f_{jm}$.Then $j_m$ can be replaced by $i_m$ to get a better solution.<br>
-In the end we have $ S = A + {j_{k+1},…,j_l}$, which not exist in the greedy algorithm.</p>
-<h3><span id="prefix-code">Prefix Code</span></h3>
-<h5><span id="defination">Defination:</span></h5>
-<p>Given a set of strings $S$,we can code them each with a distinct binary number,like 0,1,10,11.The problem is the given set of strings have a corresponding frequency for each string.We need to find a prefix code that minimizes $\sum_{a\in S}f(a)|c(a)|$, in which $f(a)$ is the frequency of string $a$ and $c(a)$ is the length of the binary code for string $a$.</p>
-<h4><span id="solutionhuffmans-algorithm">Solution(Huffman’s algorithm):</span></h4>
-<p>We can transform Prefix Code to Binary Tree like this.</p>
-<p><img src="/2024/12/25/ads-7/1.jpg" alt></p>
-<p>Then the problem equals to find a tree miminizes $\sum_{a\in S}f(a)|depth(a)|$.</p>
-<p>For greedy strategy,we always select two node with the smallest frequency and attach them to a node to get a new node with the sum of their frequency.</p>
-<p>It can easily prove that the solution is optimal.</p>
-<h5><span id="lemma">Lemma</span></h5>
-<p>Let $a$ and $b$ be two strings in $S ,there is a optimal solution in which $a$ and $b$ are siblings.</p>
-<div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/25/ads-8" target="_self">下一篇 : Divide and Conquer $ Time Compute<a></a></a></span><a href="https://finnmmm.github.io/2024/12/25/ads-6" target="_self">上一篇 : Backtracking and Pruning</a></div>
-
+</li>
+</ul>
+<!-- tocstop -->
+<p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">
         </div>
     </div>
 </div>
@@ -220,14 +197,14 @@ In the end we have $ S = A + {j_{k+1},…,j_l}$, which not exist in the greedy a
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #ff7d73">
+                    <a href="/tags/ADS/" style="color: #ffa2c4">
                         ADS
                     </a>
                 </span>
                 
                 <span class="tag">
                     
-                    <a href="/tags/Greedy/" style="color: #00a596">
+                    <a href="/tags/Greedy/" style="color: #00bcd4">
                         Greedy
                     </a>
                 </span>
@@ -237,7 +214,21 @@ In the end we have $ S = A + {j_{k+1},…,j_l}$, which not exist in the greedy a
         </div>
         
         <div class="content" v-pre>
-            <h2><span id="greedy">Greedy</span></h2>
+            <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
+<!-- toc -->
+<ul>
+<li><a href="#greedy">Greedy</a>
+<ul>
+<li><a href="#ways-of-proofment">Ways of proofment</a></li>
+<li><a href="#least-processing-time-first-lpt">Least Processing Time First (LPT)</a></li>
+<li><a href="#lpt-pro">LPT Pro</a></li>
+<li><a href="#prefix-code">Prefix Code</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">👇</span></p>
+<h2><span id="greedy">Greedy</span></h2>
 <h3><span id="ways-of-proofment">Ways of proofment</span></h3>
 <ul>
 <li>Select any solution as the start point.</li>
@@ -264,14 +255,14 @@ In the end we have $ S = A + {j_{k+1},…,j_l}$, which not exist in the greedy a
 <h3><span id="prefix-code">Prefix Code</span></h3>
 <h5><span id="defination">Defination:</span></h5>
 <p>Given a set of strings $S$,we can code them each with a distinct binary number,like 0,1,10,11.The problem is the given set of strings have a corresponding frequency for each string.We need to find a prefix code that minimizes $\sum_{a\in S}f(a)|c(a)|$, in which $f(a)$ is the frequency of string $a$ and $c(a)$ is the length of the binary code for string $a$.</p>
-<h4><span id="solutionhuffmans-algorithm">Solution(Huffman’s algorithm):</span></h4>
+<h5><span id="solutionhuffmans-algorithm">Solution(Huffman’s algorithm):</span></h5>
 <p>We can transform Prefix Code to Binary Tree like this.</p>
 <p><img src="/2024/12/25/ads-7/1.jpg" alt></p>
 <p>Then the problem equals to find a tree miminizes $\sum_{a\in S}f(a)|depth(a)|$.</p>
 <p>For greedy strategy,we always select two node with the smallest frequency and attach them to a node to get a new node with the sum of their frequency.</p>
 <p>It can easily prove that the solution is optimal.</p>
 <h5><span id="lemma">Lemma</span></h5>
-<p>Let $a$ and $b$ be two strings in $S ,there is a optimal solution in which $a$ and $b$ are siblings.</p>
+<p>Let $a$ and $b$ be two strings in $S$ ,there is a optimal solution in which $a$ and $b$ are siblings.</p>
 <div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/25/ads-8" target="_self">下一篇 : Divide and Conquer $ Time Compute<a></a></a></span><a href="https://finnmmm.github.io/2024/12/25/ads-6" target="_self">上一篇 : Backtracking and Pruning</a></div>
 
         </div>
