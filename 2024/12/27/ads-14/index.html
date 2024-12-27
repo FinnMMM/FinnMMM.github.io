@@ -1,0 +1,544 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Parallel Algorithms | Myease の Page</title>
+    <meta name="author" content="Myease" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+<script src="https://s4.zstatic.net/ajax/libs/waline/2.15.8/waline.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/waline/2.15.8/waline.min.css" />
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/waline/2.15.8/waline-meta.min.css" />
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>MYEASE の PAGE</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;MYEASE の PAGE</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article-toc">
+    
+    <div id="toccard">
+        <div id="toccard-style">
+    <div id="card-div">
+        <div class="description">
+            <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
+<!-- toc -->
+<ul>
+<li><a href="#parallel-random-access-machine">Parallel Random Access Machine</a>
+<ul>
+<li><a href="#summation-problem">Summation Problem</a></li>
+<li><a href="#prefix-sum-problem">Prefix Sum Problem</a></li>
+<li><a href="#parallel-merge-sort">Parallel Merge Sort</a></li>
+<li><a href="#maximum-finding-problem">Maximum Finding Problem</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">
+        </div>
+    </div>
+</div>
+
+
+    </div>
+    
+    <div class="article">
+        <div>
+            <h1>Parallel Algorithms</h1>
+        </div>
+        <div class="info">
+            <span class="date">
+                <span class="icon">
+                    <i class="fa-solid fa-calendar fa-fw"></i>
+                </span>
+                2024/12/27
+            </span>
+            
+            
+            <span class="tags">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                
+                
+                <span class="tag">
+                    
+                    <a href="/tags/ADS/" style="color: #03a9f4">
+                        ADS
+                    </a>
+                </span>
+                
+            </span>
+            
+        </div>
+        
+        <div class="content" v-pre>
+            <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
+<!-- toc -->
+<ul>
+<li><a href="#parallel-random-access-machine">Parallel Random Access Machine</a>
+<ul>
+<li><a href="#summation-problem">Summation Problem</a></li>
+<li><a href="#prefix-sum-problem">Prefix Sum Problem</a></li>
+<li><a href="#parallel-merge-sort">Parallel Merge Sort</a></li>
+<li><a href="#maximum-finding-problem">Maximum Finding Problem</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">👇</span></p>
+<h2><span id="parallel-algorithms"> Parallel Algorithms</span></h2>
+<h3><span id="definition"> Definition</span></h3>
+<p>To describe a parallel algorithm, we need to define the following terms:</p>
+<ul>
+<li>Parallel Random Access Machine (PRAM): a parallel machine that can perform random access operations, such as reading and writing memory locations.</li>
+<li>Work-Depth</li>
+</ul>
+<h3><span id="parallel-random-access-machine">Parallel Random Access Machine</span></h3>
+<pre><code class="language-pesudo">for i from 1 to n pardo
+    A[i] = B[i] (read / write in a unit time)
+</code></pre>
+<p>As we read in a shared memory system in the same time, we may encounter conflicts.</p>
+<h5><span id="to-resolve-access-conflicts">To resolve access conflicts</span></h5>
+<ul>
+<li>1.Exclusive Reading Exclusive Writing (EREW)</li>
+<li>2.Concurrent Reading Exclusive Writing (CREW)</li>
+<li>3.Concurrent Reading Concurrent Writing (CRCW)
+<ul>
+<li>This may need to define a rule for access.
+<ul>
+<li>Arbitrary rule</li>
+<li>Priority rule</li>
+<li>Common rule</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="examples"> Examples</span></h3>
+<h4><span id="summation-problem">Summation Problem</span></h4>
+<h5><span id="description">Description</span></h5>
+<p>Given $n$ numbers and try to compute their sum.</p>
+<h5><span id="serial-algorithm">Serial Algorithm</span></h5>
+<pre><code class="language-pesudo">sum = 0
+for i from 1 to n
+    sum = sum + A[i]
+</code></pre>
+<p>It takes $O(n)$ time and the workload is $O(n)$.</p>
+<h5><span id="parallel-algorithm">Parallel Algorithm</span></h5>
+<p>We construct a parallel summation tree like this:</p>
+<p><img src="/2024/12/27/ads-14/1.png" alt></p>
+<pre><code class="language-pesudo">sum = 0
+for i from 1 to n pardo
+    B(0,i)=A(i)
+for i from 1 to log n:
+    for j from 1 to n/2^i pardo
+        B(i,j)=B(i-1,2*j-1)+B(i-1,2*j)
+</code></pre>
+<p>$T_T(n)$=running time with p CPU.<br>
+$T_1(n)=O(n)$,which is called the Work-Load $W(n)$<br>
+$T_\infty(n)=O(\log n)$,which is called the Work-Depth $T(n)$.<br>
+$T_T(n)$ for an arbitrary $p$:$$T_T(n)\geq T(n)$$$$T_T(n)\geq \frac{W(n)}{p}\geq \frac{1}{2}(T(n)+\frac{W(n)}{p})$$</p>
+<h4><span id="prefix-sum-problem">Prefix Sum Problem</span></h4>
+<h5><span id="description">Description</span></h5>
+<p>Given $n$ numbers and try to compute their prefix sum $S={\sum_{i=1}^{k}a_i,for\ k\ from\ 1\ to\ n }$.</p>
+<h5><span id="serial-algorithm">Serial Algorithm</span></h5>
+<p>$W(n)=O(n)$, $T(n)=O(n)$</p>
+<h5><span id="parallel-algorithm">Parallel Algorithm</span></h5>
+<h6><span id="naive-parallel-algorithm">Naive Parallel Algorithm</span></h6>
+<p>Parallelly compute the sum of each subarray by using parallel summation tree.<br>
+$W(n)=O(1+2+\cdots+n)=O(n^2)$, $T(n)=O(\log n)$</p>
+<h6><span id="efficient-parallel-algorithm">Efficient Parallel Algorithm</span></h6>
+<p>We can use the parallel summation tree and improve it in this way.</p>
+<p><img src="/2024/12/27/ads-14/2.png" alt></p>
+<p>In this tree, we define $$C(h,i)=\sum_{j=1}^{\alpha}A_j$$,where $A(\alpha)$ is the rightest leaf of the subtree rooted at $C(h,i)$.<br>
+For all the $h$, $$C(h,1)=B(h,1)$$.<br>
+If $C(h,i)$ is a right child,$$C(h,i)=C(h+1,i/2)$$.<br>
+If $C(h,i)$ is a left child and $i\neq 1$,$$C(h,i)=C(h+1,i/2)-B(h,i+1)=C(h+1,(i-1)/2)+B(h,i)$$.</p>
+<pre><code class="language-pesudo">for P_i , i from 1 to n pardo
+  B(0, i) := A(i)
+for h = 1 to log n
+  for i from 1 to n/2^h pardo
+    B(h, i) := B(h - 1, 2i - 1) + B(h - 1, 2i)
+for h = log n to 0
+  for i even, i from 1 to n/2^h pardo
+    C(h, i) := C(h + 1, i/2)
+  for i = 1 pardo
+    C(h, 1) := B(h, 1)
+  for i odd, from 3 to n/2^h pardo
+    C(h, i) := C(h + 1, (i - 1)/2) + B(h, i)
+for P_i , from 1 to n pardo
+  Output C(0, i)
+</code></pre>
+<p>$W(n)=O(n)$, $T(n)=O(\log n)$</p>
+<h4><span id="parallel-merge-sort">Parallel Merge Sort</span></h4>
+<h5><span id="serial-algorithm">Serial Algorithm</span></h5>
+<pre><code class="language-pesudo">sort(A):
+    if length(A) &lt;= 1:
+        return A
+        else:
+            B=left_half(A)
+            C=right_half(A)
+            D=sort(B)
+            E=sort(C)
+            return merge_sort(D,E)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">W</th>
+<th style="text-align:center">P</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">divide</td>
+<td style="text-align:center">$O(1)$</td>
+<td style="text-align:center">$O(1)$</td>
+</tr>
+<tr>
+<td style="text-align:center">conquer</td>
+<td style="text-align:center">$2W(n/2)$</td>
+<td style="text-align:center">$O(n/2)$</td>
+</tr>
+<tr>
+<td style="text-align:center">merge</td>
+<td style="text-align:center">$O(n)$</td>
+<td style="text-align:center">$O(n)$</td>
+</tr>
+</tbody>
+</table>
+<p>$W(n)=O(n\log n)$, $T(n)=O(n)$</p>
+<h5><span id="parallel-algorithm">Parallel Algorithm</span></h5>
+<p>If we define the $rank(i,A)$ as the rank of $A[i]$ in $B$ and $rank(i,B)$ as the rank of $B[i]$ in $A$, for the merge operation, we can use the following algorithm:</p>
+<pre><code class="language-pesudo">for i from 1 to n pardo:
+    C[i+rank(i,B)]=A[i]
+    C[j+rank(j,A)]=B[j]
+</code></pre>
+<p>$W(n)=O(n)$, $T(n)=O(1)$</p>
+<p>Then we have the subproblem:</p>
+<h6><span id="ranking-problem">Ranking Problem</span></h6>
+<h6><span id="serial-algorithm">Serial Algorithm</span></h6>
+<p>Do like what merge does.</p>
+<p>$W(n)=O(n)$, $T(n)=O(n)$<br>
+It does not safe any time.</p>
+<h6><span id="binary-search-algorithm">Binary Search Algorithm</span></h6>
+<p>We use binary search to find the rank of each element in the other array.</p>
+<pre><code class="language-pesudo">for P_i , i from 1 to n pardo:
+    RANK(i, B) := BS(A(i), B)
+    RANK(i, A) := BS(B(i), A)
+</code></pre>
+<p>$W(n)=O(n\log n)$, $T(n)=O(\log n)$</p>
+<h6><span id="parallel-ranking-algorithm">Parallel Ranking Algorithm</span></h6>
+<p>Assume that $n = m$ ; and that $A(n+1)$ and $B(n+1)$ are each larger than both $A(n)$ and $B(n)$.</p>
+<pre><code class="language-pesudo">for i from 1 to n / k pardo :
+    rank(i*k + 1, A) := BS(A(i*k + 1), A(n+1))
+    rank(i*k + 1, B) := BS(B(i*k + 1), B(n+1))
+</code></pre>
+<p>In this step,<br>
+$W_1(n)=O(\frac{n\log n}{k})$, $P_1(n)=O(\log n)$</p>
+<p>Then we have will have:</p>
+<p><img src="/2024/12/27/ads-14/3.png" alt></p>
+<p>What we need to do is to compute the rank of each element locally in the subarray.<br>
+In this step,<br>
+$W_2(n)=O(n)$, $P_2(n)=O(k)$<br>
+We set $k$ as $\log n$,then we can compute the total workload and work-depth as:</p>
+<p>$W(n)=O(n)$, $T(n)=O(\log n)$</p>
+<p>Under this method,</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">W</th>
+<th style="text-align:center">P</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">divide</td>
+<td style="text-align:center">$O(1)$</td>
+<td style="text-align:center">$O(1)$</td>
+</tr>
+<tr>
+<td style="text-align:center">conquer</td>
+<td style="text-align:center">$2W(n/2)$</td>
+<td style="text-align:center">$O(n/2)$</td>
+</tr>
+<tr>
+<td style="text-align:center">merge</td>
+<td style="text-align:center">$O(n)$</td>
+<td style="text-align:center">$O(\log n)$</td>
+</tr>
+</tbody>
+</table>
+<p>$D(n)=O((\log n)^2)$</p>
+<h4><span id="maximum-finding-problem">Maximum Finding Problem</span></h4>
+<h5><span id="description">Description</span></h5>
+<p>Given $n$ numbers and try to find the maximum number.</p>
+<h5><span id="serial-algorithm">Serial Algorithm</span></h5>
+<p>$W(n)=O(n)$, $T(n)=O(n)$</p>
+<h5><span id="binary-search-algorithm">Binary Search Algorithm</span></h5>
+<p>$W(n)=O(n)$, $T(n)=O(\log n)$</p>
+<h5><span id="comparing-all-pairs">Comparing All Pairs</span></h5>
+<pre><code class="language-pesudo">for i from 1 to n pardo:
+    B[i]=0
+for every pair (i,j) 1 &lt;= i &lt;= j pardo:
+    if A[i] &lt; A[j]:
+        B[i]=0
+    if A[i] &gt; A[j]:
+        B[j]=0
+    for i from 0 to n pardo:
+        if B[i]==0:
+            return A[i]
+</code></pre>
+<p>$W(n)=O(n^2)$, $T(n)=O(1)$</p>
+<h5><span id="doubly-logarithmic-paradigm">Doubly-logarithmic Paradigm</span></h5>
+<p>1.Divide the array into $\sqrt{n}$ parts.<br>
+2.Recursively find the maximum of each part.<br>
+3.Find the maximum of the $\sqrt{n}$ maximums.</p>
+<p>$$\begin{cases}W(n)=\sqrt{n}W(\sqrt{n})+O(n)\\W(1)=O(1)\end{cases}\rightarrow W(n)=O(n\log \log n)$$$$\begin{cases}T(n)=T(\sqrt{n})+O(1)\\T(1)=O(1)\end{cases}\rightarrow T(n)=O(\log \log n)$$</p>
+<p>If we partition the array into $k$ parts, then we can use the same algorithm recursively on each part.</p>
+<p>$W(n)=O(n+k\log\log k)$, $T(n)=O(\frac{n}{k}+\log\log k)$</p>
+<p>Let $k=\frac{n}{\log\log n}$, then we have:</p>
+<p>$W(n)=O(n)$, $T(n)=O(\log\log n)$</p>
+<h5><span id="random-sampling-algorithm">Random Sampling Algorithm</span></h5>
+<p>This algorithm can reach<br>
+$W(n)=O(n)$, $T(n)=O(1)$ with success probability $1-\frac{1}{n^c}$,in which $c$ is a constant.</p>
+<p><img src="/2024/12/27/ads-14/4.png" alt></p>
+<p>Steps are as follows:</p>
+<ul>
+<li>1.Randomly select $n^\frac{7}{8}$ elements from the array (It has a high probability that the maximum is in this set).</li>
+<li>2.Divide the set into $n^\frac{3}{4}$ parts,each with size $n^\frac{1}{8}$.</li>
+<li>3.Solve each part by Comparing All Pairs algorithm parallelly.
+<ul>
+<li>This step has $W(n)=O( (n^\frac{1}{8})^2)=O(n^\frac{1}{4})=O(n)$, $T(n)=O(1)$.</li>
+</ul>
+</li>
+<li>4.Then we have a set with size $n^\frac{3}{4}$ and each element is the maximum of its corresponding part.</li>
+<li>5.Divide the set into $n^\frac{1}{2}$ parts,each with size $n^\frac{1}{4}$.</li>
+<li>6.Solve each part by Comparing All Pairs algorithm parallelly.
+<ul>
+<li>This step has $W(n)=O( (n^\frac{1}{4})^2)=O(n^\frac{1}{2})=O(n)$, $T(n)=O(1)$.</li>
+</ul>
+</li>
+<li>7.Then we have a set with size $n^\frac{1}{2}$ and each element is the maximum of its corresponding part.</li>
+<li>8.Find the maximum of the $n^\frac{1}{2}$ maximums by comparing all pairs.
+<ul>
+<li>This step has $W(n)=O((n^\frac{1}{2})^2)=O(n)$, $T(n)=O(1)$.</li>
+</ul>
+</li>
+</ul>
+<p>So the  $W_{total}(n)=O(n), T_{total}(n)=O(1)$</p>
+<div style="font-size:16px"><a href="https://finnmmm.github.io/2024/12/27/ads-15" target="_self">下一篇 : Externel Sorting</a><a href="https://finnmmm.github.io/2024/12/27/ads-13" target="_self">上一篇 : Randomized Algorithms</a></div>
+        </div>
+
+        
+        
+        
+        
+        
+        <div id="comment">
+            <div id="waline-container"></div>
+        </div>
+        
+        
+        
+    </div>
+
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Myease の Page
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Myease
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+<script>
+    Waline.init({
+        el: "#waline-container",
+        serverURL: "vercin.vercel.app",
+        commentCount: true,
+        pageview: false,
+        emoji: "https://unpkg.com/@waline/emojis@1.2.0/weibo,https://unpkg.com/@waline/emojis@1.2.0/alus,https://unpkg.com/@waline/emojis@1.2.0/bilibili,https://unpkg.com/@waline/emojis@1.2.0/qq,https://unpkg.com/@waline/emojis@1.2.0/tieba,https://unpkg.com/@waline/emojis@1.2.0/tw-emoji".split(","),
+        meta: "nick,mail,link".split(","),
+        requiredMeta: "nick".split(","),
+        lang: "",
+        wordLimit: 0,
+        pageSize: "10",
+        login: "enable",
+        
+    });
+</script>
+
+
+
+    
+    <canvas
+            id="fireworks"
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+    ></canvas>
+    <script src="https://s4.zstatic.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="/js/fireworks.min.js"></script>
+</body>
+</html>

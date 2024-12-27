@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Divide and Conquer &amp; Time Compute | Myease の Page</title>
+    <title>Incomputable Problems &amp; Complexity Classes | Myease の Page</title>
     <meta name="author" content="Myease" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -158,29 +158,15 @@
             <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
 <ul>
-<li><a href="#divide-and-conquer">Divide and Conquer</a>
+<li><a href="#incomputable-problems">Incomputable Problems</a>
 <ul>
-<li><a href="#counting-inversions">Counting Inversions</a>
-<ul>
-<li><a href="#solutions">Solutions</a></li>
-</ul>
-</li>
-<li><a href="#closest-pair-of-points">Closest Pair of Points</a>
-<ul>
-<li><a href="#solutions-1">Solutions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#time-compute">Time Compute</a>
-<ul>
-<li><a href="#solutions-2">Solutions</a>
-<ul>
-<li><a href="#recursion-tree-method">Recursion Tree Method</a></li>
-<li><a href="#master-theorem">Master Theorem</a></li>
-<li><a href="#substitution-method">Substitution Method</a></li>
-</ul>
-</li>
+<li><a href="#halting-problem">Halting Problem</a></li>
+<li><a href="#postpone-corresponding-problepcp">Postpone Corresponding Proble(PCP)</a></li>
+<li><a href="#complexity-classes">Complexity Classes</a></li>
+<li><a href="#p-class">$P$ class</a></li>
+<li><a href="#np-class">$NP$ class</a></li>
+<li><a href="#compare-two-problems">Compare Two Problems</a></li>
+<li><a href="#np-complete">NP-Complete</a></li>
 </ul>
 </li>
 </ul>
@@ -195,7 +181,7 @@
     
     <div class="article">
         <div>
-            <h1>Divide and Conquer &amp; Time Compute</h1>
+            <h1>Incomputable Problems &amp; Complexity Classes</h1>
         </div>
         <div class="info">
             <span class="date">
@@ -214,7 +200,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #00bcd4">
+                    <a href="/tags/ADS/" style="color: #ffa2c4">
                         ADS
                     </a>
                 </span>
@@ -227,131 +213,165 @@
             <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
 <ul>
-<li><a href="#divide-and-conquer">Divide and Conquer</a>
+<li><a href="#incomputable-problems">Incomputable Problems</a>
 <ul>
-<li><a href="#counting-inversions">Counting Inversions</a>
-<ul>
-<li><a href="#solutions">Solutions</a></li>
-</ul>
-</li>
-<li><a href="#closest-pair-of-points">Closest Pair of Points</a>
-<ul>
-<li><a href="#solutions-1">Solutions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#time-compute">Time Compute</a>
-<ul>
-<li><a href="#solutions-2">Solutions</a>
-<ul>
-<li><a href="#recursion-tree-method">Recursion Tree Method</a></li>
-<li><a href="#master-theorem">Master Theorem</a></li>
-<li><a href="#substitution-method">Substitution Method</a></li>
-</ul>
-</li>
+<li><a href="#halting-problem">Halting Problem</a></li>
+<li><a href="#postpone-corresponding-problepcp">Postpone Corresponding Proble(PCP)</a></li>
+<li><a href="#complexity-classes">Complexity Classes</a></li>
+<li><a href="#p-class">$P$ class</a></li>
+<li><a href="#np-class">$NP$ class</a></li>
+<li><a href="#compare-two-problems">Compare Two Problems</a></li>
+<li><a href="#np-complete">NP-Complete</a></li>
 </ul>
 </li>
 </ul>
 <!-- tocstop -->
 <p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">👇</span></p>
-<h2><span id="divide-and-conquer">Divide and Conquer</span></h2>
-<p>Divide a problem into smaller subproblems, solve each subproblem independently, and then combine the solutions to the subproblems to solve the original problem.</p>
-<h3><span id="counting-inversions">Counting Inversions</span></h3>
-<p>Given an array of n distinct integers, count the number of inversions in the array. An inversion is a pair of indices $(i, j)$ such that $i &lt; j$ and $a[i] &gt; a[j]$.</p>
-<h4><span id="solutions">Solutions</span></h4>
-<p>Bruteforce solution: $O(n^2)$ time complexity.</p>
-<p>D&amp;C: O(nlogn) time complexity.</p>
+<h2><span id="incomputable-problems">Incomputable Problems</span></h2>
+<h3><span id="halting-problem">Halting Problem</span></h3>
+<h5><span id="definition">Definition</span></h5>
+<p>Given a problem $p$ and an input $x$, the halting problem asks whether $p$ halts on input $x$.</p>
+<h5><span id="proof">Proof</span></h5>
 <ul>
-<li>Divide the array into two halves.</li>
-<li>Count the number of inversions in each half recursively.</li>
-<li>Count the number of inversions in the different halves.</li>
+<li>Assume that there exists a program $HALT$ that have the following properties:
+<ul>
+<li>$HALT(p,x) = 1$ if $p$ halts on input $x$</li>
+<li>$HALT(p,x) = 0$ otherwise.</li>
 </ul>
-<pre><code class="language-pesudo">Sort-and-CountInv(A):
-    if n &lt;= 1:
-        return (A,0)
+</li>
+<li>Then we can define a new function :</li>
+</ul>
+<pre><code class="language-pesudo">Diagonal(p):
+    if Halt(p,p)==1:
+        while(true);
     else:
-        L=left half of A
-        R=right half of A
-        (B,LInv)=Sort-and-CountInv(L)
-        (C,RInv)=Sort-and-CountInv(R)
-        (D,SInv)=Merge-and-Sort(B,C)
-        return (D,LInv+RInv+SInv)
+        terminate;
 </code></pre>
-<pre><code class="language-pesudo">Merge-and-Sort(B,C):
-    i=0, j=0, SInv=0
-    for k in range(n):
-        if B[i] &lt;= C[j]:
-            D[k]=B[i]
-            i=i+1
-        else:
-            D[k]=C[j]
-            j=j+1
-            SInv=SInv+n/2-i+1
-    return (D,SInv)
-</code></pre>
-<p>We have</p>
-<p>$$\begin{cases}T(n)=2T(n/2)+O(n)\\T(1)=O(1)\end{cases}$$</p>
-<p>Therefore, the time complexity is $O(nlogn)$.</p>
-<h3><span id="closest-pair-of-points">Closest Pair of Points</span></h3>
-<p>Given n points in the plane, find the two points that are closest to each other.</p>
-<h4><span id="solutions">Solutions</span></h4>
-<p>$\Delta_1=closest Left Pair$<br>
-$\Delta_2=closest Right Pair$<br>
-$\Delta=min(\Delta_1,\Delta_2)$</p>
-<p><img src="/2024/12/25/ads-8/1.jpg" alt><br>
-1.Watching this picture, when we want to find the closest pair in the split part, we first find a point $p$ ,whose distance to the cut line is less than $\Delta$.<br>
-2.Then we can cut the plane into eight parts of $\Delta/2\times\Delta/2$ square, and each part can have at most 1 point.<br>
-3.Then we only need to find the closest pair in the divided parts and go through all the points whose distance to the cut line is less than $\Delta$.</p>
-<pre><code class="language-pesudo">Px=sort P by X
-Py=sort P by Y
-closestPair(Px,Py):
-    if n&lt;=3:
-        return bruteforce(Px)
-    else:
-        Lx= pts on the left half,sorted by X
-        Ly= pts on the left half,sorted by Y
-        Rx= pts on the right half,sorted by X
-        Ry= pts on the right half,sorted by Y
-        (L1,L2)=closestPair(Lx,Ly)
-        (R1,R2)=closestPair(Rx,Ry)
-        d=min(dist(L1,L2),dist(R1,R2))
-        (s1,s2)= closestSplitPair(Px,Py,d)
-        return the_closest_pair((L1,L2),(R1,R2),(s1,s2))
-</code></pre>
-<pre><code class="language-pesudo">closestSplitPair(Px,Py,d):
-    x'=largest x of Pts in left half
-    S=&#123;q1,q2,...,qk&#125;(x'-d &lt;= q &lt;= x'+d)(sorted by y)
-    minDist = +inf
-    for i=1 to k:
-        for j= 1 to 8:
-            if (dist(qi,qi+j) &lt; minDist):
-                minDist=dist(qi,qi+j)
-                closestPair=(qi,qi+j)
-    return closestPair
-</code></pre>
-<p>The time complexity is $O(nlogn)$.</p>
-<h2><span id="time-compute">Time Compute</span></h2>
-<p>$$\begin{cases}T(1)=1\\T(n)=aT(\frac{n}{b})+n^c\end{cases}$$</p>
-<h3><span id="solutions">Solutions</span></h3>
-<h4><span id="recursion-tree-method">Recursion Tree Method</span></h4>
-<p><img src="/2024/12/25/ads-8/2.png" alt></p>
-<p>$$T(n)=\sum_{i=0}^{log_4(n)-1}(\frac{3}{16})^icN^2+\Theta(N^{log_4(3)}=O(N^2)$$</p>
+<p>We have:</p>
 <ul>
-<li>If the running time of per level decreases, select the first level.</li>
-<li>If the running time of per level increases, select the last level.</li>
-<li>If the running time of per level is the same, total time=per level time $\times$ number of levels.</li>
+<li>Diagnoal(p) terminates if $p$ does not halt on input $p$.</li>
+<li>Diagonal(p) loops forever if $p$ halts on input $p$.<br>
+Then ,let $p$ =Diagonal,we have:</li>
+<li>Diagnoal(p) terminates if Diagnoal does not halt on input Diagonal.</li>
+<li>Diagonal(p) loops forever if Diagonal halts on input Diagonal.<br>
+It’s obvious that it is impossible.<br>
+Therefore,there is no algorithm that can solve the halting problem.</li>
 </ul>
-<h4><span id="master-theorem">Master Theorem</span></h4>
-<p>$$\begin{cases}T(1)=1\\T(n)=aT(\frac{n}{b})+n^c\end{cases}$$</p>
+<h3><span id="postpone-corresponding-problepcp">Postpone Corresponding Proble(PCP)</span></h3>
+<p>Not for details.</p>
+<h3><span id="complexity-classes">Complexity Classes</span></h3>
+<p>$P,NP,EXP,PSPACE…$</p>
+<h5><span id="lemma">Lemma</span></h5>
+<p>$P\subseteq NP$</p>
+<h5><span id="examples">Examples</span></h5>
+<p>Given a weighted graph G, two vertice $s,t$<br>
+1.What is the shortest path from $s$ to $t$ in G?<br>
+2.Length of the shortest path&gt;<br>
+3.give a integer $k$ ,$\exist s -&gt; t$ with length $\leq k$ in G?</p>
+<p>For problems like $(3)$, we can have two answers: $yes$ or $no$.</p>
+<p>So we define the input instances that make the answer of problems to be $yes$ are called $Yes$ $Instance$.On the other hand, the input instances that make the answer of problems to be $no$ are called $No$ $Instance$.</p>
+<p>Then We define $A$ solves a problem $x$ if for every instance $I$ of $x$ :$A(I)=yes$ if and only if $I$ is $Yes$ $Instance$.</p>
+<h3><span id="p-class">$P$ class</span></h3>
+<h5><span id="definition">Definition</span></h5>
+<p>A has a polynomial running time if there has a polynomial function $p()$ so that for any Instance $I$, A terminates on I with $O(P(|I|)) steps.$</p>
+<p>$P$ is the set of all decision problems that admit polynomial-time algorithms.</p>
+<h3><span id="np-class">$NP$ class</span></h3>
+<h5><span id="definition">Definition</span></h5>
+<p>$NP$ is polynomial-time verifiable problems.</p>
+<p>$$V(x,t)=\begin{cases}1\quad if \ t \ certify \ x  \\0 \quad otherwise \end{cases}$$</p>
+<p>$$V(I,t)=\begin{cases}1\quad if \ I \ satifices \ F  \\0 \quad otherwise \end{cases}$$</p>
+<p>We say a =$V$  is a efficient verifier for a problem $x$ if :</p>
 <ul>
-<li>If $f(N)=O(N^{log_b{a-\varepsilon}})$, or $\frac{a}{b^c}&gt;1$, $T(N)=\Theta(N^{log_b{a}})$.</li>
-<li>If $f(N)=\Theta(N^{log_b{a}})$, or $\frac{a}{b^c}=1$, $T(N)=\Theta(log_b{N}N^c)$.</li>
-<li>If $f(N)=\Omega(N^{log_b{a+\varepsilon}})$, or $\frac{a}{b^c}&lt;1$, $T(N)=\Theta(N^c)$.</li>
+<li>$V$ is a polynomial-time algorithm that takes two arguments: instance $I$ adm $t$.</li>
+<li>For any Instance $I$ of $x$, $I$ is an yes-instance if and only if: there exists a proof $t$ with $|t|\leq poly(|I|)$ and $V(I,t)=1$ .</li>
 </ul>
-<h4><span id="substitution-method">Substitution Method</span></h4>
-<p>Guess and proof.</p>
-<div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/25/ads-9" target="_self">下一篇 : Dynamic Programming</a></span><a href="https://finnmmm.github.io/2024/12/25/ads-7" target="_self">上一篇 : Greedy</a></div>
+<h5><span id="examples">Examples</span></h5>
+<ul>
+<li>3-SAT Problems
+<ul>
+<li>e.g. Given $F:(x_1\cap x_2\cap x_3)\cup (x_2\cap \bar{x_3}\cap \bar{x_5})\cup (x_1\cap x_4)$</li>
+<li>If there exists a set of ${x}$, F=1.</li>
+</ul>
+</li>
+<li>Hamiltonian Cycle Problems(HCP)
+<ul>
+<li>Given a graph $G=(V,E)$, a HCP asks whether there exists a cycle that visits a;; vertices exactly once in $G$.</li>
+</ul>
+</li>
+</ul>
+<h5><span id="lemma">Lemma</span></h5>
+<p>It’s not known that whether $P=NP$.</p>
+<h3><span id="compare-two-problems">Compare Two Problems</span></h3>
+<p>We have two problems $x,y$, there instances $I_x,I_y$ and a <strong>reduction function</strong> $f$ that maps $I_x$ to $I_y$.</p>
+<ul>
+<li>$I_x$ is $Yes$ $Instance$ if and only if $I_y=f(I_x)$ is $Yes$ $Instance$.</li>
+</ul>
+<p>If $\exist$ polynomial-time algorithm $B$ for $y$:</p>
+<ul>
+<li>$A(I_x)$:
+<ul>
+<li>1.compute $I_y=f(I_x)$</li>
+<li>2.run $B$ on $I_y$ and return the result.</li>
+</ul>
+</li>
+</ul>
+<p>$I_x \rightarrow I_y=F(I_x) \rightarrow B(I_y)$</p>
+<p>Because each steps takes polynomial time, so the total running time of $A$ is polynomial.</p>
+<p>Then we can say $A\leq B$ if there exists the reduction function $f$.</p>
+<h5><span id="example1">Example1</span></h5>
+<p>Travling Salesman Problem(TSP)</p>
+<ul>
+<li>Given a complete edge-weighted graph $G=(V,E)$, a TSP asks to find a Hamiltonian cycle with total weight $W\leq k$ in $G$.</li>
+</ul>
+<p><strong>Proof $HCP\leq _PTSP$</strong></p>
+<p>As the picture shows:</p>
+<p><img src="/2024/12/25/ads-10/1.jpg" alt></p>
+<ul>
+<li>
+<p>We can turn the $HCP$ Graph into a $TSP$ Graph by giving the weight of each edge as $1$ and adding the edges that connect the unconnected vertices with weight $2$.</p>
+<ul>
+<li>We can easily find the $yes-intacnce$ in $HCP$ is the $yes-instance$ in $TSP$.</li>
+</ul>
+</li>
+<li>
+<p>So $HCP\leq _P TSP$.</p>
+</li>
+</ul>
+<h5><span id="example2">Example2</span></h5>
+<ul>
+<li>Clique Problem
+<ul>
+<li>Given a graph $G=(V,E)$, a clique problem asks whether $G$ has a subset vetices $V’$ with size $|V’|\leq k$ such that $V’\times V’\subseteq E$.</li>
+</ul>
+</li>
+<li>Vertex Cover Problem
+<ul>
+<li>Given a graph $G=(V,E)$, a vertex cover problem asks whether $G$ has a subset of vertices $V’$ with size $|V’|\leq k$ such that every edge in $E$ is incident to at least one vertex in $V’$.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Proof $CP\leq _P VCP$</strong></p>
+<p>As the picture shows:</p>
+<p><img src="/2024/12/25/ads-10/2.jpg" alt></p>
+<ul>
+<li>We can turn the $CP$ Graph into a $VCP$ Graph by make $G_{VCP} = \bar {G_{CP}}$.
+<ul>
+<li>If $V’$ is a clique in $G_{CP}$, then $V - V’$ is a vertex cover in $G_{VCP}$.</li>
+<li>If $V-V’$ is a vertex cover in $G_{VCP}$, then $V’$ is a clique in $G_{CP}$.</li>
+<li>And we can easily find the $yes-intacnce$ in $CP$ is the $yes-instance$ in $VCP$.</li>
+</ul>
+</li>
+<li>So $CP\leq _P VCP$.</li>
+</ul>
+<h3><span id="np-complete">NP-Complete</span></h3>
+<h5><span id="definition">Definition</span></h5>
+<p>A problem $x$ is NP-complete if it is in $NP$ and every problem in $NP$ is reducible to $x$.</p>
+<h5><span id="theorem">Theorem</span></h5>
+<p>3-SAT is NP-complete.</p>
+<h5><span id="lemma">Lemma</span></h5>
+<p>If NP-complete problem $x\isin P$, then $P=NP $.</p>
+<div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/27/ads-11" target="_self">下一篇 : Approximation Algorithms</a></span><a href="https://finnmmm.github.io/2024/12/25/ads-9" target="_self">上一篇 : Dynamic Programming</a></div>
+
         </div>
 
         

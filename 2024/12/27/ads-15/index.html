@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Divide and Conquer &amp; Time Compute | Myease の Page</title>
+    <title>Externel Sorting | Myease の Page</title>
     <meta name="author" content="Myease" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -158,29 +158,14 @@
             <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
 <ul>
-<li><a href="#divide-and-conquer">Divide and Conquer</a>
+<li><a href="#external-sorting">External Sorting</a>
 <ul>
-<li><a href="#counting-inversions">Counting Inversions</a>
-<ul>
-<li><a href="#solutions">Solutions</a></li>
-</ul>
-</li>
-<li><a href="#closest-pair-of-points">Closest Pair of Points</a>
-<ul>
-<li><a href="#solutions-1">Solutions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#time-compute">Time Compute</a>
-<ul>
-<li><a href="#solutions-2">Solutions</a>
-<ul>
-<li><a href="#recursion-tree-method">Recursion Tree Method</a></li>
-<li><a href="#master-theorem">Master Theorem</a></li>
-<li><a href="#substitution-method">Substitution Method</a></li>
-</ul>
-</li>
+<li><a href="#2-way-merge-algorithm">2-way merge algorithm</a></li>
+<li><a href="#reduce-number-of-passes">Reduce number of passes</a></li>
+<li><a href="#reduce-the-number-of-tapes">Reduce the number of tapes</a></li>
+<li><a href="#handle-the-buffers-for-parallel-operation">Handle the buffers for parallel operation</a></li>
+<li><a href="#can-we-get-a-longer-run-each-time">Can we get a longer run each time?</a></li>
+<li><a href="#how-to-minimize-merging-time">How to minimize merging time?</a></li>
 </ul>
 </li>
 </ul>
@@ -195,14 +180,14 @@
     
     <div class="article">
         <div>
-            <h1>Divide and Conquer &amp; Time Compute</h1>
+            <h1>Externel Sorting</h1>
         </div>
         <div class="info">
             <span class="date">
                 <span class="icon">
                     <i class="fa-solid fa-calendar fa-fw"></i>
                 </span>
-                2024/12/25
+                2024/12/27
             </span>
             
             
@@ -214,7 +199,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #00bcd4">
+                    <a href="/tags/ADS/" style="color: #ff7d73">
                         ADS
                     </a>
                 </span>
@@ -227,131 +212,102 @@
             <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
 <ul>
-<li><a href="#divide-and-conquer">Divide and Conquer</a>
+<li><a href="#external-sorting">External Sorting</a>
 <ul>
-<li><a href="#counting-inversions">Counting Inversions</a>
-<ul>
-<li><a href="#solutions">Solutions</a></li>
-</ul>
-</li>
-<li><a href="#closest-pair-of-points">Closest Pair of Points</a>
-<ul>
-<li><a href="#solutions-1">Solutions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#time-compute">Time Compute</a>
-<ul>
-<li><a href="#solutions-2">Solutions</a>
-<ul>
-<li><a href="#recursion-tree-method">Recursion Tree Method</a></li>
-<li><a href="#master-theorem">Master Theorem</a></li>
-<li><a href="#substitution-method">Substitution Method</a></li>
-</ul>
-</li>
+<li><a href="#2-way-merge-algorithm">2-way merge algorithm</a></li>
+<li><a href="#reduce-number-of-passes">Reduce number of passes</a></li>
+<li><a href="#reduce-the-number-of-tapes">Reduce the number of tapes</a></li>
+<li><a href="#handle-the-buffers-for-parallel-operation">Handle the buffers for parallel operation</a></li>
+<li><a href="#can-we-get-a-longer-run-each-time">Can we get a longer run each time?</a></li>
+<li><a href="#how-to-minimize-merging-time">How to minimize merging time?</a></li>
 </ul>
 </li>
 </ul>
 <!-- tocstop -->
 <p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">👇</span></p>
-<h2><span id="divide-and-conquer">Divide and Conquer</span></h2>
-<p>Divide a problem into smaller subproblems, solve each subproblem independently, and then combine the solutions to the subproblems to solve the original problem.</p>
-<h3><span id="counting-inversions">Counting Inversions</span></h3>
-<p>Given an array of n distinct integers, count the number of inversions in the array. An inversion is a pair of indices $(i, j)$ such that $i &lt; j$ and $a[i] &gt; a[j]$.</p>
-<h4><span id="solutions">Solutions</span></h4>
-<p>Bruteforce solution: $O(n^2)$ time complexity.</p>
-<p>D&amp;C: O(nlogn) time complexity.</p>
+<h2><span id="external-sorting">External Sorting</span></h2>
+<h3><span id="introduction"> Introduction</span></h3>
+<p>When data are too large to fit into internel memory, external sorting is a technique to sort them. It involves dividing the data into smaller chunks, sorting each chunk independently, and then merging the sorted chunks to obtain the final sorted result.</p>
+<h3><span id="examples"> Examples</span></h3>
+<h5><span id="defination">Defination</span></h5>
 <ul>
-<li>Divide the array into two halves.</li>
-<li>Count the number of inversions in each half recursively.</li>
-<li>Count the number of inversions in the different halves.</li>
+<li>$B$ is the fixed-size of a block of data that can be read from the external storage.</li>
+<li>$M$ is the number of blocks that the internal memory can solve once at a time.</li>
+<li>$p$ is the number of passes needed to sort the data.</li>
+<li>$b$ is the total I/O cost, which equals to the number of blocks.</li>
 </ul>
-<pre><code class="language-pesudo">Sort-and-CountInv(A):
-    if n &lt;= 1:
-        return (A,0)
-    else:
-        L=left half of A
-        R=right half of A
-        (B,LInv)=Sort-and-CountInv(L)
-        (C,RInv)=Sort-and-CountInv(R)
-        (D,SInv)=Merge-and-Sort(B,C)
-        return (D,LInv+RInv+SInv)
-</code></pre>
-<pre><code class="language-pesudo">Merge-and-Sort(B,C):
-    i=0, j=0, SInv=0
-    for k in range(n):
-        if B[i] &lt;= C[j]:
-            D[k]=B[i]
-            i=i+1
-        else:
-            D[k]=C[j]
-            j=j+1
-            SInv=SInv+n/2-i+1
-    return (D,SInv)
-</code></pre>
-<p>We have</p>
-<p>$$\begin{cases}T(n)=2T(n/2)+O(n)\\T(1)=O(1)\end{cases}$$</p>
-<p>Therefore, the time complexity is $O(nlogn)$.</p>
-<h3><span id="closest-pair-of-points">Closest Pair of Points</span></h3>
-<p>Given n points in the plane, find the two points that are closest to each other.</p>
-<h4><span id="solutions">Solutions</span></h4>
-<p>$\Delta_1=closest Left Pair$<br>
-$\Delta_2=closest Right Pair$<br>
-$\Delta=min(\Delta_1,\Delta_2)$</p>
-<p><img src="/2024/12/25/ads-8/1.jpg" alt><br>
-1.Watching this picture, when we want to find the closest pair in the split part, we first find a point $p$ ,whose distance to the cut line is less than $\Delta$.<br>
-2.Then we can cut the plane into eight parts of $\Delta/2\times\Delta/2$ square, and each part can have at most 1 point.<br>
-3.Then we only need to find the closest pair in the divided parts and go through all the points whose distance to the cut line is less than $\Delta$.</p>
-<pre><code class="language-pesudo">Px=sort P by X
-Py=sort P by Y
-closestPair(Px,Py):
-    if n&lt;=3:
-        return bruteforce(Px)
-    else:
-        Lx= pts on the left half,sorted by X
-        Ly= pts on the left half,sorted by Y
-        Rx= pts on the right half,sorted by X
-        Ry= pts on the right half,sorted by Y
-        (L1,L2)=closestPair(Lx,Ly)
-        (R1,R2)=closestPair(Rx,Ry)
-        d=min(dist(L1,L2),dist(R1,R2))
-        (s1,s2)= closestSplitPair(Px,Py,d)
-        return the_closest_pair((L1,L2),(R1,R2),(s1,s2))
-</code></pre>
-<pre><code class="language-pesudo">closestSplitPair(Px,Py,d):
-    x'=largest x of Pts in left half
-    S=&#123;q1,q2,...,qk&#125;(x'-d &lt;= q &lt;= x'+d)(sorted by y)
-    minDist = +inf
-    for i=1 to k:
-        for j= 1 to 8:
-            if (dist(qi,qi+j) &lt; minDist):
-                minDist=dist(qi,qi+j)
-                closestPair=(qi,qi+j)
-    return closestPair
-</code></pre>
-<p>The time complexity is $O(nlogn)$.</p>
-<h2><span id="time-compute">Time Compute</span></h2>
-<p>$$\begin{cases}T(1)=1\\T(n)=aT(\frac{n}{b})+n^c\end{cases}$$</p>
-<h3><span id="solutions">Solutions</span></h3>
-<h4><span id="recursion-tree-method">Recursion Tree Method</span></h4>
-<p><img src="/2024/12/25/ads-8/2.png" alt></p>
-<p>$$T(n)=\sum_{i=0}^{log_4(n)-1}(\frac{3}{16})^icN^2+\Theta(N^{log_4(3)}=O(N^2)$$</p>
+<p>Now we have a internal memory with $M=3,B=1$.<br>
+And the data with size $N=13$ is originally stored in a tape $T_1$ in the external storage.</p>
+<h4><span id="2-way-merge-algorithm">2-way merge algorithm</span></h4>
+<p><img src="/2024/12/27/ads-15/1.png" alt></p>
 <ul>
-<li>If the running time of per level decreases, select the first level.</li>
-<li>If the running time of per level increases, select the last level.</li>
-<li>If the running time of per level is the same, total time=per level time $\times$ number of levels.</li>
+<li>step 1: We first load in the first three blocks of $T_1$ into the internal memory and sort them.</li>
+<li>step 2: Then we write the sorted data<strong> (a run)</strong> back to a new tape $T_2$.</li>
+<li>step 3: We load the second three blocks of $T_1$ into the internal memory and sort them.</li>
+<li>We write the sorted data back to a new tape $T_3$.</li>
+<li>step 4: We repeat step 2 and 3 for the remaining blocks of $T_1$ and then regard $T_1$ as empty.</li>
+<li>step 5: We merge and sort the first pair of run in $T_2$ and $T_3$ and write it back to the empty tape $T_1$.</li>
+<li>step 6: We merge and sort the second pair of run in $T_2$ and $T_3$ and write it back to the a new tape $T_4$.</li>
+<li>step 7: We repeat step 5 and 6 for the remaining pairs of runs in $T_2$ and $T_3$ and then regard $T_2$ and $T_3$ as empty.</li>
+<li>step 8: We repeat step 5 , 6 and 7 until all the data are sorted and stored in a single tape $T$.<br>
+The number of runs after step 4 is $r=\lceil\frac{N}{M}\rceil=5$.<br>
+The number of operations that merge two tapes is $t=\lceil\log_2\lceil\frac{N}{M}\rceil\rceil=3$.<br>
+The number of passes is $p=1+t=4$.<br>
+The cost of I/O is $b=2\frac{N}{B}\times p=104$.</li>
 </ul>
-<h4><span id="master-theorem">Master Theorem</span></h4>
-<p>$$\begin{cases}T(1)=1\\T(n)=aT(\frac{n}{b})+n^c\end{cases}$$</p>
+<p>What concern us are</p>
 <ul>
-<li>If $f(N)=O(N^{log_b{a-\varepsilon}})$, or $\frac{a}{b^c}&gt;1$, $T(N)=\Theta(N^{log_b{a}})$.</li>
-<li>If $f(N)=\Theta(N^{log_b{a}})$, or $\frac{a}{b^c}=1$, $T(N)=\Theta(log_b{N}N^c)$.</li>
-<li>If $f(N)=\Omega(N^{log_b{a+\varepsilon}})$, or $\frac{a}{b^c}&lt;1$, $T(N)=\Theta(N^c)$.</li>
+<li>seek time (number of passes)</li>
+<li>time to merge N records from input buffers to the output buffer</li>
+<li>time to internally sort M records</li>
+<li>time to read or write one block of records<br>
+So our goal is to</li>
+<li>minimize the number of passes</li>
+<li>minimize the number of run merges</li>
+<li>minimize the number of run generation</li>
+<li>minimize the number of buffer handling for parallel operation</li>
 </ul>
-<h4><span id="substitution-method">Substitution Method</span></h4>
-<p>Guess and proof.</p>
-<div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/25/ads-9" target="_self">下一篇 : Dynamic Programming</a></span><a href="https://finnmmm.github.io/2024/12/25/ads-7" target="_self">上一篇 : Greedy</a></div>
+<h4><span id="reduce-number-of-passes">Reduce number of passes</span></h4>
+<p>Use a k-way merge algorithm to merge the runs in parallel.</p>
+<p>So the number of passes $p=1+\lceil\log_k\lceil\frac{N}{M}\rceil\rceil$.<br>
+It do decrease the number of passes, but since this algorithm requires $2k$ tapes, it is not good enough.</p>
+<h4><span id="reduce-the-number-of-tapes">Reduce the number of tapes</span></h4>
+<p>Try to use 3 tapes to solve 2-way merge problem.<br>
+<img src="/2024/12/27/ads-15/2.png" alt><br>
+If we simply use the old way, we may stuck here.<br>
+So, if we are given two tapes with number of runs $r_2=5$ and $r_3=3$,<br>
+<img src="/2024/12/27/ads-15/3.png" alt><br>
+rather than put the even pairs and odd pairs into two tapes respectively, we can put the first 3 pairs into an empty tape $T_1$ and do nothing to the remained 2 runs.<br>
+<img src="/2024/12/27/ads-15/4.png" alt><br>
+With this strategy, we can reduce the number of tapes from $2k$ to $k+1$.<br>
+If we review the processure of 2-way merge in reverse order,we can find that the number of runs in the longest tape is:<br>
+$$F_0=0,F_1=1,F_2=1,F_3=2,F_4=3\cdots F_N=F_{N-1}+F_{n-2}$$<br>
+It is a Fibonacci sequence!!<br>
+It also has a similar property in k-way merge algorithm,that is:<br>
+$$F_{N}^k=\begin{cases}0,\quad 0\leq N\leq k-2\\1,\quad N=k-1\\\sum_{i=1}^{k}F_{N-i}^k,\quad N\geq k\end{cases}$$</p>
+<h4><span id="handle-the-buffers-for-parallel-operation">Handle the buffers for parallel operation</span></h4>
+<ul>
+<li>Buffer: When we are doing parallel writing and reading, we need to store both input and output data in the buffer.</li>
+</ul>
+<p>In general, for a $k$-way merge we need $2k$ input buffers and $2$ output buffers for parallel operations.<br>
+When the $k$ rises, the number of input buffers will increase,the size of buffer will decrease,the size of block will decrease,which end up with increasing the seeking time.</p>
+<p>Beyond a certain $k$ value, the I\O time would actually increase despite the decrease in the number of passes being made.  The optimal value for $k$ clearly depends on disk parameters and the amount of internal memory available for buffers.</p>
+<h4><span id="can-we-get-a-longer-run-each-time">Can we get a longer run each time?</span></h4>
+<p>Yes,apart from selecting $M$ elements and sort then, we can do as follows:</p>
+<ul>
+<li>step 1: Select first $M$ elements and sort them.</li>
+<li>step 2: Write the lowest one to the tape.</li>
+<li>step 3: Add the next element to the remained $M-1$ elements and sort them.</li>
+<li>step 4: Write the lowest one of those who are not greater than the previous one to the tape.</li>
+<li>step 5: Repeat until there is no element left or all the $M$ elements in the buffer are greater than the previous one.Then one tape is built.</li>
+<li>step 6: Repeat step 1 to step 5 for the remaining elements to build more runs.</li>
+</ul>
+<p>It is proved that the average length of a run $L_{avg}=2M$.</p>
+<h4><span id="how-to-minimize-merging-time">How to minimize merging time?</span></h4>
+<p>We can use a Huffman Tree to minimize the number of merging times.</p>
+<p>For example,we are given 4 runs with length $l_1=2,l_2=4,l_3=5,l_4=15$.The best sequence to merge them is in the following order:<br>
+<img src="/2024/12/27/ads-15/5.png" alt></p>
+<div style="font-size:16px"><span style="float:right"><a style=" color: grey">下一篇 : 无</a></span><a href="https://finnmmm.github.io/2024/12/27/ads-14" target="_self">上一篇 : Parallel Algorithms</a></div>
         </div>
 
         

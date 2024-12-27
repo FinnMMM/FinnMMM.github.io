@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Divide and Conquer &amp; Time Compute | Myease の Page</title>
+    <title>Local Search | Myease の Page</title>
     <meta name="author" content="Myease" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -158,29 +158,21 @@
             <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
 <ul>
-<li><a href="#divide-and-conquer">Divide and Conquer</a>
+<li><a href="#local-search">Local Search</a>
 <ul>
-<li><a href="#counting-inversions">Counting Inversions</a>
+<li><a href="#vertex-cover-problem">Vertex Cover Problem</a>
 <ul>
-<li><a href="#solutions">Solutions</a></li>
+<li><a href="#gradient_descent-algorithm">Gradient_descent Algorithm</a></li>
+<li><a href="#metropolis-algorithm">Metropolis Algorithm</a></li>
+<li><a href="#simulate-annealing-algorithm">Simulate Annealing Algorithm</a></li>
 </ul>
 </li>
-<li><a href="#closest-pair-of-points">Closest Pair of Points</a>
+<li><a href="#hopfield-neural-network-problem">Hopfield Neural Network Problem</a>
 <ul>
-<li><a href="#solutions-1">Solutions</a></li>
+<li><a href="#state-flipping-algorithm">State Flipping Algorithm</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#time-compute">Time Compute</a>
-<ul>
-<li><a href="#solutions-2">Solutions</a>
-<ul>
-<li><a href="#recursion-tree-method">Recursion Tree Method</a></li>
-<li><a href="#master-theorem">Master Theorem</a></li>
-<li><a href="#substitution-method">Substitution Method</a></li>
-</ul>
-</li>
+<li><a href="#max-cut-problem">Max Cut Problem</a></li>
 </ul>
 </li>
 </ul>
@@ -195,14 +187,14 @@
     
     <div class="article">
         <div>
-            <h1>Divide and Conquer &amp; Time Compute</h1>
+            <h1>Local Search</h1>
         </div>
         <div class="info">
             <span class="date">
                 <span class="icon">
                     <i class="fa-solid fa-calendar fa-fw"></i>
                 </span>
-                2024/12/25
+                2024/12/27
             </span>
             
             
@@ -214,7 +206,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #00bcd4">
+                    <a href="/tags/ADS/" style="color: #ffa2c4">
                         ADS
                     </a>
                 </span>
@@ -227,131 +219,201 @@
             <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
 <ul>
-<li><a href="#divide-and-conquer">Divide and Conquer</a>
+<li><a href="#local-search">Local Search</a>
 <ul>
-<li><a href="#counting-inversions">Counting Inversions</a>
+<li><a href="#vertex-cover-problem">Vertex Cover Problem</a>
 <ul>
-<li><a href="#solutions">Solutions</a></li>
+<li><a href="#gradient_descent-algorithm">Gradient_descent Algorithm</a></li>
+<li><a href="#metropolis-algorithm">Metropolis Algorithm</a></li>
+<li><a href="#simulate-annealing-algorithm">Simulate Annealing Algorithm</a></li>
 </ul>
 </li>
-<li><a href="#closest-pair-of-points">Closest Pair of Points</a>
+<li><a href="#hopfield-neural-network-problem">Hopfield Neural Network Problem</a>
 <ul>
-<li><a href="#solutions-1">Solutions</a></li>
+<li><a href="#state-flipping-algorithm">State Flipping Algorithm</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#time-compute">Time Compute</a>
-<ul>
-<li><a href="#solutions-2">Solutions</a>
-<ul>
-<li><a href="#recursion-tree-method">Recursion Tree Method</a></li>
-<li><a href="#master-theorem">Master Theorem</a></li>
-<li><a href="#substitution-method">Substitution Method</a></li>
-</ul>
-</li>
+<li><a href="#max-cut-problem">Max Cut Problem</a></li>
 </ul>
 </li>
 </ul>
 <!-- tocstop -->
 <p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">👇</span></p>
-<h2><span id="divide-and-conquer">Divide and Conquer</span></h2>
-<p>Divide a problem into smaller subproblems, solve each subproblem independently, and then combine the solutions to the subproblems to solve the original problem.</p>
-<h3><span id="counting-inversions">Counting Inversions</span></h3>
-<p>Given an array of n distinct integers, count the number of inversions in the array. An inversion is a pair of indices $(i, j)$ such that $i &lt; j$ and $a[i] &gt; a[j]$.</p>
-<h4><span id="solutions">Solutions</span></h4>
-<p>Bruteforce solution: $O(n^2)$ time complexity.</p>
-<p>D&amp;C: O(nlogn) time complexity.</p>
+<h2><span id="local-search">Local Search</span></h2>
+<h3><span id="definition"> Definition </span></h3>
 <ul>
-<li>Divide the array into two halves.</li>
-<li>Count the number of inversions in each half recursively.</li>
-<li>Count the number of inversions in the different halves.</li>
+<li>Local
+<ul>
+<li>Define neighborhoods in the feasible set</li>
+<li>A local optimum is a best solution in a neighborhood</li>
 </ul>
-<pre><code class="language-pesudo">Sort-and-CountInv(A):
-    if n &lt;= 1:
-        return (A,0)
-    else:
-        L=left half of A
-        R=right half of A
-        (B,LInv)=Sort-and-CountInv(L)
-        (C,RInv)=Sort-and-CountInv(R)
-        (D,SInv)=Merge-and-Sort(B,C)
-        return (D,LInv+RInv+SInv)
+</li>
+<li>Search
+<ul>
+<li>Start with a feasible solution and search a better one within the neighborhood</li>
+<li>A local optimum is achieved if no improvement is possible</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-pesudo">SolutionType Gradient_descent()
+&#123;   Start from a feasible solution S in FS ;
+    MinCost = cost(S);
+    while (1) &#123;
+        S’ = Search( Negihbor(S) ); /* find the best S’ in Neighbor(S) */
+        CurrentCost = cost(S’);
+        if ( CurrentCost &lt; MinCost ) &#123;
+            MinCost = CurrentCost;    S = S’;
+        &#125;
+        else  break;
+    &#125;
+    return S;
+&#125;
 </code></pre>
-<pre><code class="language-pesudo">Merge-and-Sort(B,C):
-    i=0, j=0, SInv=0
-    for k in range(n):
-        if B[i] &lt;= C[j]:
-            D[k]=B[i]
-            i=i+1
+<h3><span id="vertex-cover-problem">Vertex Cover Problem</span></h3>
+<h5><span id="definition">Definition</span></h5>
+<p>Give a Graph $G=(V,E)$, a vertex cover is a subset $C$ of $V$ such that for every edge $(u,v)\in E$, either $u\in C$ or $v\in C$.</p>
+<h4><span id="gradient_descent-algorithm">Gradient_descent Algorithm</span></h4>
+<p>We deine:</p>
+<ul>
+<li>$FS=${$s\subseteq V $|$s$ is a vertex cover }.</li>
+<li>$cost(s)=|S|$</li>
+<li>$N(s)=${$s’$|$s’$ is a vertex cover and $s’ \subset s$ or $s \subset s’$ and $||s’|-|s||=1$}.</li>
+</ul>
+<pre><code class="language-pesudo">LSVC(V,E):
+    s=V
+    while (true)&#123;
+        if s-&#123;u&#125; is a vertex cover for a u in V:
+            s=s-&#123;u&#125;
         else:
-            D[k]=C[j]
-            j=j+1
-            SInv=SInv+n/2-i+1
-    return (D,SInv)
+            return s
+    &#125;
 </code></pre>
-<p>We have</p>
-<p>$$\begin{cases}T(n)=2T(n/2)+O(n)\\T(1)=O(1)\end{cases}$$</p>
-<p>Therefore, the time complexity is $O(nlogn)$.</p>
-<h3><span id="closest-pair-of-points">Closest Pair of Points</span></h3>
-<p>Given n points in the plane, find the two points that are closest to each other.</p>
-<h4><span id="solutions">Solutions</span></h4>
-<p>$\Delta_1=closest Left Pair$<br>
-$\Delta_2=closest Right Pair$<br>
-$\Delta=min(\Delta_1,\Delta_2)$</p>
-<p><img src="/2024/12/25/ads-8/1.jpg" alt><br>
-1.Watching this picture, when we want to find the closest pair in the split part, we first find a point $p$ ,whose distance to the cut line is less than $\Delta$.<br>
-2.Then we can cut the plane into eight parts of $\Delta/2\times\Delta/2$ square, and each part can have at most 1 point.<br>
-3.Then we only need to find the closest pair in the divided parts and go through all the points whose distance to the cut line is less than $\Delta$.</p>
-<pre><code class="language-pesudo">Px=sort P by X
-Py=sort P by Y
-closestPair(Px,Py):
-    if n&lt;=3:
-        return bruteforce(Px)
-    else:
-        Lx= pts on the left half,sorted by X
-        Ly= pts on the left half,sorted by Y
-        Rx= pts on the right half,sorted by X
-        Ry= pts on the right half,sorted by Y
-        (L1,L2)=closestPair(Lx,Ly)
-        (R1,R2)=closestPair(Rx,Ry)
-        d=min(dist(L1,L2),dist(R1,R2))
-        (s1,s2)= closestSplitPair(Px,Py,d)
-        return the_closest_pair((L1,L2),(R1,R2),(s1,s2))
+<p>But we can find in the case that picture below has shown:</p>
+<p><img src="/2024/12/27/ads-12/1.png" alt></p>
+<p>The Gradient_descent algorithm may not work well in this case.<br>
+So we need to improve.</p>
+<h4><span id="metropolis-algorithm">Metropolis Algorithm</span></h4>
+<pre><code class="language-pesudo">SolutionType Metropolis()
+&#123;   Define constants k and T;
+    Start from a feasible solution S  FS ;
+    MinCost = cost(S);
+    while (1) &#123;
+        S’ = Randomly chosen from N(S); 
+        CurrentCost = cost(S’);
+        if ( CurrentCost &lt; MinCost ) &#123;
+            MinCost = CurrentCost;    S = S’;
+        &#125;
+        else &#123;
+            With a probability p, let S = S’;
+            else  break;
+        &#125;
+    &#125;
+    return S;
+&#125;
 </code></pre>
-<pre><code class="language-pesudo">closestSplitPair(Px,Py,d):
-    x'=largest x of Pts in left half
-    S=&#123;q1,q2,...,qk&#125;(x'-d &lt;= q &lt;= x'+d)(sorted by y)
-    minDist = +inf
-    for i=1 to k:
-        for j= 1 to 8:
-            if (dist(qi,qi+j) &lt; minDist):
-                minDist=dist(qi,qi+j)
-                closestPair=(qi,qi+j)
-    return closestPair
-</code></pre>
-<p>The time complexity is $O(nlogn)$.</p>
-<h2><span id="time-compute">Time Compute</span></h2>
-<p>$$\begin{cases}T(1)=1\\T(n)=aT(\frac{n}{b})+n^c\end{cases}$$</p>
-<h3><span id="solutions">Solutions</span></h3>
-<h4><span id="recursion-tree-method">Recursion Tree Method</span></h4>
-<p><img src="/2024/12/25/ads-8/2.png" alt></p>
-<p>$$T(n)=\sum_{i=0}^{log_4(n)-1}(\frac{3}{16})^icN^2+\Theta(N^{log_4(3)}=O(N^2)$$</p>
+<p>In this algorithm,we define:</p>
 <ul>
-<li>If the running time of per level decreases, select the first level.</li>
-<li>If the running time of per level increases, select the last level.</li>
-<li>If the running time of per level is the same, total time=per level time $\times$ number of levels.</li>
+<li>$p=e^{\frac{-\Delta cost}{KT}}$</li>
+<li>$\Delta cost=cost(S’)-cost(S)$</li>
 </ul>
-<h4><span id="master-theorem">Master Theorem</span></h4>
-<p>$$\begin{cases}T(1)=1\\T(n)=aT(\frac{n}{b})+n^c\end{cases}$$</p>
+<h4><span id="simulate-annealing-algorithm">Simulate Annealing Algorithm</span></h4>
+<p>Gradually decrease $T$ in the <strong>Metropolis Algorithm</strong> to avoid getting stuck in local optima.</p>
+<h3><span id="hopfield-neural-network-problem">Hopfield Neural Network Problem</span></h3>
+<h5><span id="description">Description</span></h5>
 <ul>
-<li>If $f(N)=O(N^{log_b{a-\varepsilon}})$, or $\frac{a}{b^c}&gt;1$, $T(N)=\Theta(N^{log_b{a}})$.</li>
-<li>If $f(N)=\Theta(N^{log_b{a}})$, or $\frac{a}{b^c}=1$, $T(N)=\Theta(log_b{N}N^c)$.</li>
-<li>If $f(N)=\Omega(N^{log_b{a+\varepsilon}})$, or $\frac{a}{b^c}&lt;1$, $T(N)=\Theta(N^c)$.</li>
+<li>Given a Graph $G=(V,E)$ with edge weights.</li>
+<li>We define each vertex has a state $s\in {0,1}$.</li>
+<li>$e$ is a good edge if $w_es_us_v&lt;0$</li>
 </ul>
-<h4><span id="substitution-method">Substitution Method</span></h4>
-<p>Guess and proof.</p>
-<div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/25/ads-9" target="_self">下一篇 : Dynamic Programming</a></span><a href="https://finnmmm.github.io/2024/12/25/ads-7" target="_self">上一篇 : Greedy</a></div>
+<p>Our goal is to find a configuration $S$ maximize $\sum_{e\ is\ good}{|w_e|}$</p>
+<h4><span id="state-flipping-algorithm">State Flipping Algorithm</span></h4>
+<h5><span id="definition">Definition</span></h5>
+<ul>
+<li>In a configuration $S$, a vertex $u$ is satisfied if the weight of incident good edges is large than the weight of incident bad edges,that is $\sum{w_eu_vs_v} \leq 0$.</li>
+<li>A configuration $S$ is stable if all vertex $u$ are satisfied.</li>
+</ul>
+<h5><span id="algorithm">Algorithm</span></h5>
+<pre><code class="language-pesudo">ConfigType State_flipping()
+&#123;
+    Start from an arbitrary configuration S;
+    while ( ! IsStable(S) ) &#123;
+        u = GetUnsatisfied(S);
+        flipstate(u);
+    &#125;
+    return S;
+&#125;
+</code></pre>
+<h5><span id="theorem">Theorem</span></h5>
+<ul>
+<li>The State Flipping Algorithm terminates at a stable configuration after at most $W = \sum_e|w_e|$ iterations.</li>
+</ul>
+<p>Proof:</p>
+<ul>
+<li>Let $\phi(S)=\sum_{e\ is\ good}{|w_e|}$.</li>
+<li>We have: $\phi(S) &lt; \phi(S’) \leq \sum{|w_e|=W}$</li>
+<li>And each flip increse $\phi(S)$ by at least 1.</li>
+<li>So it takes less than $W$ flips.</li>
+</ul>
+<h3><span id="max-cut-problem">Max Cut Problem</span></h3>
+<h5><span id="description">Description</span></h5>
+<p>Given a Graph $G=(V,E)$, a cut is a partition of $V$ into two sets $A$ and $B$.<br>
+$\delta(A,B)={(u,v)|u\in A,v \in B}$<br>
+Our goal is to find a cut that maximize $W(A,B)=\sum_{e\in\delta(A,B)}{w_e}$.</p>
+<h5><span id="state-flipping-algorithm">State Flipping Algorithm</span></h5>
+<h5><span id="definition">Definition</span></h5>
+<ul>
+<li>In a configuration $S$, a vertex $u$ is satisfied if the weight of incident cut edges is large than the weight of incident nun-cut edges,that is $\sum_{cut\ edge} {w_e} &lt; \sum_{non-cut\ edge} {w_e}$.</li>
+<li>A configuration $S$ is stable if all vertex $u$ are satisfied.</li>
+<li>State of a vertex means it is either in set $A$ or set $B$.</li>
+</ul>
+<pre><code class="language-pesudo">ConfigType State_flipping()
+&#123;
+    Start from an arbitrary configuration S;
+    while ( ! IsStable(S) ) &#123;
+        u = GetUnsatisfied(S);
+        su = - su;
+    &#125;
+    return S;
+&#125;
+</code></pre>
+<h5><span id="lemma">Lemma</span></h5>
+<p>This algorithm is 2-approximation algorithm.</p>
+<p>Proof:</p>
+<p>for $u \in A$<br>
+$$\sum_{cut\ edge} {w_e} \geq \sum_{non-cut\ edge} {w_e}$$ $$\sum_{u\in A}\sum_{cut\ edge} {w_e} \geq \sum_{u\in A}\sum_{non-cut\ edge} {w_e}$$$$W(A,B)\geq2W(A)$$<br>
+The same,$$W(A,B)\geq2W(B)$$<br>
+So,$$2W(A,B)\geq2W(A)+2W(B)=2W-2W(A,B)$$$$W(A,B)\geq\frac{1}{2}W$$</p>
+<h5><span id="big-improvement-flip">Big-improvement-flip</span></h5>
+<h5><span id="definition">Definition</span></h5>
+<ul>
+<li>Flip only when there is a big improvement ($W(A,B)$ increases at least by a factor of $1+\frac{\epsilon}{|V|}$)</li>
+</ul>
+<h5><span id="theorem">Theorem</span></h5>
+<ul>
+<li>Time complexity: $O(\frac{n}{\epsilon}\log W)$</li>
+</ul>
+<p>Proof:<br>
+$$(1+\frac{\epsilon}{|V|})^t\leq W$$$$t\leq \log_{(1+\frac{\epsilon}{|V|})}W=O(\frac{n}{\epsilon}\log W)$$</p>
+<ul>
+<li>$W(A,B)\geq W_{OPT}(A,B)/(2+\epsilon)$</li>
+</ul>
+<h5><span id="k-flip-algorithm">K-Flip Algorithm</span></h5>
+<h5><span id="definition">Definition</span></h5>
+<ul>
+<li>Apart from State Flipping, we define neighborhood as: $$N(S)={S’|S’\ can\ be\ obtained\ from\ S\ by\ flipping\ k\  states}$$.</li>
+</ul>
+<h5><span id="k-l-heuristic-algorithm">K-L heuristic Algorithm</span></h5>
+<ul>
+<li>Step 1: We get a flip in the unmarked vertex as good as we can to obtain a new configuration $S_1$ from $S$ and mark the fliiped vertex.</li>
+<li>…</li>
+<li>Step k: We get a flip in the unmarked vertex as good as we can to obtain a new configuration $S_k$ from $S_{k-1}$.</li>
+<li>Step n: $S_n=\bar{S}$</li>
+<li>And we define $N(S)={S_1,\dots,S_n}$.</li>
+<li>We find the best configuration $S$ in $N(S)$,if there is an improvement, select it.Otherwise, algorithm terminates.</li>
+</ul>
+<h5><span id="theorem">Theorem</span></h5>
+<p>This algorithm may increase the running time,but it improve the accuracy of the result.</p>
+<div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/27/ads-13" target="_self">下一篇 : Randomized Algorithms</a></span><a href="https://finnmmm.github.io/2024/12/27/ads-11" target="_self">上一篇 : Approximation Algorithms</a></div>
         </div>
 
         

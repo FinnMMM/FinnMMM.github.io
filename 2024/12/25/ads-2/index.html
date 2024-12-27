@@ -160,30 +160,14 @@
 <ul>
 <li><a href="#amortized-analysis">Amortized Analysis</a>
 <ul>
-<li><a href="#definition">Definition</a></li>
-<li><a href="#aggregate-analysis">Aggregate analysis</a>
-<ul>
-<li><a href="#definition-1">Definition</a></li>
-<li><a href="#example-dynamic-array">Example: Dynamic Array</a></li>
-</ul>
-</li>
-<li><a href="#accounting-method">Accounting Method</a>
-<ul>
-<li><a href="#definition-3">Definition</a></li>
-<li><a href="#example-two-stack-queue">Example: Two-Stack Queue</a></li>
-</ul>
-</li>
-<li><a href="#potential-function">Potential Function</a>
-<ul>
-<li><a href="#definition-4">Definition</a></li>
-<li><a href="#example-two-stack-queue-1">Example: Two-Stack Queue</a></li>
-</ul>
-</li>
+<li><a href="#aggregate-analysis">Aggregate analysis</a></li>
+<li><a href="#accounting-method">Accounting Method</a></li>
+<li><a href="#potential-function">Potential Function</a></li>
 </ul>
 </li>
 <li><a href="#splay-tree">Splay Tree</a>
 <ul>
-<li><a href="#definition-5">Definition</a></li>
+<li><a href="#definition-2">Definition</a></li>
 <li><a href="#splay-operation">Splay Operation</a></li>
 <li><a href="#time-complexity-analysis">Time Complexity Analysis</a></li>
 </ul>
@@ -219,29 +203,8 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #00bcd4">
+                    <a href="/tags/ADS/" style="color: #03a9f4">
                         ADS
-                    </a>
-                </span>
-                
-                <span class="tag">
-                    
-                    <a href="/tags/Amortized-Analysis/" style="color: #03a9f4">
-                        Amortized Analysis
-                    </a>
-                </span>
-                
-                <span class="tag">
-                    
-                    <a href="/tags/Dynamic-Array/" style="color: #ff7d73">
-                        Dynamic Array
-                    </a>
-                </span>
-                
-                <span class="tag">
-                    
-                    <a href="/tags/Splay-Tree/" style="color: #ffa2c4">
-                        Splay Tree
                     </a>
                 </span>
                 
@@ -255,30 +218,14 @@
 <ul>
 <li><a href="#amortized-analysis">Amortized Analysis</a>
 <ul>
-<li><a href="#definition">Definition</a></li>
-<li><a href="#aggregate-analysis">Aggregate analysis</a>
-<ul>
-<li><a href="#definition-1">Definition</a></li>
-<li><a href="#example-dynamic-array">Example: Dynamic Array</a></li>
-</ul>
-</li>
-<li><a href="#accounting-method">Accounting Method</a>
-<ul>
-<li><a href="#definition-3">Definition</a></li>
-<li><a href="#example-two-stack-queue">Example: Two-Stack Queue</a></li>
-</ul>
-</li>
-<li><a href="#potential-function">Potential Function</a>
-<ul>
-<li><a href="#definition-4">Definition</a></li>
-<li><a href="#example-two-stack-queue-1">Example: Two-Stack Queue</a></li>
-</ul>
-</li>
+<li><a href="#aggregate-analysis">Aggregate analysis</a></li>
+<li><a href="#accounting-method">Accounting Method</a></li>
+<li><a href="#potential-function">Potential Function</a></li>
 </ul>
 </li>
 <li><a href="#splay-tree">Splay Tree</a>
 <ul>
-<li><a href="#definition-5">Definition</a></li>
+<li><a href="#definition-2">Definition</a></li>
 <li><a href="#splay-operation">Splay Operation</a></li>
 <li><a href="#time-complexity-analysis">Time Complexity Analysis</a></li>
 </ul>
@@ -294,11 +241,11 @@
 <li>$T_{worst}\geq T_{amortized}\geq T_{average}\geq T_{best}$</li>
 </ul>
 <h3><span id="aggregate-analysis">Aggregate analysis</span></h3>
-<h4><span id="definition">Definition</span></h4>
+<h4><span id="definition"> Definition</span></h4>
 <ul>
 <li>Show that for all $n$, a sequence of $n$ operations takes worst-case time $T(n)$ in total.  In the worst case, the average cost, or amortized cost, per operation is therefore $T(n)/n$.</li>
 </ul>
-<h4><span id="example-dynamic-array">Example: Dynamic Array</span></h4>
+<h4><span id="example-dynamic-array"> Example: Dynamic Array</span></h4>
 <h5><span id="definition">Definition</span></h5>
 <ul>
 <li>A dynamic array is a array with initial capacity $1$.</li>
@@ -326,12 +273,12 @@
 </li>
 </ul>
 <h3><span id="accounting-method">Accounting Method</span></h3>
-<h4><span id="definition">Definition</span></h4>
+<h5><span id="definition">Definition</span></h5>
 <ul>
 <li>When an operation’s amortized cost exceeds its actual cost, we assign the difference to specific objects in the data structure as credit. Credit can help pay for later operations whose amortized cost is less than their actual cost.</li>
 <li>$T_{amortized} = T_{actual} + T_{credit}$</li>
 </ul>
-<h4><span id="example-two-stack-queue">Example: Two-Stack Queue</span></h4>
+<h4><span id="example-two-stack-queue"> Example: Two-Stack Queue</span></h4>
 <ul>
 <li>A Two-Stack Queue is a queue with two stacks,one for input and one for output.<br>
 <img src="/2024/12/25/ads-2/1.jpg" alt></li>
@@ -383,7 +330,7 @@ else if In.not_empty():
 <li>And the credit accumulated will always larger than 0.</li>
 </ul>
 <h3><span id="potential-function">Potential Function</span></h3>
-<h4><span id="definition">Definition</span></h4>
+<h4><span id="definition"> Definition</span></h4>
 <ul>
 <li>$\phi(i)$ equals to the total number fo credits remaing after $i$ operations.</li>
 <li>$\phi(i)$ is a potential function.</li>
@@ -391,11 +338,9 @@ else if In.not_empty():
 <li>$T_{amortized}(i) = T_{actual}(i) + \Delta\phi(i)$</li>
 <li>$\phi(i) \geq \phi(0)$</li>
 </ul>
-<h4><span id="example-two-stack-queue">Example: Two-Stack Queue</span></h4>
-<ul>
-<li>$\phi(0) = 0$</li>
-<li>$\phi(i)$ equals to the number of elements in the input stack after $i$ operations.</li>
-</ul>
+<h4><span id="example-two-stack-queue"> Example: Two-Stack Queue</span></h4>
+- $\phi(0) = 0$
+- $\phi(i)$ equals to the number of elements in the input stack after $i$ operations.
 <h2><span id="splay-tree">Splay Tree</span></h2>
 <h3><span id="definition">Definition</span></h3>
 <ul>

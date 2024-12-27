@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Divide and Conquer &amp; Time Compute | Myease の Page</title>
+    <title>Approximation Algorithm | Myease の Page</title>
     <meta name="author" content="Myease" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -158,29 +158,11 @@
             <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
 <ul>
-<li><a href="#divide-and-conquer">Divide and Conquer</a>
+<li><a href="#approximation-algorithm">Approximation Algorithm</a>
 <ul>
-<li><a href="#counting-inversions">Counting Inversions</a>
-<ul>
-<li><a href="#solutions">Solutions</a></li>
-</ul>
-</li>
-<li><a href="#closest-pair-of-points">Closest Pair of Points</a>
-<ul>
-<li><a href="#solutions-1">Solutions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#time-compute">Time Compute</a>
-<ul>
-<li><a href="#solutions-2">Solutions</a>
-<ul>
-<li><a href="#recursion-tree-method">Recursion Tree Method</a></li>
-<li><a href="#master-theorem">Master Theorem</a></li>
-<li><a href="#substitution-method">Substitution Method</a></li>
-</ul>
-</li>
+<li><a href="#bin-packing-problem">Bin Packing Problem</a></li>
+<li><a href="#knapsack-problem">Knapsack Problem</a></li>
+<li><a href="#k-center-problem">K-Center Problem</a></li>
 </ul>
 </li>
 </ul>
@@ -195,14 +177,14 @@
     
     <div class="article">
         <div>
-            <h1>Divide and Conquer &amp; Time Compute</h1>
+            <h1>Approximation Algorithm</h1>
         </div>
         <div class="info">
             <span class="date">
                 <span class="icon">
                     <i class="fa-solid fa-calendar fa-fw"></i>
                 </span>
-                2024/12/25
+                2024/12/27
             </span>
             
             
@@ -227,131 +209,180 @@
             <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
 <ul>
-<li><a href="#divide-and-conquer">Divide and Conquer</a>
+<li><a href="#approximation-algorithm">Approximation Algorithm</a>
 <ul>
-<li><a href="#counting-inversions">Counting Inversions</a>
-<ul>
-<li><a href="#solutions">Solutions</a></li>
-</ul>
-</li>
-<li><a href="#closest-pair-of-points">Closest Pair of Points</a>
-<ul>
-<li><a href="#solutions-1">Solutions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#time-compute">Time Compute</a>
-<ul>
-<li><a href="#solutions-2">Solutions</a>
-<ul>
-<li><a href="#recursion-tree-method">Recursion Tree Method</a></li>
-<li><a href="#master-theorem">Master Theorem</a></li>
-<li><a href="#substitution-method">Substitution Method</a></li>
-</ul>
-</li>
+<li><a href="#bin-packing-problem">Bin Packing Problem</a></li>
+<li><a href="#knapsack-problem">Knapsack Problem</a></li>
+<li><a href="#k-center-problem">K-Center Problem</a></li>
 </ul>
 </li>
 </ul>
 <!-- tocstop -->
 <p><span class="emoji" alias="point_down" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8">👇</span></p>
-<h2><span id="divide-and-conquer">Divide and Conquer</span></h2>
-<p>Divide a problem into smaller subproblems, solve each subproblem independently, and then combine the solutions to the subproblems to solve the original problem.</p>
-<h3><span id="counting-inversions">Counting Inversions</span></h3>
-<p>Given an array of n distinct integers, count the number of inversions in the array. An inversion is a pair of indices $(i, j)$ such that $i &lt; j$ and $a[i] &gt; a[j]$.</p>
-<h4><span id="solutions">Solutions</span></h4>
-<p>Bruteforce solution: $O(n^2)$ time complexity.</p>
-<p>D&amp;C: O(nlogn) time complexity.</p>
+<h2><span id="approximation-algorithm">Approximation Algorithm</span></h2>
+<h3><span id="definition">Definition</span></h3>
 <ul>
-<li>Divide the array into two halves.</li>
-<li>Count the number of inversions in each half recursively.</li>
-<li>Count the number of inversions in the different halves.</li>
-</ul>
-<pre><code class="language-pesudo">Sort-and-CountInv(A):
-    if n &lt;= 1:
-        return (A,0)
-    else:
-        L=left half of A
-        R=right half of A
-        (B,LInv)=Sort-and-CountInv(L)
-        (C,RInv)=Sort-and-CountInv(R)
-        (D,SInv)=Merge-and-Sort(B,C)
-        return (D,LInv+RInv+SInv)
-</code></pre>
-<pre><code class="language-pesudo">Merge-and-Sort(B,C):
-    i=0, j=0, SInv=0
-    for k in range(n):
-        if B[i] &lt;= C[j]:
-            D[k]=B[i]
-            i=i+1
-        else:
-            D[k]=C[j]
-            j=j+1
-            SInv=SInv+n/2-i+1
-    return (D,SInv)
-</code></pre>
-<p>We have</p>
-<p>$$\begin{cases}T(n)=2T(n/2)+O(n)\\T(1)=O(1)\end{cases}$$</p>
-<p>Therefore, the time complexity is $O(nlogn)$.</p>
-<h3><span id="closest-pair-of-points">Closest Pair of Points</span></h3>
-<p>Given n points in the plane, find the two points that are closest to each other.</p>
-<h4><span id="solutions">Solutions</span></h4>
-<p>$\Delta_1=closest Left Pair$<br>
-$\Delta_2=closest Right Pair$<br>
-$\Delta=min(\Delta_1,\Delta_2)$</p>
-<p><img src="/2024/12/25/ads-8/1.jpg" alt><br>
-1.Watching this picture, when we want to find the closest pair in the split part, we first find a point $p$ ,whose distance to the cut line is less than $\Delta$.<br>
-2.Then we can cut the plane into eight parts of $\Delta/2\times\Delta/2$ square, and each part can have at most 1 point.<br>
-3.Then we only need to find the closest pair in the divided parts and go through all the points whose distance to the cut line is less than $\Delta$.</p>
-<pre><code class="language-pesudo">Px=sort P by X
-Py=sort P by Y
-closestPair(Px,Py):
-    if n&lt;=3:
-        return bruteforce(Px)
-    else:
-        Lx= pts on the left half,sorted by X
-        Ly= pts on the left half,sorted by Y
-        Rx= pts on the right half,sorted by X
-        Ry= pts on the right half,sorted by Y
-        (L1,L2)=closestPair(Lx,Ly)
-        (R1,R2)=closestPair(Rx,Ry)
-        d=min(dist(L1,L2),dist(R1,R2))
-        (s1,s2)= closestSplitPair(Px,Py,d)
-        return the_closest_pair((L1,L2),(R1,R2),(s1,s2))
-</code></pre>
-<pre><code class="language-pesudo">closestSplitPair(Px,Py,d):
-    x'=largest x of Pts in left half
-    S=&#123;q1,q2,...,qk&#125;(x'-d &lt;= q &lt;= x'+d)(sorted by y)
-    minDist = +inf
-    for i=1 to k:
-        for j= 1 to 8:
-            if (dist(qi,qi+j) &lt; minDist):
-                minDist=dist(qi,qi+j)
-                closestPair=(qi,qi+j)
-    return closestPair
-</code></pre>
-<p>The time complexity is $O(nlogn)$.</p>
-<h2><span id="time-compute">Time Compute</span></h2>
-<p>$$\begin{cases}T(1)=1\\T(n)=aT(\frac{n}{b})+n^c\end{cases}$$</p>
-<h3><span id="solutions">Solutions</span></h3>
-<h4><span id="recursion-tree-method">Recursion Tree Method</span></h4>
-<p><img src="/2024/12/25/ads-8/2.png" alt></p>
-<p>$$T(n)=\sum_{i=0}^{log_4(n)-1}(\frac{3}{16})^icN^2+\Theta(N^{log_4(3)}=O(N^2)$$</p>
+<li>For any instance $I$:
 <ul>
-<li>If the running time of per level decreases, select the first level.</li>
-<li>If the running time of per level increases, select the last level.</li>
-<li>If the running time of per level is the same, total time=per level time $\times$ number of levels.</li>
+<li>Find an optiomal solution(ignored)</li>
+<li>In poly($|I|$) time</li>
 </ul>
-<h4><span id="master-theorem">Master Theorem</span></h4>
-<p>$$\begin{cases}T(1)=1\\T(n)=aT(\frac{n}{b})+n^c\end{cases}$$</p>
+</li>
+</ul>
+<p>An algorithm has an <strong>approximation ratio</strong> of  $\rho (n)$ if, for any input of size $n$, the cost $C$ of the solution produced by the algorithm is within a factor of $\rho (n)$ of the cost $C’$ of an optimal solution:</p>
+<p>$$max{\frac{C’}{C},\frac{C}{C’}}\leq \rho (n)$$</p>
+<p>If an algorithm achieves an approximation ratio of $\rho (n)$, we call it a <strong>$\rho (n)$-approximation algorithm</strong>.</p>
+<p>An <strong>approximation scheme</strong> for an optimization problem is an approximation algorithm that takes as input not only an instance of the problem, but also a value $\varepsilon &gt; 0$ such that for any fixed $\varepsilon $, the scheme is a <strong>$(1+ \varepsilon )$-approximation algorithm</strong>.</p>
+<p>We say that an approximation scheme is a <strong>polynomial-time approximation scheme (PTAS)</strong> if for any fixed $\varepsilon &gt; 0$, the scheme runs in time polynomial in the size $n$ of its input instance($T(n,\frac{1}{\varepsilon})=O(n^{\frac{1}{\varepsilon}})$).<br>
+<strong>efficient polynomial-time approximation scheme (EPTAS)</strong> if $T(n,\frac{1}{\varepsilon})=poly(n)f(\frac{1}{\varepsilon})$</p>
+<p><strong>fully polynomial-time approximation scheme (EPTAS)</strong> if $T(n,\frac{1}{\varepsilon})=poly(n)poly(\frac{1}{\varepsilon})$</p>
+<h3><span id="examples"> Examples</span></h3>
+<h4><span id="bin-packing-problem">Bin Packing Problem</span></h4>
+<h5><span id="description">Description</span></h5>
+<p>Given $n$ items with size $s_1,s_2,…,s_n(0\leq s_i\leq 1)$, the Bin Packing Problem asks to use fewest bins with unit capacity to pack all the items.</p>
+<h5><span id="next-fit-2-approximation">Next-Fit (2-approximation)</span></h5>
 <ul>
-<li>If $f(N)=O(N^{log_b{a-\varepsilon}})$, or $\frac{a}{b^c}&gt;1$, $T(N)=\Theta(N^{log_b{a}})$.</li>
-<li>If $f(N)=\Theta(N^{log_b{a}})$, or $\frac{a}{b^c}=1$, $T(N)=\Theta(log_b{N}N^c)$.</li>
-<li>If $f(N)=\Omega(N^{log_b{a+\varepsilon}})$, or $\frac{a}{b^c}&lt;1$, $T(N)=\Theta(N^c)$.</li>
+<li>Always select the next item.</li>
+<li>Select the current bin to put in.</li>
+<li>If the current bin is full, create a new bin and continue.</li>
 </ul>
-<h4><span id="substitution-method">Substitution Method</span></h4>
-<p>Guess and proof.</p>
-<div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/25/ads-9" target="_self">下一篇 : Dynamic Programming</a></span><a href="https://finnmmm.github.io/2024/12/25/ads-7" target="_self">上一篇 : Greedy</a></div>
+<h5><span id="theorem">Theorem</span></h5>
+<ul>
+<li>Let $M$ be the optimal number of bins required to pack a list $I$ of items.  Then next fit never uses more than $2M – 1$ bins.  There exist sequences such that next fit uses $2M  – 1$ bins.</li>
+<li>If Next Fit generates $2M$ (or $2M+1$) bins, then the optimal solution must generate at least $M+1$ bins.</li>
+</ul>
+<h5><span id="first-fit-17-approximation">First-Fit (1.7-approximation)</span></h5>
+<ul>
+<li>Always select the next item.</li>
+<li>Scan for the first bin that is large enough to fit the current item and select it.</li>
+<li>If no bin is large enough, create a new bin and continue.</li>
+</ul>
+<h5><span id="theorem">Theorem</span></h5>
+<ul>
+<li>Let $M$ be the optimal number of bins required to pack a list $I$ of items.  Then first fit never uses more than $17M / 10$ bins.  There exist sequences such that first fit uses $17(M – 1) / 10$ bins.</li>
+</ul>
+<h5><span id="best-fit-17-approximation">Best-Fit (1.7-approximation)</span></h5>
+<ul>
+<li>Always select the next item.</li>
+<li>Select a bin with the smallest remaining capacity to fit the current item.</li>
+<li>If no bin is large enough, create a new bin and continue.</li>
+</ul>
+<h6><span id="worst-fit-2-approximation">Worst-Fit (2-approximation)</span></h6>
+<ul>
+<li>Always select the next item.</li>
+<li>Select a bin with the largest remaining capacity to fit the current item.</li>
+<li>If no bin is large enough, create a new bin and continue.</li>
+</ul>
+<h5><span id="online-algorithms">Online Algorithms</span></h5>
+<ul>
+<li>Place an item before processing the next one, and can NOT change decision.</li>
+<li>All the algorithms above are online algorithms.</li>
+</ul>
+<h5><span id="theorem">Theorem</span></h5>
+<ul>
+<li>There are inputs that force any on-line bin-packing algorithm to use at least $5/3$ the optimal number of bins.</li>
+</ul>
+<h5><span id="first-fit-decreasing-15-approximation">First-Fit Decreasing (1.5-approximation)</span></h5>
+<ul>
+<li>Sort the items in decreasing order of size.</li>
+<li>First Fit.</li>
+</ul>
+<h5><span id="theorem">Theorem</span></h5>
+<p>$$FFD(I)\ or\ BFD(I)\leq \frac{11}{9}OPT(I)+\frac{6}{9} $$$$ \frac{FFD(I)}{OPT(I)}\leq \frac{\lfloor\frac{11}{9}OPT(I)+\frac{6}{9}\rfloor}{OPT(I)}\leq \frac{3}{2}$$</p>
+<h4><span id="knapsack-problem">Knapsack Problem</span></h4>
+<h5><span id="description">Description</span></h5>
+<p>Given a set consisting of $N$ items, where the $i$-th item has weight $w_i$ and value $v_i$, and a knapsack capacity $c$, The task is to find a subset of items with the maximum total value such that its total size does not exceed the capacity $c$.</p>
+<h5><span id="fractional-version">Fractional Version</span></h5>
+<ul>
+<li>An item can be divided into mutiple fractions.</li>
+<li>So we always select the one with maximum $\frac{v}{w}$ ratio.</li>
+<li>The last one we choose $xv_b$, in which $x$ satisfies $0\leq x=\frac{w_{remain}}{w_b}\leq 1$</li>
+</ul>
+<h5><span id="theorem">Theorem</span></h5>
+<ul>
+<li>We have$$OPT_{Frac}= v_1+v_2+\cdots + v_{b-1} +xv_b $$$$ v1+v2+\cdots + v_{b-1}=OPT_{Frac}-xv_b\geq OPT_{Frac}-v_b$$$$v_1+v_2+\cdots + v_{b-1} +v_b\geq OPT_{Frac}$$</li>
+<li>And we have at least one of $\sum_{i=1}{b-1}v_i$ and $v_b$ is greater than $OPT_{Frac}/2$.</li>
+</ul>
+<h5><span id="0-1-version">0-1 Version</span></h5>
+<ul>
+<li>We can only select an item or not.
+<ul>
+<li>$A_1$:Select the item with maximum value(profit).</li>
+<li>$A_2$:Select the item with maximum efficiency(profit denisty).</li>
+</ul>
+</li>
+</ul>
+<h5><span id="theorem">Theorem</span></h5>
+<p>We define $A_0$ as the optimal one of $A_1$ and $A_2$.<br>
+We have:$$A_0\geq OPT_{Frac}/2\geq OPT_{0-1}/2$$</p>
+<p>So it is a 2-approximation algorithm.</p>
+<h5><span id="a-dynamic-programming-approach">A Dynamic Programming Approach</span></h5>
+<ul>
+<li>We define $W_{i,p}$ as the minimum capacity to reach a total value of $p$ within the first $i$ items.</li>
+</ul>
+<p>$$W_{i,p}=\begin{cases}\infty \quad i\ =\ 0 \\ W_{i-1,p}\quad v_i&gt;p \\ max{W_{i-1,p},W_{i-1,p-v_i}+w_i}\quad otherwise\end{cases}$$</p>
+<h5><span id="theorem">Theorem</span></h5>
+<ul>
+<li>The time complexity of this algorithm is $O(N\sum v)\leq O(n^2v_{max})$</li>
+</ul>
+<h4><span id="k-center-problem">K-Center Problem</span></h4>
+<h5><span id="description">Description</span></h5>
+<p>Given $n$ sites $s_1,s_2,…,s_n$,a constant $k$ and a distance function $d(s_i,s_j)$, the problem asks to find $k$ sites in the plane so as to minimize the maximum distance from a site to its nearest site.</p>
+<ul>
+<li>What is distance?
+<ul>
+<li>$dist(x,x)=0$</li>
+<li>$dist(x,y)=dist(y,x)$</li>
+<li>$dist(x,y)\leq dist(x,z)+dist(z,y)$</li>
+</ul>
+</li>
+</ul>
+<h5><span id="solutions">Solutions</span></h5>
+<ul>
+<li>
+<p>Base case:</p>
+<ul>
+<li>If $k=1$, select any site $s$ , $max(dist(s,s_i))=r\leq 2r_{opt}$.</li>
+</ul>
+</li>
+<li>
+<p>Assume we have the $r_{opt}$:</p>
+<ul>
+<li>while there exists some uncovered sites:
+<ul>
+<li>1.pick an abitrary uncovered site $a$ as a center.</li>
+<li>2.mark all the sites $s$ that $dist(s,a)\leq r_{opt} as covered$</li>
+</ul>
+</li>
+<li>$c$ = set of center</li>
+<li>if $|c|\leq k$, done.</li>
+<li>else : there exist $\leq k+1$ sites $s_1,s_2$ such that $dist(s_1,s_2)\geq 2r_{opt}$.<br>
+How can we get $r_{opt}$?</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-pesudo">r_max=max of dist(s_i,s_j)
+binary search the r in [0,r_max]
+if k centers found with 2r: go down
+if k centers not found with 2r: go up
+</code></pre>
+<p>The returned $r$ is 2-approximation.<br>
+A smarter solution</p>
+<pre><code class="language-pesudo">Greedy():
+c=&#123;s_i&#125;
+for i = 2 to k:
+    select the site with maximum dist(s_j,c_i-1)
+    c.append(s_j)
+return c_k
+</code></pre>
+<p>We have:</p>
+<ul>
+<li>$dist(s,c)=min_{for \ c \isin C}{dist(s,c)}$</li>
+<li>$r(c_1)\geq r(c_2)\geq \cdots \geq r(c_k)$</li>
+<li>The algorithm returns a set $C$ of $K$ centers such that $r© \leq 2r(C_{opt})$ where $C_{opt}$ is an optimal set of $K$ centers.</li>
+<li>Unless $P = NP$, there is no $\rho$ -approximation for center-selection problem for any $\rho &lt; 2$.</li>
+</ul>
+<div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/27/ads-12" target="_self">下一篇 : Local Search</a></span><a href="https://finnmmm.github.io/2024/12/25/ads-10" target="_self">上一篇 : Incomputable Problems & Complexity Classes</a></div>
         </div>
 
         
