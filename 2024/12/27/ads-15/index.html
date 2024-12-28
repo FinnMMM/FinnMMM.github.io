@@ -199,7 +199,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #00bcd4">
+                    <a href="/tags/ADS/" style="color: #03a9f4">
                         ADS
                     </a>
                 </span>
@@ -258,8 +258,8 @@ The cost of I/O is $b=2\frac{N}{B}\times p=104$.</li>
 <p>What concern us are</p>
 <ul>
 <li>seek time (number of passes)</li>
-<li>time to merge N records from input buffers to the output buffer</li>
-<li>time to internally sort M records</li>
+<li>time to merge $N$ records from input buffers to the output buffer</li>
+<li>time to internally sort $M$ records</li>
 <li>time to read or write one block of records<br>
 So our goal is to</li>
 <li>minimize the number of passes</li>
@@ -268,7 +268,7 @@ So our goal is to</li>
 <li>minimize the number of buffer handling for parallel operation</li>
 </ul>
 <h4><span id="reduce-number-of-passes">Reduce number of passes</span></h4>
-<p>Use a k-way merge algorithm to merge the runs in parallel.</p>
+<p>Use a $k$-way merge algorithm to merge the runs in parallel.</p>
 <p>So the number of passes $p=1+\lceil\log_k\lceil\frac{N}{M}\rceil\rceil$.<br>
 It do decrease the number of passes, but since this algorithm requires $2k$ tapes, it is not good enough.</p>
 <h4><span id="reduce-the-number-of-tapes">Reduce the number of tapes</span></h4>
@@ -289,8 +289,8 @@ $$F_{N}^k=\begin{cases}0,\quad 0\leq N\leq k-2\\1,\quad N=k-1\\\sum_{i=1}^{k}F_{
 <ul>
 <li>Buffer: When we are doing parallel writing and reading, we need to store both input and output data in the buffer.</li>
 </ul>
-<p>In general, for a $k$-way merge we need $2k$ input buffers and $2$ output buffers for parallel operations.<br>
-When the $k$ rises, the number of input buffers will increase,the size of buffer will decrease,the size of block will decrease,which end up with increasing the seeking time.</p>
+<p>When the $k$ rises, the number of input buffers will increase,the size of buffer will decrease,the size of block will decrease,which end up with increasing the seeking time.</p>
+<p>In general, for a $k$-way merge we need $2k$ input buffers and $2$ output buffers for parallel operations.</p>
 <p>Beyond a certain $k$ value, the I\O time would actually increase despite the decrease in the number of passes being made.  The optimal value for $k$ clearly depends on disk parameters and the amount of internal memory available for buffers.</p>
 <h4><span id="can-we-get-a-longer-run-each-time">Can we get a longer run each time?</span></h4>
 <p>Yes,apart from selecting $M$ elements and sort then, we can do as follows:</p>

@@ -168,6 +168,7 @@
 </li>
 <li><a href="#leftist-heap">Leftist Heap</a>
 <ul>
+<li><a href="#theorem-1">Theorem</a></li>
 <li><a href="#merge-operation">Merge Operation</a></li>
 <li><a href="#insertion-operation">Insertion Operation</a></li>
 <li><a href="#delete-min-operation">Delete-min Operation</a></li>
@@ -177,6 +178,7 @@
 <li><a href="#skew-heap">Skew Heap</a>
 <ul>
 <li><a href="#merge-operation-1">Merge Operation</a></li>
+<li><a href="#theorem-2">Theorem</a></li>
 </ul>
 <ul>
 <li><a href="#comparison">Comparison</a></li>
@@ -213,7 +215,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #ffa2c4">
+                    <a href="/tags/ADS/" style="color: #00a596">
                         ADS
                     </a>
                 </span>
@@ -236,6 +238,7 @@
 </li>
 <li><a href="#leftist-heap">Leftist Heap</a>
 <ul>
+<li><a href="#theorem-1">Theorem</a></li>
 <li><a href="#merge-operation">Merge Operation</a></li>
 <li><a href="#insertion-operation">Insertion Operation</a></li>
 <li><a href="#delete-min-operation">Delete-min Operation</a></li>
@@ -245,6 +248,7 @@
 <li><a href="#skew-heap">Skew Heap</a>
 <ul>
 <li><a href="#merge-operation-1">Merge Operation</a></li>
+<li><a href="#theorem-2">Theorem</a></li>
 </ul>
 <ul>
 <li><a href="#comparison">Comparison</a></li>
@@ -310,6 +314,10 @@ $\leftrightarrow$ $npl(u$-&gt;$right)\leq npl(v$-&gt;$left)$.</li>
 </ul>
 <p>Lemma:<br>
 For a leftist heap with n nodes, its right path from root to null has at most $log_2(n)$ nodes.</p>
+<h4><span id="theorem">Theorem</span></h4>
+<ul>
+<li>A leftist tree with $r$ nodes on the right path must have at least $2r – $1 nodes.</li>
+</ul>
 <h4><span id="merge-operation">Merge Operation</span></h4>
 <p><img src="/2024/12/25/ads-3/2.jpg" alt></p>
 <pre><code class="language-pesudo">merge(H1, H2):
@@ -375,6 +383,10 @@ For a leftist heap with n nodes, its right path from root to null has at most $l
 <li>Heavy node is the node in the skew heap whose number of children in the right subtree is greater than the number of children in the left subtree.</li>
 <li>After merging,all the heavy node on the right path will turn into a light node,but not all light nodes on thr right path will turn into heavy nodes.</li>
 <li>For the nodes not on the right path, their properties remain unchanged.</li>
+</ul>
+<h4><span id="theorem">Theorem</span></h4>
+<ul>
+<li>Any $M$ consecutive operations take at most $O(M log N)$ time.</li>
 </ul>
 <h3><span id="comparison">Comparison</span></h3>
 <table>

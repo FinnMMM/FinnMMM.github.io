@@ -162,12 +162,15 @@
 <ul>
 <li><a href="#halting-problem">Halting Problem</a></li>
 <li><a href="#postpone-corresponding-problepcp">Postpone Corresponding Proble(PCP)</a></li>
+<li><a href="#turing-machines">Turing Machines</a></li>
 <li><a href="#complexity-classes">Complexity Classes</a></li>
 <li><a href="#p-class">$P$ class</a></li>
 <li><a href="#np-class">$NP$ class</a></li>
 <li><a href="#polynomial-time-reducible">Polynomial-time Reducible</a></li>
 <li><a href="#np-complete">NP-Complete</a></li>
 <li><a href="#np-hard">NP-Hard</a></li>
+<li><a href="#formula-language-framework">Formula Language Framework</a></li>
+<li><a href="#co-np-class">co-NP Class</a></li>
 </ul>
 </li>
 </ul>
@@ -218,12 +221,15 @@
 <ul>
 <li><a href="#halting-problem">Halting Problem</a></li>
 <li><a href="#postpone-corresponding-problepcp">Postpone Corresponding Proble(PCP)</a></li>
+<li><a href="#turing-machines">Turing Machines</a></li>
 <li><a href="#complexity-classes">Complexity Classes</a></li>
 <li><a href="#p-class">$P$ class</a></li>
 <li><a href="#np-class">$NP$ class</a></li>
 <li><a href="#polynomial-time-reducible">Polynomial-time Reducible</a></li>
 <li><a href="#np-complete">NP-Complete</a></li>
 <li><a href="#np-hard">NP-Hard</a></li>
+<li><a href="#formula-language-framework">Formula Language Framework</a></li>
+<li><a href="#co-np-class">co-NP Class</a></li>
 </ul>
 </li>
 </ul>
@@ -261,6 +267,11 @@ Therefore,there is no algorithm that can solve the halting problem.</li>
 </ul>
 <h3><span id="postpone-corresponding-problepcp">Postpone Corresponding Proble(PCP)</span></h3>
 <p>Not for details.</p>
+<h3><span id="turing-machines">Turing Machines</span></h3>
+<ul>
+<li>A Deterministic Turing Machine (DTM) executes one instruction at each point in time.  Then depending on the instruction, it goes to the next unique instruction.</li>
+<li>A Nondeterministic Turing Machine(NDTM) is free to choose its next step from a finite set.  And if one of these steps leads to a solution, it will always choose the correct one.</li>
+</ul>
 <h3><span id="complexity-classes">Complexity Classes</span></h3>
 <p>$P,NP,EXP,PSPACE…$</p>
 <h5><span id="lemma">Lemma</span></h5>
@@ -275,11 +286,11 @@ Therefore,there is no algorithm that can solve the halting problem.</li>
 <p>Then We define $A$ solves a problem $x$ if for every instance $I$ of $x$ :$A(I)=yes$ if and only if $I$ is $Yes$ $Instance$.</p>
 <h3><span id="p-class">$P$ class</span></h3>
 <h5><span id="definition">Definition</span></h5>
-<p>A has a polynomial running time if there has a polynomial function $p()$ so that for any Instance $I$, A terminates on I with $O(P(|I|)) steps.$</p>
+<p>$A$ has a polynomial running time if there has a polynomial function $p()$ so that for any Instance $I$, A terminates on I with $O(P(|I|))$ steps. In other words, $A$ is in $P$ if it can be solved in polynomial time.</p>
 <p>$P$ is the set of all decision problems that admit polynomial-time algorithms.</p>
 <h3><span id="np-class">$NP$ class</span></h3>
 <h5><span id="definition">Definition</span></h5>
-<p>$NP$ is polynomial-time verifiable problems.</p>
+<p>$NP$ is polynomial-time verifiable problems. In other words, problem $P$ is in $NP$ if it can be proved to be solved in polynomial time.</p>
 <p>$$V(x,t)=\begin{cases}1\quad if \ t \ certify \ x  \\0 \quad otherwise \end{cases}$$</p>
 <p>$$V(I,t)=\begin{cases}1\quad if \ I \ satifices \ F  \\0 \quad otherwise \end{cases}$$</p>
 <p>We say a =$V$  is a efficient verifier for a problem $x$ if :</p>
@@ -369,12 +380,73 @@ Therefore,there is no algorithm that can solve the halting problem.</li>
 <h5><span id="definition">Definition</span></h5>
 <p>A problem $x$ is NP-complete if it is in $NP$ and every problem in $NP$ is reducible to $x$.</p>
 <h5><span id="theorem">Theorem</span></h5>
-<p>3-SAT, Vertex Cover and clique problems are NP-complete.</p>
+<p>3-SAT, Vertex Cover, clique problems, Hamiltonian Cycle, Bin Packing and Domination Set problems are NP-complete.</p>
 <h5><span id="lemma">Lemma</span></h5>
 <p>If NP-complete problem $x\isin P$, then $P=NP $.</p>
 <h3><span id="np-hard">NP-Hard</span></h3>
 <h5><span id="definition">Definition</span></h5>
 <p>A problem $x$ is NP-hard if every problem in $NP$ is reducible to $x$.</p>
+<h3><span id="formula-language-framework">Formula Language Framework</span></h3>
+<h5><span id="abstract-problem">Abstract Problem</span></h5>
+<ul>
+<li>
+<p>An abstract problem $Q$ is a binary relation on a set I of problem instances and a set $S$ of problem solutions.</p>
+</li>
+<li>
+<p>An alphabet $\Sigma$ is a finite set of symbols</p>
+</li>
+<li>
+<p>A language $L$ over $\Sigma$ is any set of strings made up of symbols from $Sigma$.</p>
+</li>
+<li>
+<p>Denote empty string by $\epsilon$.</p>
+</li>
+<li>
+<p>Denote empty language by $\emptyset$.</p>
+</li>
+<li>
+<p>Language of all strings over $\Sigma$ is $\Sigma^*$.</p>
+</li>
+<li>
+<p>The complement of $L$ is denoted by $\Sigma^*-L$.</p>
+</li>
+<li>
+<p>The concatenation of two languages $L_1$ and $L_2$ is the language<br>
+$L = { x1x2 : x1 ∈ L1\ and\ x2 ∈ L2 }$.</p>
+</li>
+<li>
+<p>Algorithm $A$ accept a string $x$ if $A(x)=1$.</p>
+</li>
+<li>
+<p>Algorithm $A$ reject a string $x$ if $A(x)=0$.</p>
+</li>
+<li>
+<p>A language $L$ is decided by an algorithm $A$ if every binary string in $L$ is accepted by $A$ and every binary string not in $L$ is rejected by $A$.</p>
+</li>
+<li>
+<p>To accept a language, an algorithm need only worry about strings in $L$, but to decide a language, it must correctly accept or reject every string in ${0, 1}^*$</p>
+</li>
+<li>
+<p>$P = { L ⊆ {0, 1}^* : there\ exists\ an\ algorithm\ A\ that\ decides\ L\ in\ polynomial\ time}$.</p>
+</li>
+<li>
+<p>A verification algorithm is a two-argument algorithm $A$, where one argument is an ordinary input string $x$ and the other is a binary string  y$$ called a certificate.</p>
+</li>
+<li>
+<p>A two-argument algorithm $A$ verifies an input string $x$ if there exists a certificate $y$ such that $A(x, y) = 1$.</p>
+</li>
+<li>
+<p>The language verified by a verification algorithm $A$ is  $L = { x ∈ {0, 1}^* : there\ exists\ y ∈ {0, 1}^* such\ that\ A(x, y) = 1}$.</p>
+</li>
+<li>
+<p>A language $L$ belongs to $NP$ iff there exist a two-input polynomial-time algorithm $A$ and a constant $c$ such that $L = { x ∈ {0, 1}^* : there\ exists\ a\ certificate\ y\ with\ |y| = O(|x|c) such\ that\ A(x, y) = 1 }$.  We say that algorithm $A$ verifies language $L$ in polynomial time.</p>
+</li>
+</ul>
+<h3><span id="co-np-class">co-NP Class</span></h3>
+<h5><span id="definition">Definition</span></h5>
+<p>$co-NP$ class is the set of languages $L$ such that $\overline{L}\isin NP$.</p>
+<p>There are 4 possible relationships between $NP$,$P$ and $co-NP$ class:</p>
+<p><img src="/2024/12/25/ads-10/3.png" alt></p>
 <div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/27/ads-11" target="_self">下一篇 : Approximation Algorithms</a></span><a href="https://finnmmm.github.io/2024/12/25/ads-9" target="_self">上一篇 : Dynamic Programming</a></div>
 
         </div>

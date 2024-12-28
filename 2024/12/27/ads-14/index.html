@@ -158,7 +158,8 @@
             <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
 <ul>
-<li><a href="#parallel-random-access-machine">Parallel Random Access Machine</a>
+<li><a href="#parallel-random-access-machine">Parallel Random Access Machine</a></li>
+<li><a href="#work-load-and-work-depth">Work-Load and Work-Depth</a>
 <ul>
 <li><a href="#summation-problem">Summation Problem</a></li>
 <li><a href="#prefix-sum-problem">Prefix Sum Problem</a></li>
@@ -211,7 +212,8 @@
             <h2><span id="x2b50文章目录x2b50"><span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span>文章目录<span class="emoji" alias="star" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">&#x2b50;</span></span></h2>
 <!-- toc -->
 <ul>
-<li><a href="#parallel-random-access-machine">Parallel Random Access Machine</a>
+<li><a href="#parallel-random-access-machine">Parallel Random Access Machine</a></li>
+<li><a href="#work-load-and-work-depth">Work-Load and Work-Depth</a>
 <ul>
 <li><a href="#summation-problem">Summation Problem</a></li>
 <li><a href="#prefix-sum-problem">Prefix Sum Problem</a></li>
@@ -235,6 +237,17 @@
     A[i] = B[i] (read / write in a unit time)
 </code></pre>
 <p>As we read in a shared memory system in the same time, we may encounter conflicts.</p>
+<h3><span id="work-load-and-work-depth">Work-Load and Work-Depth</span></h3>
+<ul>
+<li>Work-Load $W(n)$: total amount of work/operations needed to complete the algorithm.</li>
+<li>Work-Depth $T(n)$: worst-case running time of the algorithm.There are some asymptotically equivalent definitions of work-depth and work-load:
+<ul>
+<li>$P(n) = W(n)/T(n)$ processors and $T(n)$ time (on a PRAM)</li>
+<li>$W(n)/p$ time using any number of $p ≤ W(n)/T(n)$ processors (on a PRAM).</li>
+<li>$W(n)/p + T(n)$ time using any number of $p$ processors (on a PRAM).</li>
+</ul>
+</li>
+</ul>
 <h5><span id="to-resolve-access-conflicts">To resolve access conflicts</span></h5>
 <ul>
 <li>1.Exclusive Reading Exclusive Writing (EREW)</li>
@@ -271,10 +284,10 @@ for i from 1 to log n:
     for j from 1 to n/2^i pardo
         B(i,j)=B(i-1,2*j-1)+B(i-1,2*j)
 </code></pre>
-<p>$T_T(n)$=running time with p CPU.<br>
+<p>$T_P(n)$=running time with p CPU.<br>
 $T_1(n)=O(n)$,which is called the Work-Load $W(n)$<br>
 $T_\infty(n)=O(\log n)$,which is called the Work-Depth $T(n)$.<br>
-$T_T(n)$ for an arbitrary $p$:$$T_T(n)\geq T(n)$$$$T_T(n)\geq \frac{W(n)}{p}\geq \frac{1}{2}(T(n)+\frac{W(n)}{p})$$</p>
+$T_P(n)$ for an arbitrary $p$:$$T_P(n)\geq T(n)$$$$T_P(n)\geq \frac{W(n)}{p}\geq \frac{1}{2}(T(n)+\frac{W(n)}{p})$$</p>
 <h4><span id="prefix-sum-problem">Prefix Sum Problem</span></h4>
 <h5><span id="description">Description</span></h5>
 <p>Given $n$ numbers and try to compute their prefix sum $S={\sum_{i=1}^{k}a_i,for\ k\ from\ 1\ to\ n }$.</p>
