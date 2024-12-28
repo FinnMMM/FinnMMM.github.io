@@ -246,7 +246,7 @@ for i = k+1 to n:
 </code></pre>
 <h5><span id="expectation-analysis">Expectation Analysis</span></h5>
 <p>We define $Pr[S]$ as the probability that the best candidate is hired,$Pr[A_i]$ as the probability that the best candidate is at position $i$ and $Pr[B_i]$ as the probability that the candidate $i$ is hired.</p>
-<p>$$Pr[S]=\sum_{i=1}^n Pr[A_i\cap B_i]=\sum_{i=1}^n Pr[A_i]Pr[B_i|A_i]=\frac{1}{n}\sum_{i=1}^n Pr[B_i|A_i]=\frac{1}{n}\sum_{i=1}^n\frac{k}{i-1}$$$$\geq \frac{k}{n}ln(\frac{n}{k})$$<br>
+<p>$$Pr[S]=\sum_{i=k}^n Pr[A_i\cap B_i]=\sum_{i=k}^n Pr[A_i]Pr[B_i|A_i]=\frac{1}{n}\sum_{i=k}^n Pr[B_i|A_i]=\frac{1}{n}\sum_{i=k}^n\frac{k}{i-1}$$$$\geq \frac{k}{n}ln(\frac{n}{k})$$<br>
 When $k=\frac{n}{e}$, $Pr[S]_{min}=\frac{1}{e}$.</p>
 <h5><span id="how-to-randome-permute">How to Randome Permute?</span></h5>
 <h6><span id="idea1">Idea1</span></h6>
