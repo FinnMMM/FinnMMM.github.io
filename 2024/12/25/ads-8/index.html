@@ -202,7 +202,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #ff7d73">
+                    <a href="/tags/ADS/" style="color: #03a9f4">
                         ADS
                     </a>
                 </span>
@@ -319,11 +319,11 @@ closestPair(Px,Py):
 <li>If the running time of per level is the same, total time=per level time $\times$ number of levels.</li>
 </ul>
 <h4><span id="master-theorem">Master Theorem</span></h4>
-<p>$$\begin{cases}T(1)=1\\T(n)=aT(\frac{n}{b})+n^c\end{cases}$$</p>
+<p>$$\begin{cases}T(1)=1\\T(N)=aT(\frac{N}{b})+f(N)(or\ N^c)\end{cases}$$</p>
 <ul>
 <li>If $f(N)=O(N^{log_b{a-\varepsilon}})$, or $\frac{a}{b^c}&gt;1$, $T(N)=\Theta(N^{log_b{a}})$.</li>
 <li>If $f(N)=\Theta(N^{log_b{a}})$, or $\frac{a}{b^c}=1$, $T(N)=\Theta(log_b{N}N^c)$.</li>
-<li>If $f(N)=\Omega(N^{log_b{a+\varepsilon}})$, or $\frac{a}{b^c}&lt;1$, $T(N)=\Theta(N^c)$.</li>
+<li>If $f(N)=\Omega(N^{log_b{a+\varepsilon}})$, or $\frac{a}{b^c}&lt;1$, $T(N)=\Theta(f(N))$.</li>
 </ul>
 <h4><span id="substitution-method">Substitution Method</span></h4>
 <p>Guess and proof.</p>
