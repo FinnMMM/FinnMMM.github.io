@@ -373,7 +373,8 @@ For a leftist heap with n nodes, its right path from root to null has at most $l
 <p><img src="/2024/12/25/ads-3/3.jpg" alt></p>
 <ul>
 <li>Heavy node is the node in the skew heap whose number of children in the right subtree is greater than the number of children in the left subtree.</li>
-<li>After merging,all the heavy node will turn into a light node,but not all light nodes will turn into heavy nodes.</li>
+<li>After merging,all the heavy node on the right path will turn into a light node,but not all light nodes on thr right path will turn into heavy nodes.</li>
+<li>For the nodes not on the right path, their properties remain unchanged.</li>
 </ul>
 <h3><span id="comparison">Comparison</span></h3>
 <table>
