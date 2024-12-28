@@ -165,8 +165,9 @@
 <li><a href="#complexity-classes">Complexity Classes</a></li>
 <li><a href="#p-class">$P$ class</a></li>
 <li><a href="#np-class">$NP$ class</a></li>
-<li><a href="#compare-two-problems">Compare Two Problems</a></li>
+<li><a href="#polynomial-time-reducible">Polynomial-time Reducible</a></li>
 <li><a href="#np-complete">NP-Complete</a></li>
+<li><a href="#np-hard">NP-Hard</a></li>
 </ul>
 </li>
 </ul>
@@ -220,8 +221,9 @@
 <li><a href="#complexity-classes">Complexity Classes</a></li>
 <li><a href="#p-class">$P$ class</a></li>
 <li><a href="#np-class">$NP$ class</a></li>
-<li><a href="#compare-two-problems">Compare Two Problems</a></li>
+<li><a href="#polynomial-time-reducible">Polynomial-time Reducible</a></li>
 <li><a href="#np-complete">NP-Complete</a></li>
+<li><a href="#np-hard">NP-Hard</a></li>
 </ul>
 </li>
 </ul>
@@ -301,7 +303,7 @@ Therefore,there is no algorithm that can solve the halting problem.</li>
 </ul>
 <h5><span id="lemma">Lemma</span></h5>
 <p>It’s not known that whether $P=NP$.</p>
-<h3><span id="compare-two-problems">Compare Two Problems</span></h3>
+<h3><span id="polynomial-time-reducible">Polynomial-time Reducible</span></h3>
 <p>We have two problems $x,y$, there instances $I_x,I_y$ and a <strong>reduction function</strong> $f$ that maps $I_x$ to $I_y$.</p>
 <ul>
 <li>$I_x$ is $Yes$ $Instance$ if and only if $I_y=f(I_x)$ is $Yes$ $Instance$.</li>
@@ -370,6 +372,9 @@ Therefore,there is no algorithm that can solve the halting problem.</li>
 <p>3-SAT is NP-complete.</p>
 <h5><span id="lemma">Lemma</span></h5>
 <p>If NP-complete problem $x\isin P$, then $P=NP $.</p>
+<h3><span id="np-hard">NP-Hard</span></h3>
+<h5><span id="definition">Definition</span></h5>
+<p>A problem $x$ is NP-hard if every problem in $NP$ is reducible to $x$.</p>
 <div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/27/ads-11" target="_self">下一篇 : Approximation Algorithms</a></span><a href="https://finnmmm.github.io/2024/12/25/ads-9" target="_self">上一篇 : Dynamic Programming</a></div>
 
         </div>
