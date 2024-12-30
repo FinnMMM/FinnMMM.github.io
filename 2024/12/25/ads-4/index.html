@@ -164,7 +164,7 @@
 <li><a href="#theorem">Theorem</a></li>
 </ul>
 </li>
-<li><a href="#binomial-heap">Binomial Heap</a>
+<li><a href="#binomial-queueheap">Binomial Queue(Heap)</a>
 <ul>
 <li><a href="#definition-1">Definition</a></li>
 <li><a href="#lemma">Lemma</a></li>
@@ -201,7 +201,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #00bcd4">
+                    <a href="/tags/ADS/" style="color: #ffa2c4">
                         ADS
                     </a>
                 </span>
@@ -220,7 +220,7 @@
 <li><a href="#theorem">Theorem</a></li>
 </ul>
 </li>
-<li><a href="#binomial-heap">Binomial Heap</a>
+<li><a href="#binomial-queueheap">Binomial Queue(Heap)</a>
 <ul>
 <li><a href="#definition-1">Definition</a></li>
 <li><a href="#lemma">Lemma</a></li>
@@ -242,7 +242,7 @@
 <li>The number of nodes in $B_k$ is $2^k$.</li>
 <li>The number of nodes at depth d at $B_k$ is $C_k^d$.</li>
 </ul>
-<h2><span id="binomial-heap">Binomial Heap</span></h2>
+<h2><span id="binomial-queueheap">Binomial Queue(Heap)</span></h2>
 <h3><span id="definition">Definition</span></h3>
 <ul>
 <li>A binomial heap is a collection of binomial trees.</li>
@@ -289,6 +289,60 @@
 </ul>
 </li>
 </ul>
+<pre><code class="language-C">BinQueue  Merge( BinQueue H1, BinQueue H2 )
+&#123;	BinTree T1, T2, Carry = NULL; 	
+	int i, j;
+	if ( H1-&gt;CurrentSize + H2-&gt; CurrentSize &gt; Capacity )  ErrorMessage();
+	H1-&gt;CurrentSize += H2-&gt; CurrentSize;
+	for ( i=0, j=1; j&lt;= H1-&gt;CurrentSize; i++, j*=2 ) &#123;
+	    T1 = H1-&gt;TheTrees[i]; T2 = H2-&gt;TheTrees[i]; /*current trees */
+	    switch( 4*!!Carry + 2*!!T2 + !!T1 ) &#123; 
+		case 0: /* 000 */
+	 	case 1: /* 001 */  break;	
+		case 2: /* 010 */  H1-&gt;TheTrees[i] = T2; H2-&gt;TheTrees[i] = NULL; break;
+		case 4: /* 100 */  H1-&gt;TheTrees[i] = Carry; Carry = NULL; break;
+		case 3: /* 011 */  Carry = CombineTrees( T1, T2 );
+			            H1-&gt;TheTrees[i] = H2-&gt;TheTrees[i] = NULL; break;
+		case 5: /* 101 */  Carry = CombineTrees( T1, Carry );
+			            H1-&gt;TheTrees[i] = NULL; break;
+		case 6: /* 110 */  Carry = CombineTrees( T2, Carry );
+			            H2-&gt;TheTrees[i] = NULL; break;
+		case 7: /* 111 */  H1-&gt;TheTrees[i] = Carry; 
+			            Carry = CombineTrees( T1, T2 ); 
+			            H2-&gt;TheTrees[i] = NULL; break;
+	    &#125; /* end switch */
+	&#125; /* end for-loop */
+	return H1;
+&#125;
+</code></pre>
+<pre><code class="language-C">ElementType  DeleteMin( BinQueue H )
+&#123;	BinQueue DeletedQueue; 
+	Position DeletedTree, OldRoot;
+	ElementType MinItem = Infinity;  /* the minimum item to be returned */	
+	int i, j, MinTree; /* MinTree is the index of the tree with the minimum item */
+
+	if ( IsEmpty( H ) )  &#123;  PrintErrorMessage();  return –Infinity; &#125;
+
+	for ( i = 0; i &lt; MaxTrees; i++) &#123;  /* Step 1: find the minimum item */
+	    if( H-&gt;TheTrees[i] &amp;&amp; H-&gt;TheTrees[i]-&gt;Element &lt; MinItem ) &#123; 
+		MinItem = H-&gt;TheTrees[i]-&gt;Element;  MinTree = i;    &#125; /* end if */
+	&#125; /* end for-i-loop */
+	DeletedTree = H-&gt;TheTrees[ MinTree ];  
+	H-&gt;TheTrees[ MinTree ] = NULL;   /* Step 2: remove the MinTree from H =&gt; H’ */ 
+	OldRoot = DeletedTree;   /* Step 3.1: remove the root */ 
+	DeletedTree = DeletedTree-&gt;LeftChild;   free(OldRoot);
+	DeletedQueue = Initialize();   /* Step 3.2: create H” */ 
+	DeletedQueue-&gt;CurrentSize = ( 1&lt;&lt;MinTree ) – 1;  /* 2MinTree – 1 */
+	for ( j = MinTree – 1; j &gt;= 0; j – – ) &#123;  
+	    DeletedQueue-&gt;TheTrees[j] = DeletedTree;
+	    DeletedTree = DeletedTree-&gt;NextSibling;
+	    DeletedQueue-&gt;TheTrees[j]-&gt;NextSibling = NULL;
+	&#125; /* end for-j-loop */
+	H-&gt;CurrentSize  – = DeletedQueue-&gt;CurrentSize + 1;
+	H = Merge( H, DeletedQueue ); /* Step 4: merge H’ and H” */ 
+	return MinItem;
+&#125;
+</code></pre>
 <div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/25/ads-5" target="_self">下一篇 : Inverted File Index</a></span><a href="https://finnmmm.github.io/2024/12/25/ads-3" target="_self">上一篇 : B+ Tree, Leftist Heap and Skew Heap</a></div>
         </div>
 
