@@ -196,7 +196,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #ffa2c4">
+                    <a href="/tags/ADS/" style="color: #00a596">
                         ADS
                     </a>
                 </span>
@@ -302,7 +302,7 @@ So we need to improve.</p>
 <h5><span id="description">Description</span></h5>
 <ul>
 <li>Given a Graph $G=(V,E)$ with edge weights.</li>
-<li>We define each vertex has a state $s\in {0,1}$.</li>
+<li>We define each vertex has a state $s\in \lbrace0,1}$.</li>
 <li>$e$ is a good edge if $w_es_us_v&lt;0$</li>
 </ul>
 <p>Our goal is to find a configuration $S$ maximize $\sum_{e\ is\ good}{|w_e|}$</p>
@@ -337,7 +337,7 @@ So we need to improve.</p>
 <h3><span id="max-cut-problem">Max Cut Problem</span></h3>
 <h5><span id="description">Description</span></h5>
 <p>Given a Graph $G=(V,E)$, a cut is a partition of $V$ into two sets $A$ and $B$.<br>
-$\delta(A,B)={(u,v)|u\in A,v \in B}$<br>
+$\delta(A,B)=\lbrace(u,v)|u\in A,v \in B\rbrace$<br>
 Our goal is to find a cut that maximize $W(A,B)=\sum_{e\in\delta(A,B)}{w_e}$.</p>
 <h5><span id="state-flipping-algorithm">State Flipping Algorithm</span></h5>
 <h5><span id="definition">Definition</span></h5>
@@ -380,7 +380,7 @@ $$(1+\frac{\epsilon}{|V|})^t\leq W$$$$t\leq \log_{(1+\frac{\epsilon}{|V|})}W=O(\
 <h5><span id="k-flip-algorithm">K-Flip Algorithm</span></h5>
 <h5><span id="definition">Definition</span></h5>
 <ul>
-<li>Apart from State Flipping, we define neighborhood as: $$N(S)={S’|S’\ can\ be\ obtained\ from\ S\ by\ flipping\ k\  states}$$.</li>
+<li>Apart from State Flipping, we define neighborhood as: $$N(S)=\lbraceS’|S’\ can\ be\ obtained\ from\ S\ by\ flipping\ k\  states}$$.</li>
 </ul>
 <h5><span id="k-l-heuristic-algorithm">K-L heuristic Algorithm</span></h5>
 <ul>
@@ -388,7 +388,7 @@ $$(1+\frac{\epsilon}{|V|})^t\leq W$$$$t\leq \log_{(1+\frac{\epsilon}{|V|})}W=O(\
 <li>…</li>
 <li>Step k: We get a flip in the unmarked vertex as good as we can to obtain a new configuration $S_k$ from $S_{k-1}$.</li>
 <li>Step n: $S_n=\bar{S}$</li>
-<li>And we define $N(S)={S_1,\dots,S_n}$.</li>
+<li>And we define $N(S)=\lbraceS_1,\dots,S_n}$.</li>
 <li>We find the best configuration $S$ in $N(S)$,if there is an improvement, select it.Otherwise, algorithm terminates.</li>
 </ul>
 <h5><span id="theorem">Theorem</span></h5>
