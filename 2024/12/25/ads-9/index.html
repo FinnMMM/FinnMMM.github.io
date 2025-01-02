@@ -201,7 +201,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #00a596">
+                    <a href="/tags/ADS/" style="color: #00bcd4">
                         ADS
                     </a>
                 </span>
@@ -245,18 +245,18 @@
 <ul>
 <li>1.Define subproblems:
 <ul>
-<li>$S(i,t)={y|y\leq t and y =a_1x_1+a_2x_2+\cdots+a_ix_i,x_i\in{0,1}}$</li>
+<li>$S(i,t)=\lbrace y|y\leq t and y =a_1x_1+a_2x_2+\cdots+a_ix_i,x_i\in\lbrace 0,1\rbrace$</li>
 </ul>
 </li>
 <li>2.Find base cases:
 <ul>
-<li>$S(0,t)={0}$</li>
+<li>$S(0,t)=\lbrace 0\rbrace$</li>
 <li>$S(i,0)=\emptyset$</li>
 </ul>
 </li>
 <li>3.Recurrence relation:
 <ul>
-<li>$S(i+1,t)=(S(i,t)\cup {a_{i+1}})\cup (S(i,t)+{a_{i+1}})\cap [0,t]$</li>
+<li>$S(i+1,t)=(S(i,t)\cup \lbrace a_{i+1}\rbrace)\cup (S(i,t)+\lbrace a_{i+1}\rbrace)\cap [0,t]$</li>
 </ul>
 </li>
 <li>4.Result is the subset of $S(n,t)$ whose sum is equal to $t$.</li>
@@ -281,7 +281,7 @@
 </li>
 <li>3.Recurrence relation:
 <ul>
-<li>$S(i)=\max{S(i-1),S(i-2)+w_i}$</li>
+<li>$S(i)=\max\lbrace S(i-1),S(i-2)+w_i\rbrace$</li>
 </ul>
 </li>
 <li>4.Result is the subset of $S(n)$ whose total weight is maximum.</li>
@@ -298,8 +298,8 @@
 <h5><span id="descriptions">Descriptions</span></h5>
 <p>For three Matrices $M_{a\times b},M_{b\times c},M_{c\times d}$, when we multiply them together,we have two options:</p>
 <ul>
-<li>1.$(M_{a\times b}\times M_{b\times c}) \times M_{c\times d}$, the total running time is $a<em>b</em>c+a<em>c</em>d$</li>
-<li>2.$M_{a\times b}\times (M_{b\times c} \times M_{c\times d})$, the total running time is $b<em>c</em>d+a<em>b</em>d$<br>
+<li>1.$(M_{a\times b}\times M_{b\times c}) \times M_{c\times d}$, the total running time is $abc+acd$</li>
+<li>2.$M_{a\times b}\times (M_{b\times c} \times M_{c\times d})$, the total running time is $bcd+abd$<br>
 The problem is: given a sequance of $n$ matrices, find the optimal order to multiply them together to minimize the total running time.</li>
 </ul>
 <h5><span id="algorithm">Algorithm</span></h5>
@@ -308,7 +308,7 @@ The problem is: given a sequance of $n$ matrices, find the optimal order to mult
 <ul>
 <li>1.Define subproblems:
 <ul>
-<li>$c[i][j]$ is the minimaum cost to multiply $M_i$ to $M_j$</li>
+<li>$c[i][j]$ is the minimum cost to multiply $M_i$ to $M_j$</li>
 </ul>
 </li>
 <li>2.Find base cases:
@@ -318,10 +318,10 @@ The problem is: given a sequance of $n$ matrices, find the optimal order to mult
 </li>
 <li>3.Recurrence relation:
 <ul>
-<li>$c[i][j]=\min{c[i][k]+c[k+1][j]+r_{i-1}\times r_{k}\times r_{j},k \isin [i,j]}$</li>
+<li>$c[i][j]=\min\lbrace c[i][k]+c[k+1][j]+r_{i-1}\times r_{k}\times r_{j},k \isin [i,j]\rbrace$</li>
 </ul>
 </li>
-<li>4.c[0][n] is the optimal cost to multiply all matrices together.</li>
+<li>4.$c[0][n]$ is the optimal cost to multiply all matrices together.</li>
 </ul>
 <h5><span id="complexity-analysis">Complexity Analysis</span></h5>
 <p>$T(n)=O(n^3)$</p>
@@ -343,7 +343,7 @@ The problem is: given a sequance of $n$ matrices, find the optimal order to mult
 </li>
 <li>3.Recurrence relation:
 <ul>
-<li>$v[i][j]=\max{v[i-1][j],v[i-1][j-s_i]+v_i}$</li>
+<li>$v[i][j]=\max\lbrace v[i-1][j],v[i-1][j-s_i]+v_i\rbrace$</li>
 </ul>
 </li>
 <li>4.The maximum value for the first $N$ items and a knapsack capacity of $c$ is $v[N][c]$.</li>
@@ -379,7 +379,7 @@ We have:</p>
 <li>
 <p>3.Recurrence relation:</p>
 <ul>
-<li>$D[i][j]=min_{i\leq r\leq j}{\sum_{k=i}^jf_i+D[i][r-1]+D[r+1][j]}$</li>
+<li>$D[i][j]=min_{i\leq r\leq j}\lbrace \sum_{k=i}^jf_i+D[i][r-1]+D[r+1][j]\rbrace$</li>
 </ul>
 </li>
 <li>
@@ -397,7 +397,7 @@ The same,for $D[i][j]$ and D[i][j-1],$r$ and $r’'$ are the root of the two sub
 </ul>
 <p>Then we can optimize the recurrence relation as follows:</p>
 <ul>
-<li>$D[i][j]=min_{r’‘\leq r\leq r’}{\sum_{k=i}^jf_i+D[i][r-1]+D[r+1][j]}$</li>
+<li>$D[i][j]=min_{r’‘\leq r\leq r’}\lbrace \sum_{k=i}^jf_i+D[i][r-1]+D[r+1][j]\rbrace$</li>
 </ul>
 <h5><span id="complexity-analysis">Complexity Analysis</span></h5>
 <p>$T(n)=O(n^2)$</p>
@@ -418,7 +418,7 @@ The same,for $D[i][j]$ and D[i][j-1],$r$ and $r’'$ are the root of the two sub
 </li>
 <li>3.Recurrence relation:
 <ul>
-<li>$c[v][i]=\min{c[v][i-1],\min_{u\in E(v)}{c[u][i-1]+w_{uv}}}$</li>
+<li>$c[v][i]=\min\lbrace c[v][i-1],\min_{u\in E(v)}\lbrace c[u][i-1]+w_{uv}\rbrace$</li>
 </ul>
 </li>
 <li>4.The cost of the shortest path from $s$ to $t$ is $c[t][|E|]$.</li>
@@ -484,7 +484,7 @@ The same,for $D[i][j]$ and D[i][j-1],$r$ and $r’'$ are the root of the two sub
     <div id="footer-wrap">
         <div>
             &copy;
-            2024 - 2024 Myease の Page
+            2024 - 2025 Myease の Page
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
