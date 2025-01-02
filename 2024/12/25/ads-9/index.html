@@ -201,7 +201,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #00bcd4">
+                    <a href="/tags/ADS/" style="color: #ffa2c4">
                         ADS
                     </a>
                 </span>
@@ -389,10 +389,12 @@ We have:</p>
 <h5><span id="complexity-analysis">Complexity Analysis</span></h5>
 <p>$T(n)=O(n^3)$</p>
 <h5><span id="enhanced-version">Enhanced version</span></h5>
-<p>For $D[i][j]$ and D[i+1][j],$r$ and $r’$ are the root of the two subtrees respectively,we have:</p>
+<p>For $D[i][j]$ and $D[i+1][j]$,$r$ and $r’$ are the root of the two subtrees respectively,we have:</p>
 <ul>
-<li>$r \leq r’$<br>
-The same,for $D[i][j]$ and D[i][j-1],$r$ and $r’'$ are the root of the two subtrees respectively,we have:</li>
+<li>$r \leq r’$</li>
+</ul>
+<p>The same,for $D[i][j]$ and $D[i][j-1]$,$r$ and $r’'$ are the root of the two subtrees respectively,we have:</p>
+<ul>
 <li>$r \geq r’'$</li>
 </ul>
 <p>Then we can optimize the recurrence relation as follows:</p>
@@ -408,8 +410,11 @@ The same,for $D[i][j]$ and D[i][j-1],$r$ and $r’'$ are the root of the two sub
 <p>We can use Dijkstra’s algorithm to solve this problem,which takes $O(|V|\log |V| + |E|)$ time.</p>
 <p>But there is also a more efficient algorithm called Bellman-Ford algorithm, which takes $O(VE)$ time.</p>
 <ul>
-<li>1.Define subproblems:<br>
--$c[v][i]$ is the cost of the shortest path from $s$ to $v$ using at most $i$ edges.</li>
+<li>1.Define subproblems:
+<ul>
+<li>$c[v][i]$ is the cost of the shortest path from $s$ to $v$ using at most $i$ edges.</li>
+</ul>
+</li>
 <li>2.Find base cases:
 <ul>
 <li>$c[s][0]=0$</li>
@@ -455,11 +460,28 @@ The same,for $D[i][j]$ and D[i][j-1],$r$ and $r’'$ are the root of the two sub
 <li>$c[i][j][k]=c[i][k][k-1]+c[k][j][k-1]$</li>
 </ul>
 </li>
-<li>$c[i][j][k]=min{case 1,case 2}$</li>
+<li>$c[i][j][k]=min\lbrace case 1,case 2\rbrace$</li>
 </ul>
 </li>
 <li>4.The cost of the shortest path from $i$ to $j$ is $c[i][j][|V|]$.</li>
 </ul>
+<pre><code class="language-pesudo">/* A[ ] contains the adjacency matrix with A[ i ][ i ] = 0 */ 
+/* D[ ] contains the values of the shortest path */ 
+/* N is the number of vertices */ 
+/* A negative cycle exists iff D[ i ][ i ] &lt; 0 */ 
+void AllPairs( TwoDimArray A, TwoDimArray D, int N ) 
+&#123;   int  i, j, k; 
+    for ( i = 0; i &lt; N; i++ )  /* Initialize D */ 
+         for( j = 0; j &lt; N; j++ )
+	 D[ i ][ j ] = A[ i ][ j ]; 
+    for( k = 0; k &lt; N; k++ )  /* add one vertex k into the path */
+         for( i = 0; i &lt; N; i++ ) 
+	 for( j = 0; j &lt; N; j++ ) 
+	    if( D[ i ][ k ] + D[ k ][ j ] &lt; D[ i ][ j ] ) 
+		/* Update shortest path */ 
+		 D[ i ][ j ] = D[ i ][ k ] + D[ k ][ j ]; 
+&#125;
+</code></pre>
 <h5><span id="lemma">Lemma</span></h5>
 <p>G has a negtive cycle if and only if $c[i][i][n]&lt;0$ for some i.</p>
 <div style="font-size:16px"><span style="float:right"><a href="https://finnmmm.github.io/2024/12/25/ads-10" target="_self">下一篇 : Incomputable Problems & Complexity Classes</a></span><a href="https://finnmmm.github.io/2024/12/25/ads-8" target="_self">上一篇 : Divide and Conquer & Time Compute<a></a></a></div>
