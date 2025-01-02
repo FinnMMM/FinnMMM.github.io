@@ -199,7 +199,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #ff7d73">
+                    <a href="/tags/ADS/" style="color: #00a596">
                         ADS
                     </a>
                 </span>
@@ -237,17 +237,6 @@
     A[i] = B[i] (read / write in a unit time)
 </code></pre>
 <p>As we read in a shared memory system in the same time, we may encounter conflicts.</p>
-<h3><span id="work-load-and-work-depth">Work-Load and Work-Depth</span></h3>
-<ul>
-<li>Work-Load $W(n)$: total amount of work/operations needed to complete the algorithm.</li>
-<li>Work-Depth $T(n)$: worst-case running time of the algorithm.There are some asymptotically equivalent definitions of work-depth and work-load:
-<ul>
-<li>$P(n) = W(n)/T(n)$ processors and $T(n)$ time (on a PRAM)</li>
-<li>$W(n)/p$ time using any number of $p ≤ W(n)/T(n)$ processors (on a PRAM).</li>
-<li>$W(n)/p + T(n)$ time using any number of $p$ processors (on a PRAM).</li>
-</ul>
-</li>
-</ul>
 <h5><span id="to-resolve-access-conflicts">To resolve access conflicts</span></h5>
 <ul>
 <li>1.Exclusive Reading Exclusive Writing (EREW)</li>
@@ -261,6 +250,17 @@
 <li>Common rule</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+<h3><span id="work-load-and-work-depth">Work-Load and Work-Depth</span></h3>
+<ul>
+<li>Work-Load $W(n)$: total amount of work/operations needed to complete the algorithm.</li>
+<li>Work-Depth $T(n)$: worst-case running time of the algorithm.There are some asymptotically equivalent definitions of work-depth and work-load:
+<ul>
+<li>$P(n) = W(n)/T(n)$ processors and $T(n)$ time (on a PRAM)</li>
+<li>$W(n)/p$ time using any number of $p ≤ W(n)/T(n)$ processors (on a PRAM).</li>
+<li>$W(n)/p + T(n)$ time using any number of $p$ processors (on a PRAM).</li>
 </ul>
 </li>
 </ul>
