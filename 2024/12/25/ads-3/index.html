@@ -215,7 +215,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #03a9f4">
+                    <a href="/tags/ADS/" style="color: #00a596">
                         ADS
                     </a>
                 </span>
@@ -326,7 +326,10 @@ $\leftrightarrow$ $npl(u$-&gt;$right)\leq npl(v$-&gt;$left)$.</li>
         return H1
     case 3: (assume u1 &lt; u2)
         B'=merge(B1,H2)
-        H = the right form in the picture below(always swap)
+        if npl(A1-&gt;root) &gt;= npl(B'-&gt;root):
+            H = the right form in the picture below
+        else :
+            H = the right form in the picture below
         update npl(u1)
         return H
     (number of recursions is |H1|+|H2|)
@@ -369,10 +372,7 @@ $\leftrightarrow$ $npl(u$-&gt;$right)\leq npl(v$-&gt;$left)$.</li>
         return H1
     case 3: (assume u1 &lt; u2)
         B'=merge(B1,H2)
-        if npl(A1-&gt;root) &gt;= npl(B'-&gt;root):
-            H = the right form in the picture below
-        else :
-            H = the right form in the picture below
+        H = the right form in the picture below(always swap)
         update npl(u1)
         return H
     (number of recursions is |H1|+|H2|)
