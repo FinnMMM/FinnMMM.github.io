@@ -196,7 +196,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #00a596">
+                    <a href="/tags/ADS/" style="color: #ffa2c4">
                         ADS
                     </a>
                 </span>
@@ -230,7 +230,7 @@
 </li>
 </ul>
 <p>An algorithm has an <strong>approximation ratio</strong> of  $\rho (n)$ if, for any input of size $n$, the cost $C$ of the solution produced by the algorithm is within a factor of $\rho (n)$ of the cost $C’$ of an optimal solution:</p>
-<p>$$max{\frac{C’}{C},\frac{C}{C’}}\leq \rho (n)$$</p>
+<p>$$max\lbrace\frac{C’}{C},\frac{C}{C’}}\leq \rho (n)$$</p>
 <p>If an algorithm achieves an approximation ratio of $\rho (n)$, we call it a <strong>$\rho (n)$-approximation algorithm</strong>.</p>
 <p>An <strong>approximation scheme</strong> for an optimization problem is an approximation algorithm that takes as input not only an instance of the problem, but also a value $\varepsilon &gt; 0$ such that for any fixed $\varepsilon $, the scheme is a <strong>$(1+ \varepsilon )$-approximation algorithm</strong>.</p>
 <p>We say that an approximation scheme is a <strong>polynomial-time approximation scheme (PTAS)</strong> if for any fixed $\varepsilon &gt; 0$, the scheme runs in time polynomial in the size $n$ of its input instance($T(n,\frac{1}{\varepsilon})=O(n^{\frac{1}{\varepsilon}})$).<br>
@@ -320,7 +320,7 @@ We have:$$A_0\geq OPT_{Frac}/2\geq OPT_{0-1}/2$$</p>
 <ul>
 <li>We define $W_{i,p}$ as the minimum capacity to reach a total value of $p$ within the first $i$ items.</li>
 </ul>
-<p>$$W_{i,p}=\begin{cases}\infty \quad i\ =\ 0 \\ W_{i-1,p}\quad v_i&gt;p \\ max{W_{i-1,p},W_{i-1,p-v_i}+w_i}\quad otherwise\end{cases}$$</p>
+<p>$$W_{i,p}=\begin{cases}\infty \quad i\ =\ 0 \\ W_{i-1,p}\quad v_i&gt;p \\ max\lbraceW_{i-1,p},W_{i-1,p-v_i}+w_i}\quad otherwise\end{cases}$$</p>
 <h5><span id="theorem">Theorem</span></h5>
 <ul>
 <li>The time complexity of this algorithm is $O(N\sum v)\leq O(n^2v_{max})$</li>
@@ -377,7 +377,7 @@ return c_k
 </code></pre>
 <p>We have:</p>
 <ul>
-<li>$dist(s,c)=min_{for \ c \isin C}{dist(s,c)}$</li>
+<li>$dist(s,c)=min_{for \ c \isin C}\lbracedist(s,c)\rbrace$</li>
 <li>$r(c_1)\geq r(c_2)\geq \cdots \geq r(c_k)$</li>
 <li>The algorithm returns a set $C$ of $K$ centers such that $r© \leq 2r(C_{opt})$ where $C_{opt}$ is an optimal set of $K$ centers.</li>
 <li>Unless $P = NP$, there is no $\rho$ -approximation for center-selection problem for any $\rho &lt; 2$.</li>
