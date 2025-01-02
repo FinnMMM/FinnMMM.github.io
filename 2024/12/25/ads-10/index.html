@@ -204,7 +204,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #00bcd4">
+                    <a href="/tags/ADS/" style="color: #ff7d73">
                         ADS
                     </a>
                 </span>
@@ -427,19 +427,19 @@ $L = { x1x2 : x1 ∈ L1\ and\ x2 ∈ L2 }$.</p>
 <p>To accept a language, an algorithm need only worry about strings in $L$, but to decide a language, it must correctly accept or reject every string in ${0, 1}^*$</p>
 </li>
 <li>
-<p>$P = { L ⊆ {0, 1}^* : there\ exists\ an\ algorithm\ A\ that\ decides\ L\ in\ polynomial\ time}$.</p>
+<p>$P = \lbrace L ⊆ {0, 1}^* : there\ exists\ an\ algorithm\ A\ that\ decides\ L\ in\ polynomial\ time\rbrace$.</p>
 </li>
 <li>
-<p>A verification algorithm is a two-argument algorithm $A$, where one argument is an ordinary input string $x$ and the other is a binary string  y$$ called a certificate.</p>
+<p>A verification algorithm is a two-argument algorithm $A$, where one argument is an ordinary input string $x$ and the other is a binary string  $y$ called a certificate.</p>
 </li>
 <li>
 <p>A two-argument algorithm $A$ verifies an input string $x$ if there exists a certificate $y$ such that $A(x, y) = 1$.</p>
 </li>
 <li>
-<p>The language verified by a verification algorithm $A$ is  $L = { x ∈ {0, 1}^* : there\ exists\ y ∈ {0, 1}^* such\ that\ A(x, y) = 1}$.</p>
+<p>The language verified by a verification algorithm $A$ is  $L = \lbrace x ∈ {0, 1}^* : there\ exists\ y ∈ {0, 1}^* such\ that\ A(x, y) = 1\rbrace$.</p>
 </li>
 <li>
-<p>A language $L$ belongs to $NP$ iff there exist a two-input polynomial-time algorithm $A$ and a constant $c$ such that $L = { x ∈ {0, 1}^* : there\ exists\ a\ certificate\ y\ with\ |y| = O(|x|c) such\ that\ A(x, y) = 1 }$.  We say that algorithm $A$ verifies language $L$ in polynomial time.</p>
+<p>A language $L$ belongs to $NP$ iff there exist a two-input polynomial-time algorithm $A$ and a constant $c$ such that $L = \lbrace x ∈ {0, 1}^* : there\ exists\ a\ certificate\ y\ with\ |y| = O(|x|c) such\ that\ A(x, y) = 1 \rbrace$.  We say that algorithm $A$ verifies language $L$ in polynomial time.</p>
 </li>
 </ul>
 <h3><span id="co-np-class">co-NP Class</span></h3>
