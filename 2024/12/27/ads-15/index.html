@@ -199,7 +199,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #00bcd4">
+                    <a href="/tags/ADS/" style="color: #00a596">
                         ADS
                     </a>
                 </span>
@@ -283,6 +283,7 @@ With this strategy, we can reduce the number of tapes from $2k$ to $k+1$.<br>
 If we review the processure of 2-way merge in reverse order,we can find that the number of runs in the longest tape is:<br>
 $$F_0=0,F_1=1,F_2=1,F_3=2,F_4=3\cdots F_N=F_{N-1}+F_{n-2}$$<br>
 It is a Fibonacci sequence!!<br>
+So we can do our best to assign the number of runs in each tape to the Fibonacci sequence.<br>
 It also has a similar property in k-way merge algorithm,that is:<br>
 $$F_{N}^k=\begin{cases}0,\quad 0\leq N\leq k-2\\1,\quad N=k-1\\\sum_{i=1}^{k}F_{N-i}^k,\quad N\geq k\end{cases}$$</p>
 <h4><span id="handle-the-buffers-for-parallel-operation">Handle the buffers for parallel operation</span></h4>
