@@ -199,7 +199,7 @@
                 
                 <span class="tag">
                     
-                    <a href="/tags/ADS/" style="color: #00a596">
+                    <a href="/tags/ADS/" style="color: #ff7d73">
                         ADS
                     </a>
                 </span>
@@ -300,10 +300,10 @@ $W(n)=O(1+2+\cdots+n)=O(n^2)$, $T(n)=O(\log n)$</p>
 <h6><span id="efficient-parallel-algorithm">Efficient Parallel Algorithm</span></h6>
 <p>We can use the parallel summation tree and improve it in this way.</p>
 <p><img src="/2024/12/27/ads-14/2.png" alt></p>
-<p>In this tree, we define $$C(h,i)=\sum_{j=1}^{\alpha}A_j$$,where $A(\alpha)$ is the rightest leaf of the subtree rooted at $C(h,i)$.<br>
-For all the $h$, $$C(h,1)=B(h,1)$$.<br>
-If $C(h,i)$ is a right child,$$C(h,i)=C(h+1,i/2)$$.<br>
-If $C(h,i)$ is a left child and $i\neq 1$,$$C(h,i)=C(h+1,i/2)-B(h,i+1)=C(h+1,(i-1)/2)+B(h,i)$$.</p>
+<p>In this tree, we define $$C(h,i)=\sum_{j=1}^{\alpha}A_j$$where $A(\alpha)$ is the rightest leaf of the subtree rooted at $C(h,i)$<br>
+For all the $h$, $$C(h,1)=B(h,1)$$<br>
+If $C(h,i)$ is a right child,$$C(h,i)=C(h+1,i/2)$$<br>
+If $C(h,i)$ is a left child and $i\neq 1$,$$C(h,i)=C(h+1,i/2)-B(h,i+1)=C(h+1,(i-1)/2)+B(h,i)$$</p>
 <pre><code class="language-pesudo">for P_i , i from 1 to n pardo
   B(0, i) := A(i)
 for h = 1 to log n
